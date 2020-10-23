@@ -17,6 +17,9 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
   </entry>
   <entry>
     <title>扫码点餐时遇到的问题</title>
@@ -39,6 +42,9 @@
 </ol>
 <p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
   </entry>
   <entry>
     <title>用生成器函数和Promise改善异步流程</title>
@@ -68,5 +74,8 @@
 
 <h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
 ]]></content>
+      <tags>
+        <tag>前端基础</tag>
+      </tags>
   </entry>
 </search>
