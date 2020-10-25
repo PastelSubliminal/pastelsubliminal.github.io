@@ -67,29 +67,29 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://example.com/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2020-10-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-10-24</lastmod>
+    <lastmod>2020-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2020-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
