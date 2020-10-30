@@ -34,6 +34,17 @@
   background: #d3af86 !important
 }
 
+#web_bg {
+  /* webkit内核 5.1 - 6.0 */
+  background: -webkit-linear-gradient(top, #fff1eb 0%, #ace0f9 100%);
+  /* Opera 11.1 - 12.0 */
+  background: -o-linear-gradient(top, #fff1eb 0%, #ace0f9 100%);
+  /* Firefox 3.6 - 15 */
+  background: -moz-linear-gradient(top, #fff1eb 0%, #ace0f9 100%);
+  /* 标准的语法 */
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
 .prettyprint {
     background: #f4fbf4;
     font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
