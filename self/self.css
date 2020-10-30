@@ -8,14 +8,14 @@
 /* 必须配置(把下面 pre[class*="language-"]的color和background复製到这里来) */
 #article-container figure.highlight,
 #article-container pre[class*="language-"] {
-	background: #faf8f5;
+	background:#728fcb;
 	color: #728fcb;
 }
 
 /* 代码框工具栏 (如果你关掉了copy、lang和shrink,可不用配置这个) */
 #article-container figure.highlight .highlight-tools {
   color: #728fcb;
-  background: #faf8f5
+  background: #728fcb
 }
 
 /* 代码框行数(如果已经关掉line_number,可以不用配置这个) */
