@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/1970/01/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>图的遍历——广度优先搜索和深度优先搜索</title>
     <url>/2020/10/30/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86%E2%80%94%E2%80%94%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
     <content><![CDATA[<p>前置知识：图的相关术语和图的表示</p>
-<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><p>和树数据结构类似，我们可以访问图的所有节点。由两种算法可以对图进行遍历：<strong>广度优先搜索（breadth-first search，BFS）</strong>和<strong>深度优先搜索（depth-first，DFS）</strong>。图遍历可以用来寻找特定的顶点或寻找两个顶点之间的路径，检查路径是否相同，检查图是否有环，等等。</p>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><p>和树数据结构类似，我们可以访问图的所有节点。由两种算法可以对图进行遍历：<strong>广度优先搜索（breadth-first search，BFS）</strong>和<strong>深度优先搜索（depth-first search，DFS）</strong>。图遍历可以用来寻找特定的顶点或寻找两个顶点之间的路径，检查路径是否相同，检查图是否有环，等等。</p>
 <p>在实现算法之前，让我们来更好的理解一下图遍历的思想。</p>
 <p><strong>图遍历算法</strong>的思想是必须追踪每个第一次访问的节点，并且追踪有哪些节点还没有完全被探索，对于两种图遍历算法，都需要明确指出第一个被访问的顶点。</p>
 <p>完全探索第一个顶点要求我们查看该顶点的每一条边。对于每一条边所连接的没有被访问过的顶点，将其标注为被发现的，并将其加入待访问的定点列表中。</p>
@@ -52,55 +73,11 @@
 <p>让我们来实现一下深度优先算法。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const depthFirstSearch &#x3D; (graph, callback) &#x3D;&gt; &#123;</span><br><span class="line">    const startVertex &#x3D; graph.getVertices();</span><br><span class="line">    const adjList &#x3D; graph.getAdjList();</span><br><span class="line">    const color &#x3D; initColor(vertices);</span><br><span class="line"></span><br><span class="line">    for(let i &#x3D; 0; i &lt; neighbors.length; i++)&#123;</span><br><span class="line">        if(color[vertices[i]] &#x3D;&#x3D;&#x3D; Colors.WHITE)&#123;</span><br><span class="line">            depthFirstSearchVisit(vertices[i], color, adjList, callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const depthFirstSearchVisit &#x3D; (u, color, adjList, callback) &#x3D;&gt; &#123;</span><br><span class="line">    color[u] &#x3D; Colors.GRAY;</span><br><span class="line">    if(callback)&#123;</span><br><span class="line">        callback(u)</span><br><span class="line">    &#125;</span><br><span class="line">    const neighbors &#x3D; adjList.get(u);</span><br><span class="line">    for(let i &#x3D; 0; i &lt; neighbors.length; i++)&#123;</span><br><span class="line">        const w &#x3D; neighbors[i];</span><br><span class="line">        if(color[w] &#x3D;&#x3D;&#x3D; Colors.WHITE)&#123;</span><br><span class="line">            depthFirstSearchVisit(w, color, adjList, callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    color[u] &#x3D; Colors.BLACK;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>写此文的原因是在面试时面试官看我在简历上写了数据结构与算法(Leetcode120+)，便询问做的题以哪方面为主，答曰数组和树。一面让手写了一下先序遍历，这个写出来了，二面换了个人问广度优先遍历和深度优先遍历。啊这，答不上来。因为当时是在学习图的时候看到这两个概念，但是图数据结构是已经是书本介绍的最后一个数据结构了，而且感觉不怎么常见，就没把那章节看完。<del>加上当时已经学到Node.js、计网、异步等信息量比较大的知识，后续更是在学框架写东西，就没再研究数据结构与算法了</del>（解释</p>
+<p>写此文的原因是在面试时面试官看我在简历上写了数据结构与算法(Leetcode120+)，便询问做的题以哪方面为主，答曰数组和树。一面让手写了一下先序遍历，这个写出来了，二面换了个人问广度优先遍历和深度优先遍历。啊这，答不上来。因为当时是在学习图的时候看到这两个概念，但是图已经是书本介绍的最后一个数据结构了，而且感觉不怎么常见，就没把那章节看完。<del>加上当时已经学到Node.js、计网、异步等信息量比较大的知识，后续更是在学框架写东西，就没再研究数据结构与算法了</del>（解释</p>
 <p>所以这将成为本博客第一个数据结构与算法相关的文章。</p>
 ]]></content>
       <tags>
         <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/1970/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>this和强制改变this指向</title>
-    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<p>一个函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);&#x2F;&#x2F;[Object Window]</span><br><span class="line">            alert(x + &quot;,&quot; + y);&#x2F;&#x2F;10,20</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.call(&quot;call&quot;, 20, 40);</span><br></pre></td></tr></table></figure>
-
-<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.apply(&quot;call&quot;, [20, 40]);</span><br></pre></td></tr></table></figure>
-
-<p>方法3：bind预设this指向</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);</span><br><span class="line">            alert(x + &quot;,&quot; + y);</span><br><span class="line">        &#125;</span><br><span class="line">        var res &#x3D; show.bind(&quot;bind&quot;);</span><br><span class="line">        &#x2F;&#x2F;res(40, 50);</span><br><span class="line">        show.bind(&quot;bind&quot;)(40, 50);</span><br></pre></td></tr></table></figure>
-
-<p>apply使用方法的小技巧</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
-<p>等同于</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>前端基础</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -126,38 +103,6 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用生成器函数和Promise改善异步流程</title>
-    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
-<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getValue(val, duration)&#123;</span><br><span class="line">    return new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function delay(duration)&#123;</span><br><span class="line">    return new Promise(resolve &#x3D;&gt; &#123;&#x2F;&#x2F;delay函数不resolve出任何东西，或者说resolve出undefined</span><br><span class="line">        setTimeout(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getJSON(url)&#123;</span><br><span class="line">    return get(url).then(JSON.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是 <strong>Generator 函数主体</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function *f()&#123;</span><br><span class="line">    var data &#x3D; yield getJSON(&#39;data.json&#39;)&#x2F;&#x2F;(1)</span><br><span class="line">    yield delay(1000);&#x2F;&#x2F;(2)</span><br><span class="line">    var b &#x3D; yield getValue(10, 3000);&#x2F;&#x2F;(3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
-<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var g &#x3D; f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(value &#x3D;&gt;&#123;</span><br><span class="line">  g.next(value).value.then(value &#x3D;&gt;</span><br><span class="line">    g.next(value).value.then(value &#x3D;&gt;</span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>分析一下对 g 调用 next() 的过程。</p>
-<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
-<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
-<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
-<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
-<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
-<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
-<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
-<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
-<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">g.next().value.then(value &#x3D;&gt;&#123;</span><br><span class="line">    g.next(value);&#x2F;&#x2F;成功就通过yield返回</span><br><span class="line">&#125;, reason &#x3D;&gt;&#123;</span><br><span class="line">    g.throw(reason);&#x2F;&#x2F;失败就通过yield抛出</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(1);</span><br></pre></td></tr></table></figure>
-<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
-<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    var data &#x3D; yield getJSON(&#39;data.json&#39;)</span><br><span class="line">&#125;catch(e)&#123;</span><br><span class="line">    console.log(e);</span><br><span class="line">    return;</span><br><span class="line"> &#125;</span><br><span class="line"> &#x2F;&#x2F;多了yield的好处：能看出代码哪里需要等待</span><br></pre></td></tr></table></figure>
-
-<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -205,6 +150,61 @@
       </tags>
   </entry>
   <entry>
+    <title>this和强制改变this指向</title>
+    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
+    <content><![CDATA[<p>一个函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);&#x2F;&#x2F;[Object Window]</span><br><span class="line">            alert(x + &quot;,&quot; + y);&#x2F;&#x2F;10,20</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.call(&quot;call&quot;, 20, 40);</span><br></pre></td></tr></table></figure>
+
+<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.apply(&quot;call&quot;, [20, 40]);</span><br></pre></td></tr></table></figure>
+
+<p>方法3：bind预设this指向</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);</span><br><span class="line">            alert(x + &quot;,&quot; + y);</span><br><span class="line">        &#125;</span><br><span class="line">        var res &#x3D; show.bind(&quot;bind&quot;);</span><br><span class="line">        &#x2F;&#x2F;res(40, 50);</span><br><span class="line">        show.bind(&quot;bind&quot;)(40, 50);</span><br></pre></td></tr></table></figure>
+
+<p>apply使用方法的小技巧</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用生成器函数和Promise改善异步流程</title>
+    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
+<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getValue(val, duration)&#123;</span><br><span class="line">    return new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function delay(duration)&#123;</span><br><span class="line">    return new Promise(resolve &#x3D;&gt; &#123;&#x2F;&#x2F;delay函数不resolve出任何东西，或者说resolve出undefined</span><br><span class="line">        setTimeout(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getJSON(url)&#123;</span><br><span class="line">    return get(url).then(JSON.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是 <strong>Generator 函数主体</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function *f()&#123;</span><br><span class="line">    var data &#x3D; yield getJSON(&#39;data.json&#39;)&#x2F;&#x2F;(1)</span><br><span class="line">    yield delay(1000);&#x2F;&#x2F;(2)</span><br><span class="line">    var b &#x3D; yield getValue(10, 3000);&#x2F;&#x2F;(3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
+<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var g &#x3D; f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(value &#x3D;&gt;&#123;</span><br><span class="line">  g.next(value).value.then(value &#x3D;&gt;</span><br><span class="line">    g.next(value).value.then(value &#x3D;&gt;</span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>分析一下对 g 调用 next() 的过程。</p>
+<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
+<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
+<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
+<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
+<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
+<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
+<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
+<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
+<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">g.next().value.then(value &#x3D;&gt;&#123;</span><br><span class="line">    g.next(value);&#x2F;&#x2F;成功就通过yield返回</span><br><span class="line">&#125;, reason &#x3D;&gt;&#123;</span><br><span class="line">    g.throw(reason);&#x2F;&#x2F;失败就通过yield抛出</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(1);</span><br></pre></td></tr></table></figure>
+<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
+<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    var data &#x3D; yield getJSON(&#39;data.json&#39;)</span><br><span class="line">&#125;catch(e)&#123;</span><br><span class="line">    console.log(e);</span><br><span class="line">    return;</span><br><span class="line"> &#125;</span><br><span class="line"> &#x2F;&#x2F;多了yield的好处：能看出代码哪里需要等待</span><br></pre></td></tr></table></figure>
+
+<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
+]]></content>
+      <tags>
+        <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简单的React父子组件和平级组件之间传值</title>
     <url>/2020/10/30/%E7%AE%80%E5%8D%95%E7%9A%84React%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B9%B3%E7%BA%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
     <content><![CDATA[<p>1.父组件对子组件传值 利用props属性传值</p>
@@ -216,8 +216,8 @@
 <p>3.同一父组件下平级组件间传值 ，简单一句话 子组件先传给父组件，父组件再传给那个子组件</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理平级组件间传值 ，先传给父组件，父组件再传给另一个组件</span><br><span class="line">class Child1 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.props.changeChild2Color(&#39;yellow&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;Child1：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.handleClick(e)&#125;&gt;向Child2传值，改变其颜色&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Child2 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div style&#x3D;&#123;&#123;background:this.props.bgColor&#125;&#125;&gt;</span><br><span class="line">            &lt;h1&gt;Child2：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state&#x3D;&#123;</span><br><span class="line">        child2BgColor: &#39;#999&#39;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    onChild2BgColorChange(color) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        child2BgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &#123;&#x2F;* 平级组件间传值*&#x2F;&#125;</span><br><span class="line">          &lt;Child1 changeChild2Color&#x3D;&#123;(color)&#x3D;&gt;&#123;this.onChild2BgColorChange(color)&#125;&#125;&gt;&lt;&#x2F;Child1&gt;</span><br><span class="line">          &lt;Child2 bgColor&#x3D;&#123;this.state.child2BgColor&#125;&gt;&lt;&#x2F;Child2&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;&#x2F;Father&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>前端基础</tag>
         <tag>笔记</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -234,8 +234,8 @@
 <p>闭包的一个应用：私有变量<br>例子：A，B两同学共同开发代码</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 10;&#x2F;&#x2F;私有变量</span><br><span class="line">    function aaa()&#123;&#x2F;&#x2F;私有方法</span><br><span class="line">        count +&#x3D; 2;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 10;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 100;</span><br><span class="line">    function aaa()&#123;</span><br><span class="line">        count +&#x3D; 5;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 20;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">moduleA.funcA();</span><br><span class="line">moduleA.funcB();</span><br><span class="line"></span><br><span class="line">moduleB.funcA();</span><br><span class="line">moduleB.funcB();</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>前端基础</tag>
         <tag>笔记</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
 </search>
