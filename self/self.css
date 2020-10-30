@@ -50,13 +50,13 @@
 
 /* 代码框工具栏 (如果你关掉了copy、lang和shrink,可不用配置这个) */
 #article-container figure.highlight .highlight-tools {
-  color: xxxxx;
-  background: xxxxx
+  color: #728fcb;
+  background: #faf8f5
 }
 
 /* 代码框行数(如果已经关掉line_number,可以不用配置这个) */
 #article-container pre[class*='language-'].line-numbers .line-numbers-rows > span:before {
-  color: xxxxxxx
+  color: #728fcb
 }
 
 /* 代码块figcaption配置(hexo自带标签https://hexo.io/zh-tw/docs/tag-plugins.html#Code-Block) */
