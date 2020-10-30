@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>图的遍历——广度优先搜索和深度优先搜索</title>
+    <url>/2020/10/30/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86%E2%80%94%E2%80%94%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
+    <content><![CDATA[<p>前置知识：图的相关术语和图的表示</p>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><p>和树数据结构类似，我们可以访问图的所有节点。由两种算法可以对图进行遍历：<strong>广度优先搜索（breadth-first search，BFS）</strong>和<strong>深度优先搜索（depth-first，DFS）</strong>。图遍历可以用来寻找特定的顶点或寻找两个顶点之间的路径，检查路径是否相同，检查图是否有环，等等。</p>
+<p>在实现算法之前，让我们来更好的理解一下图遍历的思想。</p>
+<p><strong>图遍历算法</strong>的思想是必须追踪每个第一次访问的节点，并且追踪有哪些节点还没有完全被探索，对于两种图遍历算法，都需要明确指出第一个被访问的顶点。</p>
+<p>完全探索第一个顶点要求我们查看该顶点的每一条边。对于每一条边所连接的没有被访问过的顶点，将其标注为被发现的，并将其加入待访问的定点列表中。</p>
+<p>为了保证算法的效率，务必访问每个顶点至多两次。连通图中每条边和顶点都会被访问到。</p>
+<p>广度优先搜索算法和深度优先搜索算法基本上是相同的，只有一点不同，那就是待访问顶点列表的数据结构。如下表所示</p>
+<table>
+<thead>
+<tr>
+<th align="left">算法</th>
+<th align="left">数据结构</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">深度优先搜索</td>
+<td align="left">栈</td>
+<td align="left">将顶点存入栈，顶点是沿着路径被探索的，存在新的相邻顶点就去访问</td>
+</tr>
+<tr>
+<td align="left">广度优先搜索</td>
+<td align="left">队列</td>
+<td align="left">将顶点存入队列，最先入队列的顶点先被搜索</td>
+</tr>
+</tbody></table>
+<p>当要标注已经访问过的顶点时，我们用三种颜色来反映它们的状态。</p>
+<ul>
+<li>白色：表示该顶点还没有被访问。</li>
+<li>灰色：表示该顶点被访问过，但并未被探索过。</li>
+<li>黑色：表示该顶点被访问过且被完全探索过。</li>
+</ul>
+<p>这就是之前提到的务必访问每个顶点最多两次的原因。</p>
+<p>为了有助于在广度优先和深度优先算法中标记定点。我们要使用 Colors 变量（作为一个枚举器），声明如下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const Colors &#x3D; &#123;</span><br><span class="line">    WHITE: 0,</span><br><span class="line">    GREY: 1,</span><br><span class="line">    BLACK: 2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>两个算法还需要访问一个辅助对象来帮助存储顶点是否被访问过。在每个算法的开头，所有的顶点都会被标记为未访问（白色）。我们要用下面的函数来初始化每个顶点的颜色。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const initColor &#x3D; vertices &#x3D;&gt; &#123;</span><br><span class="line">    const color &#x3D; &#123;&#125;;</span><br><span class="line">    for(let i &#x3D; 0; i &lt; vertices.length; i++)&#123;</span><br><span class="line">        color[vertices[i]] &#x3D; Colors.WHITE;</span><br><span class="line">    &#125;</span><br><span class="line">    return color</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>广度优先搜索算法会从指定的第一个顶点开始遍历图，先访问其所有邻点（相邻顶点），就像一次访问图的一层。换句话说，就是先宽后深的访问顶点，如下图所示<br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrENvAK4hCVLHst1Ssx8xTOzSnZk4FpVPApa5BpTrf.Ojk7.j1y4mouG74Usz7fdaq8H0JlVD3*KnGxqQgxCPgClA!/r" alt="Image text"><br>以下是从顶点v开始的广度优先搜索算法所遵循的步骤。</p>
+<p>(1) 创建一个队列 Q。<br>(2) 标注 v 为被发现的（灰色），并将 v 入队列 Q。<br>(3) 如果 Q 非空，则运行以下步骤：<br>    (a) 将 u 从 Q 中出队列；<br>    (b) 标注 u 为被发现的（灰色）；<br>    (c) 将 u 所有未被访问过的邻点（白色）入队列；<br>    (d) 标注 u 为已被探索的（黑色）。</p>
+<p>让我们来实现广度优先搜索算法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const breathFirstSearch &#x3D; (graph, startVertex, callback) &#x3D;&gt; &#123;</span><br><span class="line">    const startVertex &#x3D; graph.getVertices;</span><br><span class="line">    const adjList &#x3D; graph.getAdjList;</span><br><span class="line">    const color &#x3D; initColor(vertices);</span><br><span class="line"></span><br><span class="line">    const queue &#x3D; new Queue();</span><br><span class="line"></span><br><span class="line">    queue.enqueue(startVertex);</span><br><span class="line"></span><br><span class="line">    while(!queue.isEmpty())&#123;</span><br><span class="line">        const u &#x3D; queue.dequeue();</span><br><span class="line">        const neighbors &#x3D; adjList.get(u);</span><br><span class="line">        color[u] &#x3D; Colors.GREY;</span><br><span class="line">        for(let i &#x3D; 0; i &lt; neighbors.length; i++)&#123;</span><br><span class="line">            const w &#x3D; neighbors[i];</span><br><span class="line">            if(color[w] &#x3D;&#x3D;&#x3D; Colors.WHITE)&#123;</span><br><span class="line">                color[w] &#x3D; Colors.GREY;</span><br><span class="line">                queue.enqueue(w);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        color[u] &#x3D; Colors.BLACK;</span><br><span class="line">        if(callback)&#123;</span><br><span class="line">            callback(u);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="深度优先搜素"><a href="#深度优先搜素" class="headerlink" title="深度优先搜素"></a>深度优先搜素</h2><p>深度优先搜索算法将会从第一个指定的顶点开始遍历图，沿着路径直到这条卢静最后一个顶点被访问了，接着原路回退并探索下一条路径。换句话说，它是是先深度后广度地访问顶点，如下图所示<br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrEO7a7xpq*swiCvkKkkTZecTjQEoR89aVQ*WEn7KMBcryBowgzBlEHeSnKkiqeKpdq1J*fk2xlJvTX4HmbNXqrUE!/r" alt="Image text"><br>深度优先搜索算法不需要一个源顶点。在深度优先搜索算法中，若图中顶点 v 未访问，则访问该顶点 v。</p>
+<p>要访问顶点 v，照如下步骤做：<br>(1) 标注 v 为未被发现的（灰色）；<br>(2) 对于 v 的所有未访问（白色）的邻点 w，访问顶点 w；<br>(3) 标注 v 为已被探索的（黑色）；</p>
+<p>深度优先搜索的步骤是递归的，这意味着深度优先搜索算法使用栈来存储函数调用（由递归调用所创建的栈）。</p>
+<p>让我们来实现一下深度优先算法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const depthFirstSearch &#x3D; (graph, callback) &#x3D;&gt; &#123;</span><br><span class="line">    const startVertex &#x3D; graph.getVertices();</span><br><span class="line">    const adjList &#x3D; graph.getAdjList();</span><br><span class="line">    const color &#x3D; initColor(vertices);</span><br><span class="line"></span><br><span class="line">    for(let i &#x3D; 0; i &lt; neighbors.length; i++)&#123;</span><br><span class="line">        if(color[vertices[i]] &#x3D;&#x3D;&#x3D; Colors.WHITE)&#123;</span><br><span class="line">            depthFirstSearchVisit(vertices[i], color, adjList, callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const depthFirstSearchVisit &#x3D; (u, color, adjList, callback) &#x3D;&gt; &#123;</span><br><span class="line">    color[u] &#x3D; Colors.GRAY;</span><br><span class="line">    if(callback)&#123;</span><br><span class="line">        callback(u)</span><br><span class="line">    &#125;</span><br><span class="line">    const neighbors &#x3D; adjList.get(u);</span><br><span class="line">    for(let i &#x3D; 0; i &lt; neighbors.length; i++)&#123;</span><br><span class="line">        const w &#x3D; neighbors[i];</span><br><span class="line">        if(color[w] &#x3D;&#x3D;&#x3D; Colors.WHITE)&#123;</span><br><span class="line">            depthFirstSearchVisit(w, color, adjList, callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    color[u] &#x3D; Colors.BLACK;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>写此文的原因是在面试时面试官看我在简历上写了数据结构与算法(Leetcode120+)，便询问做的题以哪方面为主，答曰数组和树。一面让手写了一下先序遍历，这个写出来了，二面换了个人问广度优先遍历和深度优先遍历。啊这，答不上来。因为当时是在学习图的时候看到这两个概念，但是图数据结构是已经是书本介绍的最后一个数据结构了，而且感觉不怎么常见，就没把那章节看完。<del>加上当时已经学到Node.js、计网、异步等信息量比较大的知识，后续更是在学框架写东西，就没再研究数据结构与算法了</del>（解释</p>
+<p>所以这将成为本博客第一个数据结构与算法相关的文章。</p>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/1970/01/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -19,6 +78,29 @@
 ]]></content>
       <tags>
         <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this和强制改变this指向</title>
+    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
+    <content><![CDATA[<p>一个函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);&#x2F;&#x2F;[Object Window]</span><br><span class="line">            alert(x + &quot;,&quot; + y);&#x2F;&#x2F;10,20</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.call(&quot;call&quot;, 20, 40);</span><br></pre></td></tr></table></figure>
+
+<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.apply(&quot;call&quot;, [20, 40]);</span><br></pre></td></tr></table></figure>
+
+<p>方法3：bind预设this指向</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);</span><br><span class="line">            alert(x + &quot;,&quot; + y);</span><br><span class="line">        &#125;</span><br><span class="line">        var res &#x3D; show.bind(&quot;bind&quot;);</span><br><span class="line">        &#x2F;&#x2F;res(40, 50);</span><br><span class="line">        show.bind(&quot;bind&quot;)(40, 50);</span><br></pre></td></tr></table></figure>
+
+<p>apply使用方法的小技巧</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -79,63 +161,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简单的React父子组件和平级组件之间传值</title>
-    <url>/2020/10/30/%E7%AE%80%E5%8D%95%E7%9A%84React%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B9%B3%E7%BA%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
-    <content><![CDATA[<p>1.父组件对子组件传值 利用props属性传值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Component extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;I am &#123;this.props.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Component name&#x3D;&#39;cat&#39;&gt;&lt;&#x2F;Component&gt;</span><br><span class="line">    &lt;h1&gt;hello world!!!&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>2.子组件对父组件传值 简单来说就是利用回调来完成，比如下面例子，子组件来改变父组件的颜色</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理父子组件间传值</span><br><span class="line">class Child extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.props.colorChange(&#39;yellow&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;父组件的值  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.handleClick(e)&#125;&gt;改变父组件颜色&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state&#x3D;&#123;</span><br><span class="line">        bgColor: &#39;#999&#39;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    onBgColorChange(color) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        bgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div style&#x3D;&#123;&#123;background:this.state.bgColor&#125;&#125;&gt;</span><br><span class="line">          &lt;Child bgColor&#x3D;&#123;this.state.bgColor&#125; colorChange&#x3D;&#123;(color)&#x3D;&gt;&#123;this.onBgColorChange(color)&#125;&#125;&gt;&lt;&#x2F;Child&gt;</span><br><span class="line">          &#123;&#x2F;* 子组件像父组件传值，设置回调 *&#x2F;&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;&#x2F;Father&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>3.同一父组件下平级组件间传值 ，简单一句话 子组件先传给父组件，父组件再传给那个子组件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理平级组件间传值 ，先传给父组件，父组件再传给另一个组件</span><br><span class="line">class Child1 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.props.changeChild2Color(&#39;yellow&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;Child1：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.handleClick(e)&#125;&gt;向Child2传值，改变其颜色&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Child2 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div style&#x3D;&#123;&#123;background:this.props.bgColor&#125;&#125;&gt;</span><br><span class="line">            &lt;h1&gt;Child2：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state&#x3D;&#123;</span><br><span class="line">        child2BgColor: &#39;#999&#39;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    onChild2BgColorChange(color) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        child2BgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &#123;&#x2F;* 平级组件间传值*&#x2F;&#125;</span><br><span class="line">          &lt;Child1 changeChild2Color&#x3D;&#123;(color)&#x3D;&gt;&#123;this.onChild2BgColorChange(color)&#125;&#125;&gt;&lt;&#x2F;Child1&gt;</span><br><span class="line">          &lt;Child2 bgColor&#x3D;&#123;this.state.child2BgColor&#125;&gt;&lt;&#x2F;Child2&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;&#x2F;Father&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>前端基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>认识闭包</title>
-    <url>/2020/04/04/%E8%AE%A4%E8%AF%86%E9%97%AD%E5%8C%85/</url>
-    <content><![CDATA[<p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
-<p>好处：<br>    1、希望一个变量常驻在内存当中<br>    2、避免全局变量污染 避免声明全局变量，比如在函数外声明<br>    3、可以声明私有成员</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function a(num1)&#123;</span><br><span class="line">           var num2 &#x3D; 10;</span><br><span class="line">           function b()&#123;</span><br><span class="line">               return(num1 + &quot; &quot; + num2);</span><br><span class="line">           &#125;</span><br><span class="line">           return b;</span><br><span class="line">       &#125;</span><br><span class="line">       var res &#x3D; a(20);</span><br><span class="line">       console.log(res());</span><br></pre></td></tr></table></figure>
-<p>就是一个闭包</p>
-<p>可以实现：1、避免全局污染，2、对a进行累加<br>【注】让a变量常驻内存</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function aa()&#123;</span><br><span class="line">    var x &#x3D; 2;</span><br><span class="line">    function bb()&#123;</span><br><span class="line">        x++;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">    return bb;</span><br><span class="line">&#125;</span><br><span class="line">var cc &#x3D; aa();</span><br><span class="line">    cc();</span><br><span class="line">    cc();</span><br><span class="line">console.log(x);</span><br></pre></td></tr></table></figure>
-<p>写成立即执行函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    console.log(&quot;hello world&quot;);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var aa &#x3D; (function()&#123;</span><br><span class="line">    var x &#x3D; 2;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        x++;</span><br><span class="line">        console.log(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">cc();</span><br><span class="line">cc();</span><br><span class="line">console.log(x);</span><br></pre></td></tr></table></figure>
-<p>闭包的一个应用：私有变量<br>例子：A，B两同学共同开发代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 10;&#x2F;&#x2F;私有变量</span><br><span class="line">    function aaa()&#123;&#x2F;&#x2F;私有方法</span><br><span class="line">        count +&#x3D; 2;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 10;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 100;</span><br><span class="line">    function aaa()&#123;</span><br><span class="line">        count +&#x3D; 5;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 20;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">moduleA.funcA();</span><br><span class="line">moduleA.funcB();</span><br><span class="line"></span><br><span class="line">moduleB.funcA();</span><br><span class="line">moduleB.funcB();</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>前端基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>this和强制改变this指向</title>
-    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<p>一个函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);&#x2F;&#x2F;[Object Window]</span><br><span class="line">            alert(x + &quot;,&quot; + y);&#x2F;&#x2F;10,20</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.call(&quot;call&quot;, 20, 40);</span><br></pre></td></tr></table></figure>
-
-<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">show.apply(&quot;call&quot;, [20, 40]);</span><br></pre></td></tr></table></figure>
-
-<p>方法3：bind预设this指向</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function show(x, y)&#123;</span><br><span class="line">            alert(this);</span><br><span class="line">            alert(x + &quot;,&quot; + y);</span><br><span class="line">        &#125;</span><br><span class="line">        var res &#x3D; show.bind(&quot;bind&quot;);</span><br><span class="line">        &#x2F;&#x2F;res(40, 50);</span><br><span class="line">        show.bind(&quot;bind&quot;)(40, 50);</span><br></pre></td></tr></table></figure>
-
-<p>apply使用方法的小技巧</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
-<p>等同于</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>前端基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
     <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
     <content><![CDATA[<h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
@@ -177,6 +202,40 @@
 ]]></content>
       <tags>
         <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单的React父子组件和平级组件之间传值</title>
+    <url>/2020/10/30/%E7%AE%80%E5%8D%95%E7%9A%84React%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B9%B3%E7%BA%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
+    <content><![CDATA[<p>1.父组件对子组件传值 利用props属性传值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Component extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;I am &#123;this.props.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Component name&#x3D;&#39;cat&#39;&gt;&lt;&#x2F;Component&gt;</span><br><span class="line">    &lt;h1&gt;hello world!!!&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>2.子组件对父组件传值 简单来说就是利用回调来完成，比如下面例子，子组件来改变父组件的颜色</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理父子组件间传值</span><br><span class="line">class Child extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.props.colorChange(&#39;yellow&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;父组件的值  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.handleClick(e)&#125;&gt;改变父组件颜色&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state&#x3D;&#123;</span><br><span class="line">        bgColor: &#39;#999&#39;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    onBgColorChange(color) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        bgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div style&#x3D;&#123;&#123;background:this.state.bgColor&#125;&#125;&gt;</span><br><span class="line">          &lt;Child bgColor&#x3D;&#123;this.state.bgColor&#125; colorChange&#x3D;&#123;(color)&#x3D;&gt;&#123;this.onBgColorChange(color)&#125;&#125;&gt;&lt;&#x2F;Child&gt;</span><br><span class="line">          &#123;&#x2F;* 子组件像父组件传值，设置回调 *&#x2F;&#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;&#x2F;Father&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>3.同一父组件下平级组件间传值 ，简单一句话 子组件先传给父组件，父组件再传给那个子组件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理平级组件间传值 ，先传给父组件，父组件再传给另一个组件</span><br><span class="line">class Child1 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.props.changeChild2Color(&#39;yellow&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;Child1：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.handleClick(e)&#125;&gt;向Child2传值，改变其颜色&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Child2 extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div style&#x3D;&#123;&#123;background:this.props.bgColor&#125;&#125;&gt;</span><br><span class="line">            &lt;h1&gt;Child2：  &#123;this.props.bgColor&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    constructor (props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state&#x3D;&#123;</span><br><span class="line">        child2BgColor: &#39;#999&#39;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    onChild2BgColorChange(color) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        child2BgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &#123;&#x2F;* 平级组件间传值*&#x2F;&#125;</span><br><span class="line">          &lt;Child1 changeChild2Color&#x3D;&#123;(color)&#x3D;&gt;&#123;this.onChild2BgColorChange(color)&#125;&#125;&gt;&lt;&#x2F;Child1&gt;</span><br><span class="line">          &lt;Child2 bgColor&#x3D;&#123;this.state.child2BgColor&#125;&gt;&lt;&#x2F;Child2&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;&#x2F;Father&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;,</span><br><span class="line">  document.getElementById(&#39;app&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>认识闭包</title>
+    <url>/2020/04/04/%E8%AE%A4%E8%AF%86%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[<p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
+<p>好处：<br>    1、希望一个变量常驻在内存当中<br>    2、避免全局变量污染 避免声明全局变量，比如在函数外声明<br>    3、可以声明私有成员</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function a(num1)&#123;</span><br><span class="line">           var num2 &#x3D; 10;</span><br><span class="line">           function b()&#123;</span><br><span class="line">               return(num1 + &quot; &quot; + num2);</span><br><span class="line">           &#125;</span><br><span class="line">           return b;</span><br><span class="line">       &#125;</span><br><span class="line">       var res &#x3D; a(20);</span><br><span class="line">       console.log(res());</span><br></pre></td></tr></table></figure>
+<p>就是一个闭包</p>
+<p>可以实现：1、避免全局污染，2、对a进行累加<br>【注】让a变量常驻内存</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function aa()&#123;</span><br><span class="line">    var x &#x3D; 2;</span><br><span class="line">    function bb()&#123;</span><br><span class="line">        x++;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">    return bb;</span><br><span class="line">&#125;</span><br><span class="line">var cc &#x3D; aa();</span><br><span class="line">    cc();</span><br><span class="line">    cc();</span><br><span class="line">console.log(x);</span><br></pre></td></tr></table></figure>
+<p>写成立即执行函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    console.log(&quot;hello world&quot;);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var aa &#x3D; (function()&#123;</span><br><span class="line">    var x &#x3D; 2;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        x++;</span><br><span class="line">        console.log(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">cc();</span><br><span class="line">cc();</span><br><span class="line">console.log(x);</span><br></pre></td></tr></table></figure>
+<p>闭包的一个应用：私有变量<br>例子：A，B两同学共同开发代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 10;&#x2F;&#x2F;私有变量</span><br><span class="line">    function aaa()&#123;&#x2F;&#x2F;私有方法</span><br><span class="line">        count +&#x3D; 2;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 10;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">var moduleA &#x3D; (function()&#123;</span><br><span class="line">    var count &#x3D; 100;</span><br><span class="line">    function aaa()&#123;</span><br><span class="line">        count +&#x3D; 5;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    function bbb()&#123;</span><br><span class="line">        count *&#x3D; 20;</span><br><span class="line">        console.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    return&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">moduleA.funcA();</span><br><span class="line">moduleA.funcB();</span><br><span class="line"></span><br><span class="line">moduleB.funcA();</span><br><span class="line">moduleB.funcB();</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
 </search>
