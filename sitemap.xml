@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2020/11/01/['1',%20'2',%20'3'].map(parseInt)%20what%20&%20why/</loc>
+    
+    <lastmod>2020-10-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</loc>
     
     <lastmod>2020-10-31</lastmod>
@@ -117,6 +124,13 @@
   
   <url>
     <loc>http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2020-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

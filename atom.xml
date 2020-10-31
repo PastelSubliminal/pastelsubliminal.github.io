@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-10-31T16:21:25.719Z</updated>
+  <updated>2020-10-31T16:38:24.750Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
+    <link href="http://example.com/2020/11/01/[&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;].map(parseInt)%20what%20&amp;%20why/"/>
+    <id>http://example.com/2020/11/01/[&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;].map(parseInt)%20what%20&amp;%20why/</id>
+    <published>2020-10-31T16:00:00.000Z</published>
+    <updated>2020-10-31T16:38:24.750Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p><p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p><p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p><p>了解这两个函数后，我们可以模拟一下运行情况</p><ol><li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li><li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li><li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li></ol><p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。&lt;/p&gt;
+&lt;p&gt;首先回顾一下，map函数的第一个参数callback：&lt;br&gt;var new_array = arr.map(function callback(cu</summary>
+      
+    
+    
+    
+    
+    <category term="前端基础" scheme="http://example.com/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="试题" scheme="http://example.com/tags/%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>图的遍历——广度优先搜索和深度优先搜索</title>
