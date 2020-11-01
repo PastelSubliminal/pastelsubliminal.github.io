@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2020/10/30/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86%E2%80%94%E2%80%94%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</loc>
     
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     
   </url>
   
@@ -95,7 +95,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -103,35 +103,35 @@
   
   <url>
     <loc>http://example.com/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-10-31</lastmod>
+    <lastmod>2020-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
