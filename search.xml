@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
+    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
+    <content><![CDATA[<p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
+<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
+<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
+<p>了解这两个函数后，我们可以模拟一下运行情况</p>
+<ol>
+<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
+<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
+<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
+</ol>
+<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
+<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
+]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/12/25/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -19,26 +39,6 @@
 ]]></content>
       <tags>
         <tag>日常</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
-    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
-    <content><![CDATA[<p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
-<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
-<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
-<p>了解这两个函数后，我们可以模拟一下运行情况</p>
-<ol>
-<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
-<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
-<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
-</ol>
-<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
-<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
-        <tag>试题</tag>
       </tags>
   </entry>
   <entry>
@@ -112,7 +112,7 @@
   <entry>
     <title>写在2020年即将结束之际</title>
     <url>/2020/11/03/%E5%86%99%E5%9C%A82020%E5%B9%B4%E5%8D%B3%E5%B0%86%E7%BB%93%E6%9D%9F%E4%B9%8B%E9%99%85/</url>
-    <content><![CDATA[<p>家里蹲了很久，但也并不是一直在玩，还是长进了很多。至少不再迷茫，认定好了方向。虽然不算早了，但也不晚吧。要做的事快要做成了，只剩下最后的阶段，即使短时间内没有成功的兆头，也仍要坚持。俗话说万事开头难，今年形势不好，但坚持至少有成功的可能，今年总该不会只丢下我一个人了吧。<br><img src="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrENDk0q0dVhdi6l.mbJvCxjV7VOf2PU2faITxrgAV0z4U6dBEcTmp7341PHU5G6D4ADrfp.LgWiIyLjpiunKvy7Y!/b&bo=kAHHApABxwIDGTw!&rf=viewer_4" alt="image text"><br><img src="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrEGyeoZvzlg5EctOY8wa8DipJuIbijWdauAEGowx6*.GYapfKY9MYbvYdZ2HBb81gGFzxEGYNys6X72NnLS5N.3U!/b&bo=kAHHApABxwIDGTw!&rf=viewer_4" alt="image text"></p>
+    <content><![CDATA[<p>家里蹲了很久，但也并不是一直在玩，还是长进了很多。至少不再迷茫，认定好了方向。虽然不算早了，但也不晚吧。要做的事快要做成了，只剩下最后的阶段，即使短时间内没有成功的兆头，也仍要坚持。俗话说万事开头难，今年形势不好，但坚持至少有成功的可能，今年总该不会只丢下我一个人了吧。<br><img src="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/bqQfVz5yrrGYSXMvKr.cqUgOwdpus3I.aO7pW9D4e3dlXb9PMJZ37IrHmKNmYnF60OtX09rXOR8Ir9Sd6tlemaKM0WTTU2Nd3qcFwGIxVj0!/b&bo=hwEfAocBHwIDCSw!&rf=viewer_4" alt="image text"><br><img src="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrENk808HgDbGeJeXBus2Pmt1*ZArsm1Je02QhIC*Cq85nfpTIFfzSpeeTER5yYvSWGMcJudtf9HwXn6HFNqD5V2U!/b&bo=jQEjAo0BIwIDGTw!&rf=viewer_4" alt="image text"></p>
 <p>p站自从我不画画来还涨了三四十粉丝，记得以前是一百不到点，以后有时间的话，会重拾起来，要是我不画画了，世界上岂不是又少了一个可可爱爱的画风。<br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrEODNqUVKjEuyvbjej4p*xoVkvOhgCD.cacq3bWqpNK8H0Gy7YF3O9zr03SfwlqJdjRSBLxHU63S086tiiP754*g!/r" alt="image text"></p>
 <p>韩服还有没有的玩坐等11月16号，从国服三周年到韩服十七周年，过了有十五年了，韩服也也玩了有七年，我可能爱一个人都不会有爱这个游戏这么久吧。要是没得玩了，就去开个私服和朋友一起玩。虽然不知道官服服务器那边是怎么样的，但是我见到的私服和单机服务端无一例外是用js写的脚本，如果要研究一下，应该技术上有很多能学到的东西，包括但不限于js语言、数据库、php和一些后端工具的使用方面。<br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrECYZyl**lGmwV2rXAVULbt74CdzxgKCJ9TpQe0k4kKojmSK*xZFCdHUdrFgLxsP1P1m1OjvnDFXtR4nbawCIo28!/r" alt="image text"></p>
 <p>2020年还剩最后两个月，希望自己能有好运，但是也要结合个人的努力和历史的进程。</p>
