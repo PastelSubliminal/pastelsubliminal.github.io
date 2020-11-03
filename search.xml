@@ -17,7 +17,7 @@
 ]]></content>
       <tags>
         <tag>前端基础</tag>
-        <tag>试题</tag>
+        <tag>习题</tag>
       </tags>
   </entry>
   <entry>
@@ -329,7 +329,8 @@
 <p>实现数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者<br>实现一个指令解析器Compile<br>实现一个Watcher，作为Observer 和 Compile 的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图<br>Mvvm入口函数，整合以上三者</p>
 ]]></content>
       <tags>
-        <tag>前端基础，试题</tag>
+        <tag>前端基础</tag>
+        <tag>习题</tag>
       </tags>
   </entry>
 </search>
