@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2020/11/06/Redux%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
     <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
     <content><![CDATA[<p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
@@ -224,12 +219,35 @@
       </tags>
   </entry>
   <entry>
-    <title>栈和队列</title>
-    <url>/2020/11/06/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<h1 id="队列数据结构"><a href="#队列数据结构" class="headerlink" title="队列数据结构"></a>队列数据结构</h1><p>队列是遵循<strong>先进先出</strong>原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。</p>
+    <title>用生成器函数和Promise改善异步流程</title>
+    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
+<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是 <strong>Generator 函数主体</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
+<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>分析一下对 g 调用 next() 的过程。</p>
+<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
+<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
+<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
+<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
+<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
+<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
+<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
+<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
+<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
+<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
 ]]></content>
       <tags>
-        <tag>数据结构与算法</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -266,38 +284,6 @@
 ]]></content>
       <tags>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用生成器函数和Promise改善异步流程</title>
-    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
-<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是 <strong>Generator 函数主体</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
-<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>分析一下对 g 调用 next() 的过程。</p>
-<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
-<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
-<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
-<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
-<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
-<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
-<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
-<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
-<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
-<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
