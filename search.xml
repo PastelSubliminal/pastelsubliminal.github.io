@@ -3,7 +3,7 @@
   <entry>
     <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
     <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
-    <content><![CDATA[<p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
 <p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
 <p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
 <p>了解这两个函数后，我们可以模拟一下运行情况</p>
@@ -23,7 +23,7 @@
   <entry>
     <title>Hello World</title>
     <url>/2019/12/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -44,7 +44,7 @@
   <entry>
     <title>this和强制改变this指向</title>
     <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<p>一个函数</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);<span class="comment">//[Objes y);//10,20</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.call(<span class="string">&quot;call&quot;</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
@@ -67,7 +67,7 @@
   <entry>
     <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
     <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
-    <content><![CDATA[<h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>传统的web通信模式。后台处理数据，需要一定时间，前端想要知道后端的处理结果，就要不定时的向后端发出请求以获得最新情况。</p>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>前后端程序编写比较容易。</p>
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>请求中有大半是无用，难于维护，浪费带宽和服务器资源；<br>响应的结果没有顺序（因为是异步请求，当发送的请求没有返回结果的时候，后面的请求又被发送。而此时如果后面的请求比前面的请 求要先返回结果，那么当前面的请求返回结果数据时已经是过时无效的数据了）。</p>
@@ -112,7 +112,7 @@
   <entry>
     <title>图的遍历——广度优先搜索和深度优先搜索</title>
     <url>/2020/10/30/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86%E2%80%94%E2%80%94%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
-    <content><![CDATA[<p>前置知识：图的相关术语和图的表示</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>前置知识：图的相关术语和图的表示</p>
 <h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><p>和树数据结构类似，我们可以访问图的所有节点。由两种算法可以对图进行遍历：<strong>广度优先搜索（breadth-first search，BFS）</strong>和<strong>深度优先搜索（depth-first search，DFS）</strong>。图遍历可以用来寻找特定的顶点或寻找两个顶点之间的路径，检查路径是否相同，检查图是否有环，等等。</p>
 <p>在实现算法之前，让我们来更好的理解一下图遍历的思想。</p>
 <p><strong>图遍历算法</strong>的思想是必须追踪每个第一次访问的节点，并且追踪有哪些节点还没有完全被探索，对于两种图遍历算法，都需要明确指出第一个被访问的顶点。</p>
@@ -171,7 +171,7 @@
   <entry>
     <title>扫码点餐各个页面的制作过程</title>
     <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
 <h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
 <p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
 <p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
@@ -194,7 +194,7 @@
   <entry>
     <title>扫码点餐时遇到的问题</title>
     <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
 <h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p>
 <h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p>
 <h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p>
@@ -219,7 +219,7 @@
   <entry>
     <title>把packages处理成Vue插件</title>
     <url>/2020/11/02/%E6%8A%8Apackages%E5%A4%84%E7%90%86%E6%88%90vue%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>封装了几个Vue组件，怎么把它们制作制作成插件呢</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>封装了几个Vue组件，怎么把它们制作制作成插件呢</p>
 <p>先新建Vue项目</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vue create my-ui</span><br></pre></td></tr></table></figure>
 <p>在my-ui文件夹中新建packages和examples文件夹，packages用来存放我们封装的所有组件，examples用来进行测试，把src改成examples</p>
@@ -244,7 +244,7 @@
   <entry>
     <title>用生成器函数和Promise改善异步流程</title>
     <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
 <p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后是 <strong>Generator 函数主体</strong></p>
@@ -276,7 +276,7 @@
   <entry>
     <title>简单的React父子组件和平级组件之间传值</title>
     <url>/2020/10/30/%E7%AE%80%E5%8D%95%E7%9A%84React%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B9%B3%E7%BA%A7%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
-    <content><![CDATA[<p>1.父组件对子组件传值 利用props属性传值</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>1.父组件对子组件传值 利用props属性传值</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="title">constructor</span> (<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="built_in">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;I am &#123;<span class="built_in">this</span>.props.name&#125;&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Component name=<span class="string">&#x27;cat&#x27;</span>&gt;&lt;/Component&gt;</span><br><span class="line">    &lt;h1&gt;hello world!!!&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&#x27;app&#x27;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <p>2.子组件对父组件传值 简单来说就是利用回调来完成，比如下面例子，子组件来改变父组件的颜色</p>
@@ -292,7 +292,7 @@
   <entry>
     <title>组件库的制作</title>
     <url>/2020/11/02/%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C/</url>
-    <content><![CDATA[<p>提示，这里需要先学习一下Vue插件的API： <a href="https://cn.vuejs.org/v2/api/#Vue-use">https://cn.vuejs.org/v2/api/#Vue-use</a></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>提示，这里需要先学习一下Vue插件的API： <a href="https://cn.vuejs.org/v2/api/#Vue-use">https://cn.vuejs.org/v2/api/#Vue-use</a></p>
 <p>在package.json中加一条命令，用于指定打包目标为库</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">       <span class="attr">&quot;lib&quot;</span>: <span class="string">&quot;vue-cli-service build --target lib packages/index.js&quot;</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在命令行输入 yarn lib<br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrEJTGN48rsMPNqepV548w.aV9yCjuYp5H*nXXXoZKA9OQcAEwBbHw6gozXNJsP3Bj03vyMNg8plvqrq.EVb1XGEc!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E33YJo6/TmEUgtj9EK6.7V8ajmQrEBfbeH.4zaLcWgHcrz4RpoL**GaE7I*bgaozV6IH8I7TX5KTg2xhcBQBejx.mi6v9OxZUOMOZFd*n4vUDp37*OU!/r" alt="image text"><br>打包完成，可以看到多了个dist文件夹，里面将我们的组件打包成了一个js文件，字体图标也打包好了，以后使用的话只要用dist文件夹就行了</p>
@@ -312,7 +312,7 @@
   <entry>
     <title>认识闭包</title>
     <url>/2020/04/04/%E8%AE%A4%E8%AF%86%E9%97%AD%E5%8C%85/</url>
-    <content><![CDATA[<p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
 <p>好处：<br>    1、希望一个变量常驻在内存当中<br>    2、避免全局变量污染 避免声明全局变量，比如在函数外声明<br>    3、可以声明私有成员</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">num1</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">var</span> num2 = <span class="number">10</span>;</span><br><span class="line">           <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">               <span class="keyword">return</span>(num1 + <span class="string">&quot; &quot;</span> + num2);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> b;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">var</span> res = a(<span class="number">20</span>);</span><br><span class="line">       <span class="built_in">console</span>.log(res());</span><br></pre></td></tr></table></figure>
 <p>就是一个闭包</p>
@@ -330,7 +330,7 @@
   <entry>
     <title>题集</title>
     <url>/2019/12/26/%E9%A2%98%E9%9B%86/</url>
-    <content><![CDATA[<h1 id="根据情况收集一些题目-amp-合适的回答"><a href="#根据情况收集一些题目-amp-合适的回答" class="headerlink" title="根据情况收集一些题目&amp;合适的回答"></a>根据情况收集一些题目&amp;合适的回答</h1><h2 id="HTML-CSS问题"><a href="#HTML-CSS问题" class="headerlink" title="HTML + CSS问题"></a>HTML + CSS问题</h2><h3 id="1-如何清除浮动？"><a href="#1-如何清除浮动？" class="headerlink" title="1. 如何清除浮动？"></a>1. 如何清除浮动？</h3><p>clear清除浮动（添加空div法）在浮动元素下方添加空div,并给该元素写CSS样式 {clear:both; height:0; overflow:hidden;}<br>给浮动元素父级设置高度<br>父级同时浮动（需要给父级同级元素添加浮动）<br>父级设置成 inline-block<br>给父级添加 overflow: hidden<br>万能清除法 after伪类 清浮动（现在主流方法，推荐使用）</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="根据情况收集一些题目-amp-合适的回答"><a href="#根据情况收集一些题目-amp-合适的回答" class="headerlink" title="根据情况收集一些题目&amp;合适的回答"></a>根据情况收集一些题目&amp;合适的回答</h1><h2 id="HTML-CSS问题"><a href="#HTML-CSS问题" class="headerlink" title="HTML + CSS问题"></a>HTML + CSS问题</h2><h3 id="1-如何清除浮动？"><a href="#1-如何清除浮动？" class="headerlink" title="1. 如何清除浮动？"></a>1. 如何清除浮动？</h3><p>clear清除浮动（添加空div法）在浮动元素下方添加空div,并给该元素写CSS样式 {clear:both; height:0; overflow:hidden;}<br>给浮动元素父级设置高度<br>父级同时浮动（需要给父级同级元素添加浮动）<br>父级设置成 inline-block<br>给父级添加 overflow: hidden<br>万能清除法 after伪类 清浮动（现在主流方法，推荐使用）</p>
 <p>BFC 触发条件<br>根元素<br>position: absolute/fixed<br>display: inline-block / table<br>float 元素<br>ovevflow 不为 visible</p>
 <h3 id="2-行内元素和块元素有哪些，本质区别"><a href="#2-行内元素和块元素有哪些，本质区别" class="headerlink" title="2.行内元素和块元素有哪些，本质区别"></a>2.行内元素和块元素有哪些，本质区别</h3><p>行内元素：span、img、button、input、b、q、i、a、em、label<br>块元素：div、p、h1-h6、ul、ol、dl、li、header、footer、aside、section、article、form、table</p>
 <p>区别：行内元素设置 width，height 属性无效，起边距作用的只 有margin-left、margin-right、padding-left、padding-right，其它属性不会起边距效果（可以设置 line-height），设置 margin 和 padding 的上下不会对其他元素产生影响。块级元素可以设置 width，height 属性</p>
