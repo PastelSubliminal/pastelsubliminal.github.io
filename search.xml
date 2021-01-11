@@ -35,26 +35,6 @@
       </tags>
   </entry>
   <entry>
-    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
-    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
-<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
-<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
-<p>了解这两个函数后，我们可以模拟一下运行情况</p>
-<ol>
-<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
-<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
-<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
-</ol>
-<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
-<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
-        <tag>习题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2019/12/25/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -73,6 +53,26 @@
 ]]></content>
       <tags>
         <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
+    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
+<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
+<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
+<p>了解这两个函数后，我们可以模拟一下运行情况</p>
+<ol>
+<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
+<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
+<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
+</ol>
+<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
+<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
+]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>习题</tag>
       </tags>
   </entry>
   <entry>
@@ -99,48 +99,26 @@
       </tags>
   </entry>
   <entry>
-    <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
-    <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>传统的web通信模式。后台处理数据，需要一定时间，前端想要知道后端的处理结果，就要不定时的向后端发出请求以获得最新情况。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>前后端程序编写比较容易。</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>请求中有大半是无用，难于维护，浪费带宽和服务器资源；<br>响应的结果没有顺序（因为是异步请求，当发送的请求没有返回结果的时候，后面的请求又被发送。而此时如果后面的请求比前面的请 求要先返回结果，那么当前面的请求返回结果数据时已经是过时无效的数据了）。</p>
-<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><pre><code>适于小型应用。</code></pre>
-<h2 id="前端实现："><a href="#前端实现：" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">        xhr.send();</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-<h1 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>客户端向服务器发送Ajax请求，服务器接到请求后hold住连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求。</p>
-<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>在无消息的情况下不会频繁的请求，耗费资源小。</p>
-<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>服务器hold连接会消耗资源<br>返回数据顺序无保证，难于管理维护。<br>浏览器端对统一服务器同时 http 连接有最大限制, 最好同一用户只存在一个长轮询;</p>
-<h2 id="实例：-1"><a href="#实例：-1" class="headerlink" title="实例："></a>实例：</h2><p>WebQQ、Hi网页版、Facebook IM。</p>
-<h2 id="前端实现：-1"><a href="#前端实现：-1" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">       xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">       xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             ajax();</span><br><span class="line">       &#125;;</span><br><span class="line">       xhr.send();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>长轮询和短轮询</p>
-<ul>
-<li>相同点：可以看出 http 长轮询和 http 短轮询的都会 hold 一段时间;</li>
-<li>不同点：间隔发生在服务端还是浏览器端: http 长轮询在服务端会 hold 一段时间, http 短轮询在浏览器端 “hold”一段时间;</li>
-</ul>
-<h1 id="http-长连接"><a href="#http-长连接" class="headerlink" title="http 长连接"></a>http 长连接</h1><p>目前 http 协议普遍使用的是 1.1 版本, 之前有个 1.0 版本,两者之间的一个区别是 1.1 支持 http 长连接, 或者叫持久连接。<br>1.0 不支持 http 长连接, 每次一个 http请求响应后都关闭 tcp 连接, 下个 http 请求会重新建立 tcp 连接.</p>
-<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>多个 http 请求共用一个 tcp 连接; 这样可以减少多次临近 http 请求导致 tcp建立关闭所产生的时间消耗.</p>
-<p>http 1.1 中在请求头和相应头中用 connection字段标识是否是 http长连接, connection: keep-alive, 表明是 http 长连接; connection:closed, 表明服务器关闭 tcp 连接</p>
-<p>与 connection 对应的一个字段是 keep-live, http 响应头中出现, 他的格式是 timeout=30,max=5, timeout 是两次 http 请求保持的时间(s), , max 是这个 tcp 连接最多为几个 http请求重用</p>
-<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2><p>消息即时到达，不发无用请求；管理起来也相对方便。</p>
-<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>服务器维护一个长连接会增加开销。</p>
-<h2 id="实例：Gmail聊天"><a href="#实例：Gmail聊天" class="headerlink" title="实例：Gmail聊天"></a>实例：Gmail聊天</h2><h1 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>Websocket是基于HTTP协议的，在和服务端建立了链接后，服务端有数据有了变化后会主动推送给前端。</p>
-<h2 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h2><p>请求响应快，不浪费资源。（传统的http请求，其并发能力都是依赖同时发起多个TCP连接访问服务器实现的(因此并发数受限于浏览器允许的并发连接数)，而websocket则允许我们在一条ws连接上同时并发多个请求，即在A请求发出后A响应还未到达，就可以继续发出B请求。由于TCP的慢启动特性（新连接速度上来是需要时间的），以及连接本身的握手损耗，都使得websocket协议的这一特性有很大的效率提升；http协议的头部太大，且每个请求携带的几百上千字节的头部大部分是重复的，websocket则因为复用长连接而没有这一问题。）</p>
-<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><p>主流浏览器支持的Web Socket版本不一致；<br>服务端没有标准的API。</p>
-<h2 id="实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"><a href="#实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询" class="headerlink" title="实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"></a>实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询</h2><h2 id="解决：解决了http协议的两个问题。"><a href="#解决：解决了http协议的两个问题。" class="headerlink" title="解决：解决了http协议的两个问题。"></a>解决：解决了http协议的两个问题。</h2><ol>
-<li>服务端的被动性。http协议是只有客户端询问之后才回复。解决了同步有延迟的问题</li>
-<li>解决了服务器上消耗资源的问题</li>
-</ol>
-<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需要先npm install ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//服务器端</span></span><br><span class="line"><span class="keyword">var</span> Server = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> Server(&#123;</span><br><span class="line">    port:<span class="number">2000</span></span><br><span class="line">&#125;);</span><br><span class="line">wss.on(<span class="string">&#x27;connection&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ws</span>)</span>&#123;</span><br><span class="line">    ws.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        ws.send(<span class="string">&#x27;你好,客户端,我是服务器!&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//node客户端</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.on(<span class="string">&#x27;open&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&#x27;你好，服务器,我是客户端&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">socket.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//html客户端(注:浏览器客户端与node客户端只需要一种)</span></span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="WebSocket四个事件操作"><a href="#WebSocket四个事件操作" class="headerlink" title="WebSocket四个事件操作"></a>WebSocket四个事件操作</h2><ul>
-<li>onmessage收到服务器响应时执行</li>
-<li>onerroe 出现异常时执行</li>
-<li>onopen 建立起连接时执行</li>
-<li>onclose 断开连接时执行</li>
-</ul>
+    <title>扫码点餐各个页面的制作过程</title>
+    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
+<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
+<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
+<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
+<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
+<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
+<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
+<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
+<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
+<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
+<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
+<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
+<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
+<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
 ]]></content>
       <tags>
-        <tag>前端基础</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -203,51 +181,13 @@
       </tags>
   </entry>
   <entry>
-    <title>扫码点餐各个页面的制作过程</title>
-    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
-<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
-<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
-<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
-<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
-<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
-<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
-<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
-<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
-<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
-<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
-<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
-<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
-<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
-<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+    <title>暖和冬夜的猫和我</title>
+    <url>/2021/01/04/%E6%9A%96%E5%92%8C%E5%86%AC%E5%A4%9C%E7%9A%84%E7%8C%AB%E5%92%8C%E6%88%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O02Ylug8/TmEUgtj9EK6.7V8ajmQrEGkzz0n9fquJfQ6fShnE001lba*y1Ru5MKAzoI.7SL.P7l4zyjh1YWCd3mBI2w9dTOhNNQm3uVX0Byt7KV.Z3JA!/r" alt="image text"><br>art by warmwine<br>自娱自乐的作品<br>冷天气果然是在棉被里最棒</p>
 ]]></content>
       <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扫码点餐时遇到的问题</title>
-    <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
-<h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p>
-<h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p>
-<h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.use(cors(&#123;</span><br><span class="line">  origin: <span class="literal">true</span>,<span class="comment">//修改这里</span></span><br><span class="line">  maxAge: <span class="number">86400</span>,</span><br><span class="line">  credentials: <span class="literal">true</span>,</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-<h2 id="proxy-error"><a href="#proxy-error" class="headerlink" title="proxy error"></a>proxy error</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/9F4153617CB84496A435AD090C1DA56F/665" alt="Image text"><br>proxy代理设置 “proxy”: “<a href="http://localhost:5002&quot;">http://localhost:5002&quot;</a> 即可<br>同代表本机的10.1.1就不可以，最好各处写的一致</p>
-<h2 id="React脚手架运行npm-start报错-webpack版本问题"><a href="#React脚手架运行npm-start报错-webpack版本问题" class="headerlink" title="React脚手架运行npm start报错 webpack版本问题"></a>React脚手架运行npm start报错 webpack版本问题</h2><p>There might be a problem with the project dependency tree.<br>It is likely not a bug in Create React App, but something you need to fix locally.<br>The react-scripts package provided by Create React App requires a dependency:<br>“webpack”: “4.42.0”<br>Don’t try to install it manually: your package manager does it automatically.<br>However, a different version of webpack was detected higher up in the tree:<br>C:\Users\lenovo\node_modules\webpack (version: 4.41.6)<br>Manually installing incompatible versions is known to cause hard-to-debug issues.<br>If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That will permanently disable this message but you might encounter other issues.<br>To fix the dependency tree, try following the steps below in the exact order:</p>
-<ol>
-<li>Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.</li>
-<li>Delete node_modules in your project folder.</li>
-<li>Remove “webpack” from dependencies and/or devDependencies in the package.json file in your project folder.</li>
-<li>Run npm install or yarn, depending on the package manager you use.<br>In most cases, this should be enough to fix the problem.<br>If this has not helped, there are a few other things you can try:</li>
-<li>If you used npm, install yarn (<a href="http://yarnpkg.com/">http://yarnpkg.com/</a>) and repeat the above steps with it instead.<br>This may help because npm has known issues with package hoisting which may get resolved in future versions.</li>
-<li>Check if C:\Users\lenovo\node_modules\webpack is outside your project directory.<br>For example, you might have accidentally installed something in your home folder.</li>
-<li>Try running npm ls webpack in your project folder.<br>This will tell you which other package (apart from the expected react-scripts) installed webpack.<br>If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That would permanently disable this preflight check in case you want to proceed anyway.<br>P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</li>
-</ol>
-<p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>笔记</tag>
+        <tag>日常</tag>
+        <tag>板绘</tag>
       </tags>
   </entry>
   <entry>
@@ -276,22 +216,48 @@
       </tags>
   </entry>
   <entry>
-    <title>暖和冬夜的猫和我</title>
-    <url>/2021/01/04/%E6%9A%96%E5%92%8C%E5%86%AC%E5%A4%9C%E7%9A%84%E7%8C%AB%E5%92%8C%E6%88%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://wx3.sinaimg.cn/large/d55a3682ly1gmb1j2jno3j20vl0u0x6p.jpg" alt="image text"><br>art by warmwine<br>自娱自乐的作品<br>冷天气果然是在棉被里最棒</p>
+    <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
+    <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>传统的web通信模式。后台处理数据，需要一定时间，前端想要知道后端的处理结果，就要不定时的向后端发出请求以获得最新情况。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>前后端程序编写比较容易。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>请求中有大半是无用，难于维护，浪费带宽和服务器资源；<br>响应的结果没有顺序（因为是异步请求，当发送的请求没有返回结果的时候，后面的请求又被发送。而此时如果后面的请求比前面的请 求要先返回结果，那么当前面的请求返回结果数据时已经是过时无效的数据了）。</p>
+<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><pre><code>适于小型应用。</code></pre>
+<h2 id="前端实现："><a href="#前端实现：" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">        xhr.send();</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>客户端向服务器发送Ajax请求，服务器接到请求后hold住连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求。</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>在无消息的情况下不会频繁的请求，耗费资源小。</p>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>服务器hold连接会消耗资源<br>返回数据顺序无保证，难于管理维护。<br>浏览器端对统一服务器同时 http 连接有最大限制, 最好同一用户只存在一个长轮询;</p>
+<h2 id="实例：-1"><a href="#实例：-1" class="headerlink" title="实例："></a>实例：</h2><p>WebQQ、Hi网页版、Facebook IM。</p>
+<h2 id="前端实现：-1"><a href="#前端实现：-1" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">       xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">       xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             ajax();</span><br><span class="line">       &#125;;</span><br><span class="line">       xhr.send();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>长轮询和短轮询</p>
+<ul>
+<li>相同点：可以看出 http 长轮询和 http 短轮询的都会 hold 一段时间;</li>
+<li>不同点：间隔发生在服务端还是浏览器端: http 长轮询在服务端会 hold 一段时间, http 短轮询在浏览器端 “hold”一段时间;</li>
+</ul>
+<h1 id="http-长连接"><a href="#http-长连接" class="headerlink" title="http 长连接"></a>http 长连接</h1><p>目前 http 协议普遍使用的是 1.1 版本, 之前有个 1.0 版本,两者之间的一个区别是 1.1 支持 http 长连接, 或者叫持久连接。<br>1.0 不支持 http 长连接, 每次一个 http请求响应后都关闭 tcp 连接, 下个 http 请求会重新建立 tcp 连接.</p>
+<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>多个 http 请求共用一个 tcp 连接; 这样可以减少多次临近 http 请求导致 tcp建立关闭所产生的时间消耗.</p>
+<p>http 1.1 中在请求头和相应头中用 connection字段标识是否是 http长连接, connection: keep-alive, 表明是 http 长连接; connection:closed, 表明服务器关闭 tcp 连接</p>
+<p>与 connection 对应的一个字段是 keep-live, http 响应头中出现, 他的格式是 timeout=30,max=5, timeout 是两次 http 请求保持的时间(s), , max 是这个 tcp 连接最多为几个 http请求重用</p>
+<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2><p>消息即时到达，不发无用请求；管理起来也相对方便。</p>
+<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>服务器维护一个长连接会增加开销。</p>
+<h2 id="实例：Gmail聊天"><a href="#实例：Gmail聊天" class="headerlink" title="实例：Gmail聊天"></a>实例：Gmail聊天</h2><h1 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>Websocket是基于HTTP协议的，在和服务端建立了链接后，服务端有数据有了变化后会主动推送给前端。</p>
+<h2 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h2><p>请求响应快，不浪费资源。（传统的http请求，其并发能力都是依赖同时发起多个TCP连接访问服务器实现的(因此并发数受限于浏览器允许的并发连接数)，而websocket则允许我们在一条ws连接上同时并发多个请求，即在A请求发出后A响应还未到达，就可以继续发出B请求。由于TCP的慢启动特性（新连接速度上来是需要时间的），以及连接本身的握手损耗，都使得websocket协议的这一特性有很大的效率提升；http协议的头部太大，且每个请求携带的几百上千字节的头部大部分是重复的，websocket则因为复用长连接而没有这一问题。）</p>
+<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><p>主流浏览器支持的Web Socket版本不一致；<br>服务端没有标准的API。</p>
+<h2 id="实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"><a href="#实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询" class="headerlink" title="实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"></a>实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询</h2><h2 id="解决：解决了http协议的两个问题。"><a href="#解决：解决了http协议的两个问题。" class="headerlink" title="解决：解决了http协议的两个问题。"></a>解决：解决了http协议的两个问题。</h2><ol>
+<li>服务端的被动性。http协议是只有客户端询问之后才回复。解决了同步有延迟的问题</li>
+<li>解决了服务器上消耗资源的问题</li>
+</ol>
+<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需要先npm install ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//服务器端</span></span><br><span class="line"><span class="keyword">var</span> Server = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> Server(&#123;</span><br><span class="line">    port:<span class="number">2000</span></span><br><span class="line">&#125;);</span><br><span class="line">wss.on(<span class="string">&#x27;connection&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ws</span>)</span>&#123;</span><br><span class="line">    ws.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        ws.send(<span class="string">&#x27;你好,客户端,我是服务器!&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//node客户端</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.on(<span class="string">&#x27;open&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&#x27;你好，服务器,我是客户端&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">socket.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//html客户端(注:浏览器客户端与node客户端只需要一种)</span></span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="WebSocket四个事件操作"><a href="#WebSocket四个事件操作" class="headerlink" title="WebSocket四个事件操作"></a>WebSocket四个事件操作</h2><ul>
+<li>onmessage收到服务器响应时执行</li>
+<li>onerroe 出现异常时执行</li>
+<li>onopen 建立起连接时执行</li>
+<li>onclose 断开连接时执行</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>日常</tag>
-        <tag>板绘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发现这里的人，留点什么</title>
-    <url>/2021/01/12/%E6%9D%A5%E5%88%B0%E8%BF%99%E9%87%8C%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%E7%95%99%E4%B8%AA%E8%84%9A%E5%8D%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>能发现这里的人，除了furryer、mapler，或者因为技术方面了解到我的人，还能有谁呢，在这个页面回复一下让我知道你来过。</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -339,6 +305,40 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 处理平级组件间传值 ，先传给父组件，父组件再传给另一个组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child1</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="title">constructor</span> (<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="built_in">super</span>(props);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">handleClick</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.props.changeChild2Color(<span class="string">&#x27;yellow&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;Child1：  &#123;<span class="built_in">this</span>.props.bgColor&#125;&lt;/h1&gt;</span><br><span class="line">            &lt;button onClick=&#123;<span class="function">(<span class="params">e</span>) =&gt;</span> <span class="built_in">this</span>.handleClick(e)&#125;&gt;向Child2传值，改变其颜色&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="title">constructor</span> (<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="built_in">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div style=&#123;&#123;<span class="attr">background</span>:<span class="built_in">this</span>.props.bgColor&#125;&#125;&gt;</span><br><span class="line">            &lt;h1&gt;Child2：  &#123;<span class="built_in">this</span>.props.bgColor&#125;&lt;/h1&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="title">constructor</span> (<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="built_in">super</span>(props);</span><br><span class="line">      <span class="built_in">this</span>.state=&#123;</span><br><span class="line">        child2BgColor: <span class="string">&#x27;#999&#x27;</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">onChild2BgColorChange</span>(<span class="params">color</span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">        child2BgColor: color</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &#123;<span class="comment">/* 平级组件间传值*/</span>&#125;</span><br><span class="line">          &lt;Child1 changeChild2Color=&#123;<span class="function">(<span class="params">color</span>)=&gt;</span>&#123;<span class="built_in">this</span>.onChild2BgColorChange(color)&#125;&#125;&gt;&lt;/Child1&gt;</span><br><span class="line">          &lt;Child2 bgColor=&#123;<span class="built_in">this</span>.state.child2BgColor&#125;&gt;&lt;/Child2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Father&gt;&lt;/Father&gt;</span><br><span class="line">  &lt;/div&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&#x27;app&#x27;</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>前端基础</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发现这里的人，留点什么</title>
+    <url>/2021/01/12/%E6%9D%A5%E5%88%B0%E8%BF%99%E9%87%8C%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%E7%95%99%E4%B8%AA%E8%84%9A%E5%8D%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>能发现这里的人，除了furryer、mapler，或者因为技术方面了解到我的人，还能有谁呢，在这个页面回复一下让我知道你来过。</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扫码点餐时遇到的问题</title>
+    <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
+<h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p>
+<h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p>
+<h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.use(cors(&#123;</span><br><span class="line">  origin: <span class="literal">true</span>,<span class="comment">//修改这里</span></span><br><span class="line">  maxAge: <span class="number">86400</span>,</span><br><span class="line">  credentials: <span class="literal">true</span>,</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+<h2 id="proxy-error"><a href="#proxy-error" class="headerlink" title="proxy error"></a>proxy error</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/9F4153617CB84496A435AD090C1DA56F/665" alt="Image text"><br>proxy代理设置 “proxy”: “<a href="http://localhost:5002&quot;">http://localhost:5002&quot;</a> 即可<br>同代表本机的10.1.1就不可以，最好各处写的一致</p>
+<h2 id="React脚手架运行npm-start报错-webpack版本问题"><a href="#React脚手架运行npm-start报错-webpack版本问题" class="headerlink" title="React脚手架运行npm start报错 webpack版本问题"></a>React脚手架运行npm start报错 webpack版本问题</h2><p>There might be a problem with the project dependency tree.<br>It is likely not a bug in Create React App, but something you need to fix locally.<br>The react-scripts package provided by Create React App requires a dependency:<br>“webpack”: “4.42.0”<br>Don’t try to install it manually: your package manager does it automatically.<br>However, a different version of webpack was detected higher up in the tree:<br>C:\Users\lenovo\node_modules\webpack (version: 4.41.6)<br>Manually installing incompatible versions is known to cause hard-to-debug issues.<br>If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That will permanently disable this message but you might encounter other issues.<br>To fix the dependency tree, try following the steps below in the exact order:</p>
+<ol>
+<li>Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.</li>
+<li>Delete node_modules in your project folder.</li>
+<li>Remove “webpack” from dependencies and/or devDependencies in the package.json file in your project folder.</li>
+<li>Run npm install or yarn, depending on the package manager you use.<br>In most cases, this should be enough to fix the problem.<br>If this has not helped, there are a few other things you can try:</li>
+<li>If you used npm, install yarn (<a href="http://yarnpkg.com/">http://yarnpkg.com/</a>) and repeat the above steps with it instead.<br>This may help because npm has known issues with package hoisting which may get resolved in future versions.</li>
+<li>Check if C:\Users\lenovo\node_modules\webpack is outside your project directory.<br>For example, you might have accidentally installed something in your home folder.</li>
+<li>Try running npm ls webpack in your project folder.<br>This will tell you which other package (apart from the expected react-scripts) installed webpack.<br>If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That would permanently disable this preflight check in case you want to proceed anyway.<br>P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</li>
+</ol>
+<p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
         <tag>笔记</tag>
       </tags>
   </entry>
