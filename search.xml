@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ES6中的import as</title>
+    <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
+<p>eg：</p>
+<p>xxx里中：</p>
+<p>export function test(){</p>
+<pre><code>return &#39;返回是test 内容&#39;;</code></pre>
+<p> }</p>
+<p>export function login(){</p>
+<pre><code>return &#39;返回login 内容&#39;;</code></pre>
+<p> }</p>
+<p>调用test 函数，即obj.test();</p>
+<p>调用login 函数，即obj.login();</p>
+<p>扩展：那不带*as(即import xxx from ‘xxx’)</p>
+<p><img src="https://img1.sycdn.imooc.com/5c9458a3000186e409180058.jpg" alt="image text"></p>
+<p><img src="https://img1.sycdn.imooc.com/5c946ada000142c421721538.jpg" alt="image text"></p>
+<p>总结：</p>
+<p>import * as xxx from ‘xxx’: 会将若干export导出的内容组合成一个对象返回；</p>
+<p>import xxx from ‘xxx’：（export default Din）只会导出这个默认的对象作为一个对象。</p>
+]]></content>
+      <tags>
+        <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ours家族留念</title>
+    <url>/2020/11/22/Ours%E5%AE%B6%E6%97%8F%E7%95%99%E5%BF%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEGK5gAmxjz43zkmM7AydtZ6FlSmClsjafhesfLgjP2i7XZd5I*EiNmLrynXQ7ldMsouIgi.7ihU2kUoK5Ncaw*A!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEEIppHg.msvf4Wuujoqf*8CBSpXDF21rCScLoeVjP7RCRflcY0fnwrHwS7mETnpkJiu9Nat4t0TkMNlopbmHzNo!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELem9VOk5ug.eFF41oA2vZfaAvNPClJYCunC5Qr2JkGs7JbhT*cQAW6hvi72hu5OAxJYN2xpawiHT0Xxwc8Rots!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEF2.kSVorxR1huH4tOqntCO.4LlvcTSantRd*ODnSF2SW3RZpIKKPFm5Kc9AMny0oeD5oRBncX8gthFSeFnAGOI!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrENSCJmOMjZWVefraRolEE2fkUdPjv44VMmWkVyIbiO2ZMoaSDAGPoAf0Bz4VMzlxksdfzpHghaemmwScDBn*hzY!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJTW*6rQlE7RxC9KVAUyBu5lskT5NTQpyeIoy.9L8g6LDR51qMTYj7vKYac8Xm7ZClz6WSCSa6nreIi8LLFo3eE!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJwX1UOKkVkmG4OFXD6ABS5Vl0RnEiekH9V.FlBA9IrUMFDkmZ3kkMmOjZW1DaiHn.u8dE3zbVVbludeV2HcmDs!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEAj7*AmdI35sBtPFXUA1KmVfeGWifjDwscikFoYHTvRMd2u73Qa.bMl7hdAGgbR4c08o6iHodL.0YlpCpQfpaZg!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELDvqT0mQek90IrD8Y7bb*YMdfrsUll3MLy8aunUcp4Sc.h.lVJYxzhWIs8cS03kV9so.ZtVY*sv4F3SxVKvNkU!/r" alt="image text"><br>2020.11.22 韩服冒险岛 Ours 家族留念<br>8年韩服之旅结束，什么都没有留下 ​​​​</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
     <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
@@ -110,29 +144,6 @@
       </tags>
   </entry>
   <entry>
-    <title>扫码点餐各个页面的制作过程</title>
-    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
-<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
-<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
-<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
-<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
-<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
-<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
-<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
-<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
-<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
-<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
-<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
-<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
-<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
-<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
-]]></content>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图的遍历——广度优先搜索和深度优先搜索</title>
     <url>/2020/10/30/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86%E2%80%94%E2%80%94%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>前置知识：图的相关术语和图的表示</p>
@@ -192,6 +203,29 @@
       </tags>
   </entry>
   <entry>
+    <title>扫码点餐各个页面的制作过程</title>
+    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
+<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
+<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
+<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
+<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
+<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
+<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
+<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
+<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
+<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
+<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
+<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
+<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
+<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>扫码点餐时遇到的问题</title>
     <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
@@ -239,6 +273,25 @@
       <tags>
         <tag>前端基础</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>暖和冬夜的猫和我</title>
+    <url>/2021/01/04/%E6%9A%96%E5%92%8C%E5%86%AC%E5%A4%9C%E7%9A%84%E7%8C%AB%E5%92%8C%E6%88%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://wx3.sinaimg.cn/large/d55a3682ly1gmb1j2jno3j20vl0u0x6p.jpg" alt="image text"><br>art by warmwine<br>自娱自乐的作品<br>冷天气果然是在棉被里最棒</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+        <tag>板绘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发现这里的人，留点什么</title>
+    <url>/2021/01/12/%E6%9D%A5%E5%88%B0%E8%BF%99%E9%87%8C%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%E7%95%99%E4%B8%AA%E8%84%9A%E5%8D%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>能发现这里的人，除了furryer、mapler，或者因为技术方面了解到我的人，还能有谁呢，在这个页面回复一下让我知道你来过。</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
@@ -334,7 +387,7 @@
 <p>BFC 触发条件<br>根元素<br>position: absolute/fixed<br>display: inline-block / table<br>float 元素<br>ovevflow 不为 visible</p>
 <h3 id="2-行内元素和块元素有哪些，本质区别"><a href="#2-行内元素和块元素有哪些，本质区别" class="headerlink" title="2.行内元素和块元素有哪些，本质区别"></a>2.行内元素和块元素有哪些，本质区别</h3><p>行内元素：span、img、button、input、b、q、i、a、em、label<br>块元素：div、p、h1-h6、ul、ol、dl、li、header、footer、aside、section、article、form、table</p>
 <p>区别：行内元素设置 width，height 属性无效，起边距作用的只 有margin-left、margin-right、padding-left、padding-right，其它属性不会起边距效果（可以设置 line-height），设置 margin 和 padding 的上下不会对其他元素产生影响。块级元素可以设置 width，height 属性</p>
-<h3 id="3-水平居中"><a href="#3-水平居中" class="headerlink" title="3.水平居中"></a>3.水平居中</h3><p>行内元素：父元素 text-align: center<br>块元素：宽度已知用 margin: auto，宽度未知：用 display: inline 变成行内元素后在父元素上设置 text-align: float</p>
+<h3 id="3-水平、垂直居中"><a href="#3-水平、垂直居中" class="headerlink" title="3.水平、垂直居中"></a>3.水平、垂直居中</h3><p>水平：行内元素：父元素 text-align: center<br>块元素：宽度已知用 margin: auto，宽度未知：用 display: inline 变成行内元素后在父元素上设置 text-align: float<br>垂直：display: flex; align-item: center</p>
 <h3 id="4-flex"><a href="#4-flex" class="headerlink" title="4. flex"></a>4. flex</h3><p>flex-direction属性 该属性定义了子元素的排列方向</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>flex-wrap属性 该属性称“轴线”</p>
@@ -346,24 +399,27 @@
 <p>align-content 属性，该属性定义了多跟轴线的对齐方式，如果项目只有一根轴线，该属性不起作用</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line"><span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-CSS让元素不可见的方法"><a href="#5-CSS让元素不可见的方法" class="headerlink" title="5. CSS让元素不可见的方法"></a>5. CSS让元素不可见的方法</h3><p>display | z-index: -9999 | opacity:0 | position: absolute; left: -9999; top: -9999</p>
-<h3 id="6-如何设计移动端页面和响应式界面"><a href="#6-如何设计移动端页面和响应式界面" class="headerlink" title="6. 如何设计移动端页面和响应式界面"></a>6. 如何设计移动端页面和响应式界面</h3><h2 id="JavaScript问题"><a href="#JavaScript问题" class="headerlink" title="JavaScript问题"></a>JavaScript问题</h2><h3 id="1-原型和原型链"><a href="#1-原型和原型链" class="headerlink" title="1. 原型和原型链"></a>1. 原型和原型链</h3><p>每个”构造函数”中都有一个默认的属性, 叫做 prototype, prototype 属性保存着一个对象, 这个对象我们称之为”原型对象”, prototype 指向它的原型对象</p>
+<h3 id="5-CSS让元素不可见的方法"><a href="#5-CSS让元素不可见的方法" class="headerlink" title="5. CSS让元素不可见的方法"></a>5. CSS让元素不可见的方法</h3><p>display: none | z-index: -9999 | opacity:0 | position: absolute; left: -9999; top: -9999</p>
+<h3 id="6-如何设计移动端页面和响应式界面"><a href="#6-如何设计移动端页面和响应式界面" class="headerlink" title="6. 如何设计移动端页面和响应式界面"></a>6. 如何设计移动端页面和响应式界面</h3><h3 id="7-选择器优先级"><a href="#7-选择器优先级" class="headerlink" title="7. 选择器优先级"></a>7. 选择器优先级</h3><p>!important - 内联 - id - 类 - 标签 - 通配符 - 继承</p>
+<h2 id="JavaScript问题"><a href="#JavaScript问题" class="headerlink" title="JavaScript问题"></a>JavaScript问题</h2><h3 id="1-JS-基本数据类型"><a href="#1-JS-基本数据类型" class="headerlink" title="1. JS 基本数据类型"></a>1. JS 基本数据类型</h3><p>null、undefined、boolean、number、string、symbol</p>
+<h3 id="2-原型和原型链"><a href="#2-原型和原型链" class="headerlink" title="2. 原型和原型链"></a>2. 原型和原型链</h3><p>每个”构造函数”中都有一个默认的属性, 叫做 prototype, prototype 属性保存着一个对象, 这个对象我们称之为”原型对象”, prototype 指向它的原型对象</p>
 <p>每个”原型对象”中都有一个默认的属性, 叫做 constructor, constructor 指向当前原型对象对应的那个”构造函数”<br>通过构造函数创建出来的对象我们称之为”实例对象”, 每个”实例对象”中都有一个默认的属性, 叫做<strong>proto</strong>, <strong>proto</strong> 指向创建它的那个构造函数的”原型对象”</p>
-<h3 id="2-JS的传参"><a href="#2-JS的传参" class="headerlink" title="2. JS的传参"></a>2. JS的传参</h3><p>按值传递(call by value)是最常用的求值策略：函数的形参是被调用时所传实参的副本。修改形参的值并不会影响实参。（深拷贝？）通过自定义函数实现深拷贝（递归遍历对象）</p>
+<h3 id="3-JS-的传参"><a href="#3-JS-的传参" class="headerlink" title="3. JS 的传参"></a>3. JS 的传参</h3><p>按值传递(call by value)是最常用的求值策略：函数的形参是被调用时所传实参的副本。修改形参的值并不会影响实参。（深拷贝？）通过自定义函数实现深拷贝（递归遍历对象）</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//通过遍历拿到 source 中的所有属性，取出当前遍历到的属性对应的值，判断当前的取值是否是引用数据类型（对象、数组、函数，一般是对象嵌套），通过 sourceValue.constructor 拿到这个对象的构造函数的类型，然后新建这个对象或数组，再次调用深拷贝，将遍历到的属性的值拷贝给新建的对象或数组，如果不是引用数据类型，之前的属性拷贝即可</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deCopy</span>(<span class="params">target, source</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">let</span> key <span class="keyword">in</span> source</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> sourceValue = souce[key];</span><br><span class="line">        <span class="function"><span class="title">if</span>(<span class="params">sourceValue <span class="keyword">instanceof</span> <span class="built_in">Object</span></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> subTarget = <span class="keyword">new</span> sourceValue.constructor;</span><br><span class="line">            deCopy(subTarget, sourceValue);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            target[key] = sourceValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>按引用传递(call by reference)时，函数的形参接收实参的隐式引用，而不再是副本。这意味着函数形参的值如果被修改，实参也会被修改。同时两者指向相同的值。（浅拷贝？）</p>
 <p>按引用传递会使函数调用的追踪更加困难，有时也会引起一些微妙的 BUG。按值传递由于每次都需要克隆副本，对一些复杂类型，性能较低。两种传值方式都有各自的问题。可能很多人都是做后端的，所有会想到“引用传递”，然而实际上却不是，导致了问题的产生。</p>
-<h3 id="3-跨域"><a href="#3-跨域" class="headerlink" title="3. 跨域"></a>3. 跨域</h3><p>协议、域名、端口三者有一个不同就会引起跨域的错误问题<br>解决：JSONP：通过动态创建script标签，其 src 指向非同源的 url，并传递一个 callback 参数作为函数名的函数的调用和一系列参数，页面接收到响应后执行回调并对数据进行处理。CORS：服务器端操作，设置 http header</p>
-<h3 id="4-数组去重"><a href="#4-数组去重" class="headerlink" title="4. 数组去重"></a>4. 数组去重</h3><p>方法一：倒进集合再倒出来</p>
+<h3 id="4-跨域"><a href="#4-跨域" class="headerlink" title="4. 跨域"></a>4. 跨域</h3><p>协议、域名、端口三者有一个不同就会引起跨域的错误问题<br>解决：JSONP：通过动态创建script标签，其 src 指向非同源的 url，并传递一个 callback 参数作为函数名的函数的调用和一系列参数，页面接收到响应后执行回调并对数据进行处理。CORS：服务器端操作，设置 http header</p>
+<h3 id="5-数组去重"><a href="#5-数组去重" class="headerlink" title="5. 数组去重"></a>5. 数组去重</h3><p>方法一：倒进集合再倒出来</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[...new <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>])]</span><br><span class="line"><span class="comment">//[1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
 <p>方法二：indexOf()<br>方法三：双重循环</p>
-<h3 id="5-ES6-的symol是什么，适用场景有什么"><a href="#5-ES6-的symol是什么，适用场景有什么" class="headerlink" title="5. ES6 的symol是什么，适用场景有什么"></a>5. ES6 的symol是什么，适用场景有什么</h3><p>一种特殊的数据类型，定义不可更改，适合用来作为属性名标识独一无二的对象</p>
+<h3 id="6-ES6-的symol是什么，适用场景有什么"><a href="#6-ES6-的symol是什么，适用场景有什么" class="headerlink" title="6. ES6 的symol是什么，适用场景有什么"></a>6. ES6 的symol是什么，适用场景有什么</h3><p>一种特殊的数据类型，定义不可更改，适合用来作为属性名标识独一无二的对象</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建一个symbol类型的值</span></span><br><span class="line"><span class="keyword">const</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> s);<span class="comment">//&quot;symbol&quot;</span></span><br></pre></td></tr></table></figure>
 <p>用作对象属性、模拟类的私有方法</p>
-<h3 id="6-async-和-await"><a href="#6-async-和-await" class="headerlink" title="6. async 和 await"></a>6. async 和 await</h3><p>写法跟 generator 很像，就是将星号替换成 async，将 yield 替换成 await。async 函数返回一个 promise 对象，如果 async函数没有返回值，它会返回 Promise.resolve(undefined)。如果 await 等到的不是一个 promise 对象，那跟着的表达式的运算结果就是它等到的东西。<br>使用场景：需要 promise 链式调用的时候，每个步骤都是异步的，且依赖上一步的执行结果</p>
-<h3 id="7-防抖和节流"><a href="#7-防抖和节流" class="headerlink" title="7. 防抖和节流"></a>7. 防抖和节流</h3><p>防抖是事件触发 n 秒后执行会掉，如果在这 n 秒内又被触发，则重新计时。使用场景：提交按钮时防止多次提交，只执行最后一次提交。<br>节流是 n 秒内只能触发一次函数，如果 n 秒内多次触发，只有一次生效。使用场景：拖拽在固定时间内只执行一次，防止超高频率触发位置变动；缩放时监控浏览器 resize</p>
-<h4 id="8-类数组转换为数组的方法"><a href="#8-类数组转换为数组的方法" class="headerlink" title="8. 类数组转换为数组的方法"></a>8. 类数组转换为数组的方法</h4><p>使用 Array.from()<br>使用 Array.prototype.slice.call()<br>使用 Array.prototype.forEach() 进行遍历并生成新的数组<br>转换后数组的长度由 length 属性决定。索引不连续时转换结果是连续的，会自动补位</p>
+<h3 id="7-async-和-await"><a href="#7-async-和-await" class="headerlink" title="7. async 和 await"></a>7. async 和 await</h3><p>写法跟 generator 很像，就是将星号替换成 async，将 yield 替换成 await。async 函数返回一个 promise 对象，如果 async函数没有返回值，它会返回 Promise.resolve(undefined)。如果 await 等到的不是一个 promise 对象，那跟着的表达式的运算结果就是它等到的东西。<br>使用场景：需要 promise 链式调用的时候，每个步骤都是异步的，且依赖上一步的执行结果</p>
+<h3 id="8-防抖和节流"><a href="#8-防抖和节流" class="headerlink" title="8. 防抖和节流"></a>8. 防抖和节流</h3><p>防抖是事件触发 n 秒后执行会掉，如果在这 n 秒内又被触发，则重新计时。使用场景：提交按钮时防止多次提交，只执行最后一次提交。<br>节流是 n 秒内只能触发一次函数，如果 n 秒内多次触发，只有一次生效。使用场景：拖拽在固定时间内只执行一次，防止超高频率触发位置变动；缩放时监控浏览器 resize</p>
+<h4 id="9-类数组转换为数组的方法"><a href="#9-类数组转换为数组的方法" class="headerlink" title="9. 类数组转换为数组的方法"></a>9. 类数组转换为数组的方法</h4><p>使用 Array.from()<br>使用 Array.prototype.slice.call()<br>使用 Array.prototype.forEach() 进行遍历并生成新的数组<br>转换后数组的长度由 length 属性决定。索引不连续时转换结果是连续的，会自动补位</p>
+<h4 id="10-ES6-新特性"><a href="#10-ES6-新特性" class="headerlink" title="10. ES6 新特性"></a>10. ES6 新特性</h4><p>const和let<br>模板字符串<br>箭头函数<br>对象和数组解构<br>对象超类：ES6 允许在对象中使用 super 方法<br>for…of 和 for…in，for…of 用于遍历一个迭代器，如数组，for…in 用来遍历对象中的属性<br>ES6中的类：ES6 中支持 class 语法，不过，ES6 的 class 不是新的对象继承模型，它只是原型链的语法糖表现形式。<br>函数的参数默认值<br>Spread / Rest 操作符<br>二进制和八进制字面量</p>
 <h2 id="计算机网络问题"><a href="#计算机网络问题" class="headerlink" title="计算机网络问题"></a>计算机网络问题</h2><h3 id="1-http-和-https"><a href="#1-http-和-https" class="headerlink" title="1. http 和 https"></a>1. http 和 https</h3><p>http：超文本传输协议。是一个客服端和服务器端请求和应答的标准（tcp）,使浏览器更加高效，使网络传输减少<br>https：是以安全为目标的HTTP通道，简单讲是HTTP的安全版本，通过SSL加密</p>
 <h3 id="2-http1-0-和-http2-0"><a href="#2-http1-0-和-http2-0" class="headerlink" title="2. http1.0 和 http2.0"></a>2. http1.0 和 http2.0</h3><p>HTTP1.x 的解析是基于文本。HTTP2.0 的协议解析采用二进制格式<br>HTTP2.0 比HTTP1.0 有多路复用，一个连接可以并发处理多个请求<br>header压缩，HTTP1.x 的header带有大量信息，而且每次都要重复发送，HTTP2.0 使用encoder来减少需要传输的header大小<br>服务器推送：我们对支持 HTTP2.0 的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源</p>
 <h3 id="3-Cookie、SessionStronge、LocalStronge的区别"><a href="#3-Cookie、SessionStronge、LocalStronge的区别" class="headerlink" title="3. Cookie、SessionStronge、LocalStronge的区别"></a>3. Cookie、SessionStronge、LocalStronge的区别</h3><h4 id="在同一浏览器下有效期不同"><a href="#在同一浏览器下有效期不同" class="headerlink" title="在同一浏览器下有效期不同"></a>在同一浏览器下有效期不同</h4><p>Cookie:         默认是关闭浏览器后失效, 但是也可以设置过期时间<br>SessionStorage: 仅在当前会话(窗口)下有效，关闭窗口或浏览器后被清除, 不能设置过期时间<br>LocalStorage:   除非被清除，否则永久保存</p>
@@ -400,7 +456,7 @@
 <p>实现数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者<br>实现一个指令解析器Compile<br>实现一个Watcher，作为Observer 和 Compile 的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图<br>Mvvm入口函数，整合以上三者</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;input v-model=<span class="string">&quot;userName&quot;</span> /&gt;</span><br><span class="line">&lt;input v-bind:value=<span class="string">&quot;userName&quot;</span> v-on:input=<span class="string">&quot;userName = $event.target.value&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>第一行的代码其实只是第二行的语法糖。input 元素本身有个 oninput 属性，这是 HTML5 新增的，类似 onchange，每当输入框的内容发生变化，就会触发 oninput</p>
-<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="1-Redux-介绍和如何使用"><a href="#1-Redux-介绍和如何使用" class="headerlink" title="1. Redux 介绍和如何使用"></a>1. Redux 介绍和如何使用</h3><p>redux是为了解决react中组件与组件之间数据传递的问题。<br>组建于组件之间的传递有三种情况：<br>1、父组件传递数据给子组件：由于redux是一个单向数据流的框架，所以它的数据就只能由父组件传递给子组件（props）；<br>2、子组件传递给父组件：而子组件想父组件的传值的话则需要使用回调函数，<br>3、子组件与子组件：那么子组件与子组件之间的传递则相当麻烦，需要先将子组件的值传递给父组件，然后再由父组件在分发给指定的子组件，而redux则是解决这种问题的。</p>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="1-Redux-介绍和如何使用"><a href="#1-Redux-介绍和如何使用" class="headerlink" title="1. Redux 介绍和如何使用"></a>1. Redux 介绍和如何使用</h3><p>redux 是为了解决 react 中组件与组件之间数据传递的问题。<br>组建于组件之间的传递有三种情况：<br>1、父组件传递数据给子组件：由于redux是一个单向数据流的框架，所以它的数据就只能由父组件传递给子组件（props）；<br>2、子组件传递给父组件：而子组件想父组件的传值的话则需要使用回调函数，<br>3、子组件与子组件：那么子组件与子组件之间的传递则相当麻烦，需要先将子组件的值传递给父组件，然后再由父组件在分发给指定的子组件，而redux则是解决这种问题的。<br>使用情况：非父子组件之间需要共享一些状态。需要将状态提升到最近的祖先</p>
 <p>用法<br>引入</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/redux@4.0.4/dist/redux.js&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>创造一个 store</p>
@@ -409,10 +465,10 @@
 <h3 id="2-React-如何实现数据绑定"><a href="#2-React-如何实现数据绑定" class="headerlink" title="2. React 如何实现数据绑定"></a>2. React 如何实现数据绑定</h3><p>在 React 应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。可以通过 shouldComponentUpdate 这个生命周期进行控制 pureRender<br>通过 JSX 中标签加属性实现视图和数据的绑定，类组件中 render 里的大括号动态传递 state，this.state 记录数据状态，函数组件中则使用 hooks 管理状态（个人理解，不知道对不对）<br>Vue 实现数据绑定考的是数据劫持（Object.defineProperty()） + 发布-订阅模式。在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件需要被被重新渲染。可以理解为每一个组件都已经自动获得了 shouldComponentUpdate，并且没有上面的子树问题限制</p>
 <h3 id="3-React如何在重新加载页面时保留数据？"><a href="#3-React如何在重新加载页面时保留数据？" class="headerlink" title="3. React如何在重新加载页面时保留数据？"></a>3. React如何在重新加载页面时保留数据？</h3><p>使用浏览器localstorage来保存应用程序的状态。我们将整个存储数据保存在localstorage中，每当有页面刷新或重新加载时，我们从localstorage加载状态。</p>
 <h3 id="4-state-和-props-的区别"><a href="#4-state-和-props-的区别" class="headerlink" title="4. state 和 props 的区别"></a>4. state 和 props 的区别</h3><p>state 是组件自己管理数据，控制自己的状态，可变，必须通过 setState 更改。<br>props 是外部传入的数据参数，不可变，父组件通过传递 props 给子组件来更新视图，子组件不能将 prop 送回父组件。这有助于维护单向数据流，通常用于呈现动态生成的数据。</p>
-<h3 id="5-简述-diff-算法"><a href="#5-简述-diff-算法" class="headerlink" title="5. 简述 diff 算法"></a>5. 简述 diff 算法</h3><p>如果两棵树的根元素类型不同，React会销毁旧树，创建新树。<br>对于类型相同的 React DOM 元素，只更新不同的属性<br>当处理完这个DOM节点，React就会递归处理子节点。<br>比较内容，如果有不同直接替换。</p>
+<h3 id="5-简述-diff-算法"><a href="#5-简述-diff-算法" class="headerlink" title="5. 简述 diff 算法"></a>5. 简述 diff 算法</h3><p>如果两棵树的根元素类型不同，React会销毁旧树，创建新树。<br>对于类型相同的 React DOM 元素，只更新不同的属性，如果类型不同，直接替换。<br>当处理完这个DOM节点，React就会递归处理子节点。<br>比较内容，如果有不同直接替换。</p>
 <h3 id="6-函数组件和类组件"><a href="#6-函数组件和类组件" class="headerlink" title="6. 函数组件和类组件"></a>6. 函数组件和类组件</h3><p>函数组件是一个纯函数，接收参数并返回 React元素，并且没有任何副作用。没有生命周期函数和 state。<br>通过 class xx extends React.Component这类组件可以通过setState()来改变组件的状态，并且可以使用生命周期函数</p>
 <p>定义组件时，复杂场景用类组件，简单场景用函数组件。<br>简单：一个组件仅仅是为了展示数据。<br>复杂：一个组件中有一定业务逻辑，需要操作数据，并且此时需要使用 state。</p>
-<h3 id="7-受控组件和非受控组件"><a href="#7-受控组件和非受控组件" class="headerlink" title="7. 受控组件和非受控组件"></a>7. 受控组件和非受控组件</h3><p>在HTML当中，像input,textarea和select这类表单元素会维持自身状态，并根据用户输入进行更新。 在React中，可变的状态通常保存在组件的state中，并且只能用 setState() 方法进行更新. React根据初始状态渲染表单组件，接受用户后续输入，改变表单组件内部的状态。因此，将那些值由React控制的表单元素称为受控组件。</p>
+<h3 id="7-受控组件和非受控组件"><a href="#7-受控组件和非受控组件" class="headerlink" title="7. 受控组件和非受控组件"></a>7. 受控组件和非受控组件</h3><p>在HTML当中，像input，textarea和select这类表单元素会维持自身状态，并根据用户输入进行更新。 在React中，可变的状态通常保存在组件的state中，并且只能用 setState() 方法进行更新. React根据初始状态渲染表单组件，接受用户后续输入，改变表单组件内部的状态。因此，将那些值由React控制的表单元素称为受控组件。</p>
 <p>受控组件的特点：</p>
 <ol>
 <li>表单元素</li>
