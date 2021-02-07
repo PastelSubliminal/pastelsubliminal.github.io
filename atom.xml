@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-02-07T18:52:34.528Z</updated>
+  <updated>2021-02-07T19:04:53.312Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/02/08/JS%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
     <id>http://example.com/2021/02/08/JS%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/</id>
     <published>2021-02-07T16:00:00.000Z</published>
-    <updated>2021-02-07T18:52:34.528Z</updated>
+    <updated>2021-02-07T19:04:53.312Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><p>在介绍JS的作用域之前，先介绍一下编译原理。</p><p>JavaScript引擎进行编译的步骤和传统编译语言比较相似，但在某些环节比预想的复杂。</p><p>在传统的编译语言中，程序中的一段源代码在执行之前会经历三个步骤，统称为“编译”。</p><ul><li>分词/词法分析：将有字符组成的字符串分解成（对编程语言来说）有意义的代码块。</li><li>解析/语法分析：将词法单元流（数组）转换成一个有元素逐级嵌套所形成的代表了程序与法结构的树。这个数被称为“抽象语法树”（Abstract Syntax Tree, AST）。</li><li>代码生成：将 AST 转换为可执行代码的过程。</li></ul><h1 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h1><p>如 var a = 2，变量的复制操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能找到就对它进行赋值。</p><h2 id="LHS-和-RHS"><a href="#LHS-和-RHS" class="headerlink" title="LHS 和 RHS"></a>LHS 和 RHS</h2><p>引擎会为变量 a 进行 LHS 查询，另外一个查询的类型叫做 RHS。含义分别为 Left Hand Side 和 Right Hand Side。</p><p>即变量出现在复制操作左侧时进行 LHS 查询，出现在右侧时进行 RHS 查询。RHS 查询与简单的查找某个变量的值无异，LHS 测试试图找到变量的容器本身。从而可以对其赋值。准确的说，所有“非左侧”都是 RHS。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure><p>其中对 a 的引用是一个 RHS 引用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure><p>这里对 a 的引用是一个 LHS 引用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure><p>最后一行 foo(2) 函数的调用需要对 foo 进行 RHS 引用<br>代码中隐式的 a = 2 的操作需要进行一次 LHS 查询<br>将得到的值传给 console.log()，需要对 a 进行一次 RHS 引用</p><h1 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h1><p>作用域是根据名称查找变凉的一套规则。当在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，知道找到该变量或抵达全局作用域为止。</p><p>LHS 和 RHS 引用都会在当前作用域进行查找，如果没有找到，就往上一层作用域，直到找到或者抵达全局作用域后停止查找。</p><p>如果 RHS 查询在所有嵌套的作用域中都找不到所需的变量，引擎就会抛出 ReferenceError 异常；如果 LHS 查询在全局作用域中也无法找到目标变量，则会隐式地在全局作用域创建这个变量（非严格模式下）并作为这次 LHS 查询的目标，或者抛出 ReferenceError。</p><p>如果试图对 RHS 查询到的变量的值进行不合理的操作，如调用非函数类型的值或引用 null 或 undefined 中的属性，则会抛出 TypeError。</p><p>ReferenceError 和作用域判别失败有关， TypeError 则是判别成功了，但是对结果的操作是非法的。</p>]]></content>
     
