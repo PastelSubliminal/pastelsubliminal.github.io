@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JS的作用域</title>
-    <url>/2021/02/08/JS%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><p>在介绍JS的作用域之前，先介绍一下编译原理。</p>
-<p>JavaScript引擎进行编译的步骤和传统编译语言比较相似，但在某些环节比预想的复杂。</p>
-<p>在传统的编译语言中，程序中的一段源代码在执行之前会经历三个步骤，统称为“编译”。</p>
-<ul>
-<li>分词/词法分析：将有字符组成的字符串分解成（对编程语言来说）有意义的代码块。</li>
-<li>解析/语法分析：将词法单元流（数组）转换成一个有元素逐级嵌套所形成的代表了程序与法结构的树。这个数被称为“抽象语法树”（Abstract Syntax Tree, AST）。</li>
-<li>代码生成：将 AST 转换为可执行代码的过程。</li>
-</ul>
-<h1 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h1><p>如 var a = 2，变量的复制操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能找到就对它进行赋值。</p>
-<h2 id="LHS-和-RHS"><a href="#LHS-和-RHS" class="headerlink" title="LHS 和 RHS"></a>LHS 和 RHS</h2><p>引擎会为变量 a 进行 LHS 查询，另外一个查询的类型叫做 RHS。含义分别为 Left Hand Side 和 Right Hand Side。</p>
-<p>即变量出现在复制操作左侧时进行 LHS 查询，出现在右侧时进行 RHS 查询。RHS 查询与简单的查找某个变量的值无异，LHS 测试试图找到变量的容器本身。从而可以对其赋值。准确的说，所有“非左侧”都是 RHS。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
-<p>其中对 a 的引用是一个 RHS 引用</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<p>这里对 a 的引用是一个 LHS 引用</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<p>最后一行 foo(2) 函数的调用需要对 foo 进行 RHS 引用<br>代码中隐式的 a = 2 的操作需要进行一次 LHS 查询<br>将得到的值传给 console.log()，需要对 a 进行一次 RHS 引用</p>
-<h1 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h1><p>作用域是根据名称查找变凉的一套规则。当在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，知道找到该变量或抵达全局作用域为止。</p>
-<p>LHS 和 RHS 引用都会在当前作用域进行查找，如果没有找到，就往上一层作用域，直到找到或者抵达全局作用域后停止查找。</p>
-<p>如果 RHS 查询在所有嵌套的作用域中都找不到所需的变量，引擎就会抛出 ReferenceError 异常；如果 LHS 查询在全局作用域中也无法找到目标变量，则会隐式地在全局作用域创建这个变量（非严格模式下）并作为这次 LHS 查询的目标，或者抛出 ReferenceError。</p>
-<p>如果试图对 RHS 查询到的变量的值进行不合理的操作，如调用非函数类型的值或引用 null 或 undefined 中的属性，则会抛出 TypeError。</p>
-<p>ReferenceError 和作用域判别失败有关， TypeError 则是判别成功了，但是对结果的操作是非法的。</p>
-]]></content>
-      <tags>
-        <tag>前端进阶</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6中的import as</title>
     <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
@@ -79,6 +49,45 @@
       </tags>
   </entry>
   <entry>
+    <title>JS的作用域</title>
+    <url>/2021/02/08/JS%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><p>在介绍JS的作用域之前，先介绍一下编译原理。</p>
+<p>JavaScript引擎进行编译的步骤和传统编译语言比较相似，但在某些环节比预想的复杂。</p>
+<p>在传统的编译语言中，程序中的一段源代码在执行之前会经历三个步骤，统称为“编译”。</p>
+<ul>
+<li>分词/词法分析：将有字符组成的字符串分解成（对编程语言来说）有意义的代码块。</li>
+<li>解析/语法分析：将词法单元流（数组）转换成一个有元素逐级嵌套所形成的代表了程序与法结构的树。这个数被称为“抽象语法树”（Abstract Syntax Tree, AST）。</li>
+<li>代码生成：将 AST 转换为可执行代码的过程。</li>
+</ul>
+<h1 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h1><p>如 var a = 2，变量的复制操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能找到就对它进行赋值。</p>
+<h2 id="LHS-和-RHS"><a href="#LHS-和-RHS" class="headerlink" title="LHS 和 RHS"></a>LHS 和 RHS</h2><p>引擎会为变量 a 进行 LHS 查询，另外一个查询的类型叫做 RHS。含义分别为 Left Hand Side 和 Right Hand Side。</p>
+<p>即变量出现在复制操作左侧时进行 LHS 查询，出现在右侧时进行 RHS 查询。RHS 查询与简单的查找某个变量的值无异，LHS 则试图找到变量的容器本身。从而可以对其赋值。准确的说，所有“非左侧”都是 RHS。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+<p>其中对 a 的引用是一个 RHS 引用</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>这里对 a 的引用是一个 LHS 引用</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>最后一行 foo(2) 函数的调用需要对 foo 进行 RHS 引用<br>代码中隐式的 a = 2 的操作需要进行一次 LHS 查询<br>将得到的值传给 console.log()，需要对 a 进行一次 RHS 引用</p>
+<h1 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h1><p>作用域是根据名称查找变凉的一套规则。当在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，知道找到该变量或抵达全局作用域为止。</p>
+<p>LHS 和 RHS 引用都会在当前作用域进行查找，如果没有找到，就往上一层作用域，直到找到或者抵达全局作用域后停止查找。</p>
+<p>如果 RHS 查询在所有嵌套的作用域中都找不到所需的变量，引擎就会抛出 ReferenceError 异常；如果 LHS 查询在全局作用域中也无法找到目标变量，则会隐式地在全局作用域创建这个变量（非严格模式下）并作为这次 LHS 查询的目标，或者抛出 ReferenceError。</p>
+<p>如果试图对 RHS 查询到的变量的值进行不合理的操作，如调用非函数类型的值或引用 null 或 undefined 中的属性，则会抛出 TypeError。</p>
+<p>ReferenceError 和作用域判别失败有关， TypeError 则是判别成功了，但是对结果的操作是非法的。</p>
+]]></content>
+      <tags>
+        <tag>前端进阶</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ours家族留念</title>
+    <url>/2020/11/22/Ours%E5%AE%B6%E6%97%8F%E7%95%99%E5%BF%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEGK5gAmxjz43zkmM7AydtZ6FlSmClsjafhesfLgjP2i7XZd5I*EiNmLrynXQ7ldMsouIgi.7ihU2kUoK5Ncaw*A!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEEIppHg.msvf4Wuujoqf*8CBSpXDF21rCScLoeVjP7RCRflcY0fnwrHwS7mETnpkJiu9Nat4t0TkMNlopbmHzNo!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELem9VOk5ug.eFF41oA2vZfaAvNPClJYCunC5Qr2JkGs7JbhT*cQAW6hvi72hu5OAxJYN2xpawiHT0Xxwc8Rots!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEF2.kSVorxR1huH4tOqntCO.4LlvcTSantRd*ODnSF2SW3RZpIKKPFm5Kc9AMny0oeD5oRBncX8gthFSeFnAGOI!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrENSCJmOMjZWVefraRolEE2fkUdPjv44VMmWkVyIbiO2ZMoaSDAGPoAf0Bz4VMzlxksdfzpHghaemmwScDBn*hzY!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJTW*6rQlE7RxC9KVAUyBu5lskT5NTQpyeIoy.9L8g6LDR51qMTYj7vKYac8Xm7ZClz6WSCSa6nreIi8LLFo3eE!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJwX1UOKkVkmG4OFXD6ABS5Vl0RnEiekH9V.FlBA9IrUMFDkmZ3kkMmOjZW1DaiHn.u8dE3zbVVbludeV2HcmDs!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEAj7*AmdI35sBtPFXUA1KmVfeGWifjDwscikFoYHTvRMd2u73Qa.bMl7hdAGgbR4c08o6iHodL.0YlpCpQfpaZg!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELDvqT0mQek90IrD8Y7bb*YMdfrsUll3MLy8aunUcp4Sc.h.lVJYxzhWIs8cS03kV9so.ZtVY*sv4F3SxVKvNkU!/r" alt="image text"><br>2020.11.22 韩服冒险岛 Ours 家族留念<br>8年韩服之旅结束，什么都没有留下 ​​​​</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
     <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
@@ -96,15 +105,6 @@
       <tags>
         <tag>前端基础</tag>
         <tag>习题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ours家族留念</title>
-    <url>/2020/11/22/Ours%E5%AE%B6%E6%97%8F%E7%95%99%E5%BF%B5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEGK5gAmxjz43zkmM7AydtZ6FlSmClsjafhesfLgjP2i7XZd5I*EiNmLrynXQ7ldMsouIgi.7ihU2kUoK5Ncaw*A!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEEIppHg.msvf4Wuujoqf*8CBSpXDF21rCScLoeVjP7RCRflcY0fnwrHwS7mETnpkJiu9Nat4t0TkMNlopbmHzNo!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELem9VOk5ug.eFF41oA2vZfaAvNPClJYCunC5Qr2JkGs7JbhT*cQAW6hvi72hu5OAxJYN2xpawiHT0Xxwc8Rots!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEF2.kSVorxR1huH4tOqntCO.4LlvcTSantRd*ODnSF2SW3RZpIKKPFm5Kc9AMny0oeD5oRBncX8gthFSeFnAGOI!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrENSCJmOMjZWVefraRolEE2fkUdPjv44VMmWkVyIbiO2ZMoaSDAGPoAf0Bz4VMzlxksdfzpHghaemmwScDBn*hzY!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJTW*6rQlE7RxC9KVAUyBu5lskT5NTQpyeIoy.9L8g6LDR51qMTYj7vKYac8Xm7ZClz6WSCSa6nreIi8LLFo3eE!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEJwX1UOKkVkmG4OFXD6ABS5Vl0RnEiekH9V.FlBA9IrUMFDkmZ3kkMmOjZW1DaiHn.u8dE3zbVVbludeV2HcmDs!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEAj7*AmdI35sBtPFXUA1KmVfeGWifjDwscikFoYHTvRMd2u73Qa.bMl7hdAGgbR4c08o6iHodL.0YlpCpQfpaZg!/r" alt="image text"><br><img src="http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrELDvqT0mQek90IrD8Y7bb*YMdfrsUll3MLy8aunUcp4Sc.h.lVJYxzhWIs8cS03kV9so.ZtVY*sv4F3SxVKvNkU!/r" alt="image text"><br>2020.11.22 韩服冒险岛 Ours 家族留念<br>8年韩服之旅结束，什么都没有留下 ​​​​</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
@@ -126,29 +126,6 @@
 ]]></content>
       <tags>
         <tag>日常</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>this和强制改变this指向</title>
-    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);<span class="comment">//[Objes y);//10,20</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.call(<span class="string">&quot;call&quot;</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
-
-<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.apply(<span class="string">&quot;call&quot;</span>, [<span class="number">20</span>, <span class="number">40</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>方法3：bind预设this指向</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);</span><br><span class="line">            alert(x + <span class="string">&quot;,&quot;</span> + y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> res = show.bind(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line">        <span class="comment">//res(40, 50);</span></span><br><span class="line">        show.bind(<span class="string">&quot;bind&quot;</span>)(<span class="number">40</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-
-<p>apply使用方法的小技巧</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
-<p>等同于</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>前端基础</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -194,6 +171,29 @@
 ]]></content>
       <tags>
         <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this和强制改变this指向</title>
+    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);<span class="comment">//[Objes y);//10,20</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.call(<span class="string">&quot;call&quot;</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
+
+<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.apply(<span class="string">&quot;call&quot;</span>, [<span class="number">20</span>, <span class="number">40</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>方法3：bind预设this指向</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);</span><br><span class="line">            alert(x + <span class="string">&quot;,&quot;</span> + y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> res = show.bind(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line">        <span class="comment">//res(40, 50);</span></span><br><span class="line">        show.bind(<span class="string">&quot;bind&quot;</span>)(<span class="number">40</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<p>apply使用方法的小技巧</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>前端基础</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -256,29 +256,6 @@
       </tags>
   </entry>
   <entry>
-    <title>扫码点餐各个页面的制作过程</title>
-    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
-<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
-<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
-<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
-<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
-<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
-<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
-<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
-<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
-<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
-<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
-<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
-<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
-<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
-<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
-]]></content>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>扫码点餐时遇到的问题</title>
     <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
@@ -304,6 +281,39 @@
       </tags>
   </entry>
   <entry>
+    <title>扫码点餐各个页面的制作过程</title>
+    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
+<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
+<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
+<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
+<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
+<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
+<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
+<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
+<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
+<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
+<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
+<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
+<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
+<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>暖和冬夜的猫和我</title>
+    <url>/2021/01/04/%E6%9A%96%E5%92%8C%E5%86%AC%E5%A4%9C%E7%9A%84%E7%8C%AB%E5%92%8C%E6%88%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O02Ylug8/TmEUgtj9EK6.7V8ajmQrEGkzz0n9fquJfQ6fShnE001lba*y1Ru5MKAzoI.7SL.P7l4zyjh1YWCd3mBI2w9dTOhNNQm3uVX0Byt7KV.Z3JA!/r" alt="image text"><br>art by warmwine<br>自娱自乐的作品<br>冷天气果然是在棉被里最棒</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+        <tag>板绘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>把packages处理成Vue插件</title>
     <url>/2020/11/02/%E6%8A%8Apackages%E5%A4%84%E7%90%86%E6%88%90vue%E6%8F%92%E4%BB%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>封装了几个Vue组件，怎么把它们制作制作成插件呢</p>
@@ -326,48 +336,6 @@
       <tags>
         <tag>前端基础</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>暖和冬夜的猫和我</title>
-    <url>/2021/01/04/%E6%9A%96%E5%92%8C%E5%86%AC%E5%A4%9C%E7%9A%84%E7%8C%AB%E5%92%8C%E6%88%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://r.photo.store.qq.com/psc?/V13ED3O02Ylug8/TmEUgtj9EK6.7V8ajmQrEGkzz0n9fquJfQ6fShnE001lba*y1Ru5MKAzoI.7SL.P7l4zyjh1YWCd3mBI2w9dTOhNNQm3uVX0Byt7KV.Z3JA!/r" alt="image text"><br>art by warmwine<br>自娱自乐的作品<br>冷天气果然是在棉被里最棒</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
-        <tag>板绘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用生成器函数和Promise改善异步流程</title>
-    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
-<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是 <strong>Generator 函数主体</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
-<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>分析一下对 g 调用 next() 的过程。</p>
-<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
-<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
-<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
-<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
-<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
-<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
-<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
-<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
-<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
-<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -407,6 +375,38 @@
       </tags>
   </entry>
   <entry>
+    <title>用生成器函数和Promise改善异步流程</title>
+    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
+<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是 <strong>Generator 函数主体</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
+<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>分析一下对 g 调用 next() 的过程。</p>
+<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
+<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
+<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
+<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
+<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
+<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
+<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
+<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
+<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
+<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
+]]></content>
+      <tags>
+        <tag>前端基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>认识闭包</title>
     <url>/2020/04/04/%E8%AE%A4%E8%AF%86%E9%97%AD%E5%8C%85/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
@@ -422,15 +422,6 @@
       <tags>
         <tag>前端基础</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>这是一篇置顶</title>
-    <url>/2021/01/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E7%BD%AE%E9%A1%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>这是一篇置顶，但是暂时不知道写什么</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
