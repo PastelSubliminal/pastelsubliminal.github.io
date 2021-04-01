@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2021/03/13/%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-  </entry>
-  <entry>
     <title>ES6中的import as</title>
     <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
@@ -411,8 +406,8 @@
       </tags>
   </entry>
   <entry>
-    <title>题集</title>
-    <url>/2019/12/26/%E9%A2%98%E9%9B%86/</url>
+    <title>前端基础知识</title>
+    <url>/2019/12/26/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前端面试题"><a href="#前端面试题" class="headerlink" title="前端面试题"></a>前端面试题</h1><h2 id="HTML-CSS问题"><a href="#HTML-CSS问题" class="headerlink" title="HTML + CSS问题"></a>HTML + CSS问题</h2><h3 id="1-如何清除浮动？"><a href="#1-如何清除浮动？" class="headerlink" title="1. 如何清除浮动？"></a>1. 如何清除浮动？</h3><p>clear清除浮动（添加空div法）在浮动元素下方添加空div，并给该元素写CSS样式 {clear:both; height:0; overflow:hidden;}<br>给浮动元素父级设置高度<br>父级同时浮动（需要给父级同级元素添加浮动）<br>父级设置成 inline-block<br>给父级添加 overflow: hidden<br>万能清除法 after伪类 清浮动（现在主流方法，推荐使用）</p>
 <p>BFC 触发条件<br>根元素<br>position: absolute/fixed<br>display: inline-block / table<br>float 元素<br>ovevflow 不为 visible</p>
 <h3 id="2-行内元素和块元素有哪些，本质区别"><a href="#2-行内元素和块元素有哪些，本质区别" class="headerlink" title="2.行内元素和块元素有哪些，本质区别"></a>2.行内元素和块元素有哪些，本质区别</h3><p>行内元素：span、img、button、input、b、q、i、a、em、label<br>块元素：div、p、h1-h6、ul、ol、dl、li、header、footer、aside、section、article、form、table</p>
@@ -693,7 +688,7 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="1-你遇到最难的问题是怎样的？"><a href="#1-你遇到最难的问题是怎样的？" class="headerlink" title="1. 你遇到最难的问题是怎样的？"></a>1. 你遇到最难的问题是怎样的？</h3><h3 id="2-你在团队的突出贡献是什么？"><a href="#2-你在团队的突出贡献是什么？" class="headerlink" title="2. 你在团队的突出贡献是什么？"></a>2. 你在团队的突出贡献是什么？</h3><h3 id="3-最近在关注什么新技术"><a href="#3-最近在关注什么新技术" class="headerlink" title="3. 最近在关注什么新技术"></a>3. 最近在关注什么新技术</h3><h3 id="4-lodash有什么印象深刻的"><a href="#4-lodash有什么印象深刻的" class="headerlink" title="4. lodash有什么印象深刻的"></a>4. lodash有什么印象深刻的</h3><p>chunk，将数组进行切分<br>compact，去除假值（将所有的空值，0，NaN过滤掉）<br>uniq，数组去重。（将数组中的对象去重，只能去重数组不能去重对象）<br>merge，参数合并</p>
 ]]></content>
       <tags>
-        <tag>前端基础， 习题</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
 </search>
