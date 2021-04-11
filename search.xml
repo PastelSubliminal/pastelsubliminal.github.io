@@ -79,7 +79,7 @@
       </tags>
   </entry>
   <entry>
-    <title>url编码及api的使用</title>
+    <title>Less和CSS的区别</title>
     <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
 <p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
