@@ -1,51 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ES6中的import as</title>
-    <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
-<p>eg：</p>
-<p>xxx里中：</p>
-<p>export function test(){</p>
-<pre><code>return &#39;返回是test 内容&#39;;</code></pre>
-<p> }</p>
-<p>export function login(){</p>
-<pre><code>return &#39;返回login 内容&#39;;</code></pre>
-<p> }</p>
-<p>调用test 函数，即obj.test();</p>
-<p>调用login 函数，即obj.login();</p>
-<p>扩展：那不带*as(即import xxx from ‘xxx’)</p>
-<p><img src="https://img1.sycdn.imooc.com/5c9458a3000186e409180058.jpg" alt="image text"></p>
-<p><img src="https://img1.sycdn.imooc.com/5c946ada000142c421721538.jpg" alt="image text"></p>
-<p>总结：</p>
-<p>import * as xxx from ‘xxx’: 会将若干export导出的内容组合成一个对象返回；</p>
-<p>import xxx from ‘xxx’：（export default Din）只会导出这个默认的对象作为一个对象。</p>
+    <title>Less和CSS的区别</title>
+    <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
+<p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
+<p>CSS预处理器是一种脚本语言，可扩展 CSS 并将其编译为常规 CSS 语法，以便可以通过 Web 浏览器读取。 它提供诸如变量，函数，mixins 和操作等功能，可以构建动态 CSS。</p>
+<p>Less 允许我们定义变量，使用嵌套式声明，定义函数等。严格说 Less 包含两部分：（1）Less 的语法 （2）Less 预处理器。浏览器终究只认识 CSS，所以 Less 文件需要经过 Less 预处理器编译成为 CSS。</p>
+<p>CSS：层叠样式表是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
+<h1 id="二、Less与CSS区别总结"><a href="#二、Less与CSS区别总结" class="headerlink" title="二、Less与CSS区别总结"></a>二、Less与CSS区别总结</h1><p>1、Less 是一门 CSS 预处理语言，CSS 是一种用来表现 HTML 或 XML 等文件样式的计算机语言。</p>
+<p>2、Less 扩展了 CSS 语言，增加了变量、Mixin、函数等特性。</p>
+<p>3、CSS 可以被浏览器直接识别，Less 需要先编译为 CSS。</p>
 ]]></content>
       <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES6中的Set和Map数据结构</title>
-    <url>/2021/01/28/ES6%E7%9A%84Set%E5%92%8CMap%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p>集合（Set）是由一组无序且唯一的项组成的，该数据结构使用了和有限集合相同的数学概念，但应用在计算机科学的数据结构中。</p>
-<p>可以把集合想象成一个既没有重复元素，也没有顺序概念的数组</p>
-<p>一些集合可用的方法：<br>add(element)：向集合添加一个新元素。<br>delete(element)：从集合移除一个元素。<br>has(element)：如果元素在集合中，返回 true ，否则返回 false。<br>clear()：移除集合中的所有元素。<br>size()：返回集合所包含元素的数量。它与数组的 length 属性类似。<br>keys()：返回一个包含集合中所有键名的数组。<br>values()：返回一个包含集合中所有值（元素）的数组。</p>
-<p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line">    <span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>].forEach(<span class="function"><span class="params">x</span> =&gt;</span> s.add(x));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> s) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i); <span class="comment">//2,3,5,4</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Set 函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</span></span><br><span class="line">    <span class="keyword">const</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>可以利用set没有重复的值这一特性, 实现数组去重<br>不考虑兼容性，这种去重的方法代码最少。但这种方法无法去掉“{}”空对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;true&#x27;</span>,<span class="string">&#x27;true&#x27;</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">&#x27;NaN&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
-<p>为了解决这个问题，ES6 提供了 散列表（Map） 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="number">1</span>], [<span class="string">&quot;aa&quot;</span>, <span class="number">2</span>]]);</span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br></pre></td></tr></table></figure>
-
-
-<p>一些散列表可用的基本方法，散列表也可以使用 Set 的方法：<br>put(key, value)：向散列表添加一个新的项（也能更新散列表）。<br>remove(key)：根据键值从散列表中移除值。<br>get(key)：返回根据键值检索到的特定的值。<br>entries()：返回散列表中的所有键值对。</p>
-]]></content>
-      <tags>
-        <tag>数据结构与算法</tag>
+        <tag>HTML+CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -79,47 +47,26 @@
       </tags>
   </entry>
   <entry>
-    <title>Less和CSS的区别</title>
-    <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
-<p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
-<p>CSS预处理器是一种脚本语言，可扩展 CSS 并将其编译为常规 CSS 语法，以便可以通过 Web 浏览器读取。 它提供诸如变量，函数，mixins 和操作等功能，可以构建动态 CSS。</p>
-<p>Less 允许我们定义变量，使用嵌套式声明，定义函数等。严格说 Less 包含两部分：（1）Less 的语法 （2）Less 预处理器。浏览器终究只认识 CSS，所以 Less 文件需要经过 Less 预处理器编译成为 CSS。</p>
-<p>CSS：层叠样式表是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
-<h1 id="二、Less与CSS区别总结"><a href="#二、Less与CSS区别总结" class="headerlink" title="二、Less与CSS区别总结"></a>二、Less与CSS区别总结</h1><p>1、Less 是一门 CSS 预处理语言，CSS 是一种用来表现 HTML 或 XML 等文件样式的计算机语言。</p>
-<p>2、Less 扩展了 CSS 语言，增加了变量、Mixin、函数等特性。</p>
-<p>3、CSS 可以被浏览器直接识别，Less 需要先编译为 CSS。</p>
+    <title>ES6中的Set和Map数据结构</title>
+    <url>/2021/01/28/ES6%E7%9A%84Set%E5%92%8CMap%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p>集合（Set）是由一组无序且唯一的项组成的，该数据结构使用了和有限集合相同的数学概念，但应用在计算机科学的数据结构中。</p>
+<p>可以把集合想象成一个既没有重复元素，也没有顺序概念的数组</p>
+<p>一些集合可用的方法：<br>add(element)：向集合添加一个新元素。<br>delete(element)：从集合移除一个元素。<br>has(element)：如果元素在集合中，返回 true ，否则返回 false。<br>clear()：移除集合中的所有元素。<br>size()：返回集合所包含元素的数量。它与数组的 length 属性类似。<br>keys()：返回一个包含集合中所有键名的数组。<br>values()：返回一个包含集合中所有值（元素）的数组。</p>
+<p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line">    <span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>].forEach(<span class="function"><span class="params">x</span> =&gt;</span> s.add(x));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> s) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i); <span class="comment">//2,3,5,4</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Set 函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</span></span><br><span class="line">    <span class="keyword">const</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>可以利用set没有重复的值这一特性, 实现数组去重<br>不考虑兼容性，这种去重的方法代码最少。但这种方法无法去掉“{}”空对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;true&#x27;</span>,<span class="string">&#x27;true&#x27;</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">&#x27;NaN&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
+<p>为了解决这个问题，ES6 提供了 散列表（Map） 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="number">1</span>], [<span class="string">&quot;aa&quot;</span>, <span class="number">2</span>]]);</span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br></pre></td></tr></table></figure>
+
+
+<p>一些散列表可用的基本方法，散列表也可以使用 Set 的方法：<br>put(key, value)：向散列表添加一个新的项（也能更新散列表）。<br>remove(key)：根据键值从散列表中移除值。<br>get(key)：返回根据键值检索到的特定的值。<br>entries()：返回散列表中的所有键值对。</p>
 ]]></content>
       <tags>
-        <tag>HTML+CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SyntaxError missing ) after argument list</title>
-    <url>/2021/02/08/SyntaxError%20missing%20)%20after%20argument%20list/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.cnblogs.com/dontes/p/9230196.html">https://www.cnblogs.com/dontes/p/9230196.html</a><br>启动 webpackage 的项目时候，mac 和 Linux 环境下运行正常，在 window 下运行 npm run dev / yarn dev 报错，提示如下：</p>
-]]></content>
-      <tags>
-        <tag>报错</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
-    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
-<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
-<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
-<p>了解这两个函数后，我们可以模拟一下运行情况</p>
-<ol>
-<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
-<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
-<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
-</ol>
-<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
-<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
-]]></content>
-      <tags>
-        <tag>JavaScript</tag>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -144,6 +91,31 @@
       </tags>
   </entry>
   <entry>
+    <title>ES6中的import as</title>
+    <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
+<p>eg：</p>
+<p>xxx里中：</p>
+<p>export function test(){</p>
+<pre><code>return &#39;返回是test 内容&#39;;</code></pre>
+<p> }</p>
+<p>export function login(){</p>
+<pre><code>return &#39;返回login 内容&#39;;</code></pre>
+<p> }</p>
+<p>调用test 函数，即obj.test();</p>
+<p>调用login 函数，即obj.login();</p>
+<p>扩展：那不带*as(即import xxx from ‘xxx’)</p>
+<p><img src="https://img1.sycdn.imooc.com/5c9458a3000186e409180058.jpg" alt="image text"></p>
+<p><img src="https://img1.sycdn.imooc.com/5c946ada000142c421721538.jpg" alt="image text"></p>
+<p>总结：</p>
+<p>import * as xxx from ‘xxx’: 会将若干export导出的内容组合成一个对象返回；</p>
+<p>import xxx from ‘xxx’：（export default Din）只会导出这个默认的对象作为一个对象。</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>this和强制改变this指向</title>
     <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
@@ -161,6 +133,25 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
 <p>等同于</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>“[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;].map(parseInt)” what &amp; why?</title>
+    <url>/2020/11/01/%5B&#39;1&#39;,%20&#39;2&#39;,%20&#39;3&#39;%5D.map(parseInt)%20what%20&amp;%20why/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>第一眼看到这个题目的时候，脑海跳出的答案是 [1, 2, 3]，但是真正的答案是[1, NaN, NaN]。</p>
+<p>首先回顾一下，map函数的第一个参数callback：<br>var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])<br>这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。</p>
+<p>而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。<br>parseInt(string, radix)<br>接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。</p>
+<p>了解这两个函数后，我们可以模拟一下运行情况</p>
+<ol>
+<li>parseInt(‘1’, 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</li>
+<li>parseInt(‘2’, 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN</li>
+<li>parseInt(‘3’, 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN<br>map函数返回的是一个数组，所以最后结果为[1, NaN, NaN]</li>
+</ol>
+<p>最后附上MDN上对于这两个函数的链接，具体参数可以到里面看<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a></p>
+<p>原文链接：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/4</a></p>
+]]></content>
       <tags>
         <tag>JavaScript</tag>
       </tags>
@@ -197,51 +188,6 @@
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
-    <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出 HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>传统的 web 通信模式。后台处理数据，需要一定时间，前端想要知道后端的处理结果，就要不定时的向后端发出请求以获得最新情况。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>前后端程序编写比较容易。</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>请求中有大半是无用，难于维护，浪费带宽和服务器资源；<br>响应的结果没有顺序（因为是异步请求，当发送的请求没有返回结果的时候，后面的请求又被发送。而此时如果后面的请求比前面的请 求要先返回结果，那么当前面的请求返回结果数据时已经是过时无效的数据了）。</p>
-<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><pre><code>适于小型应用。</code></pre>
-<h2 id="前端实现："><a href="#前端实现：" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">        xhr.send();</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-<h1 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>客户端向服务器发送 Ajax 请求，服务器接到请求后 hold 住连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求。</p>
-<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>在无消息的情况下不会频繁的请求，耗费资源小。</p>
-<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>服务器 hold 连接会消耗资源<br>返回数据顺序无保证，难于管理维护。<br>浏览器端对统一服务器同时 http 连接有最大限制, 最好同一用户只存在一个长轮询;</p>
-<h2 id="实例：-1"><a href="#实例：-1" class="headerlink" title="实例："></a>实例：</h2><p>WebQQ、Hi 网页版、Facebook IM。</p>
-<h2 id="前端实现：-1"><a href="#前端实现：-1" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">       xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">       xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             ajax();</span><br><span class="line">       &#125;;</span><br><span class="line">       xhr.send();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>长轮询和短轮询</p>
-<ul>
-<li>相同点：可以看出 http 长轮询和 http 短轮询的都会 hold 一段时间;</li>
-<li>不同点：间隔发生在服务端还是浏览器端: http 长轮询在服务端会 hold 一段时间, http 短轮询在浏览器端 “hold”一段时间;</li>
-</ul>
-<h1 id="http-长连接"><a href="#http-长连接" class="headerlink" title="http 长连接"></a>http 长连接</h1><p>目前 http 协议普遍使用的是 1.1 版本, 之前有个 1.0 版本,两者之间的一个区别是 1.1 支持 http 长连接, 或者叫持久连接。<br>1.0 不支持 http 长连接, 每次一个 http请求响应后都关闭 tcp 连接, 下个 http 请求会重新建立 tcp 连接.</p>
-<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>多个 http 请求共用一个 tcp 连接; 这样可以减少多次临近 http 请求导致 tcp建立关闭所产生的时间消耗.</p>
-<p>http 1.1 中在请求头和相应头中用 connection 字段标识是否是 http长连接, connection: keep-alive, 表明是 http 长连接; connection:closed, 表明服务器关闭 tcp 连接</p>
-<p>与 connection 对应的一个字段是 keep-live, http 响应头中出现, 他的格式是 timeout=30,max=5, timeout 是两次 http 请求保持的时间(s), , max 是这个 tcp 连接最多为几个 http请求重用</p>
-<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2><p>消息即时到达，不发无用请求；管理起来也相对方便。</p>
-<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>服务器维护一个长连接会增加开销。</p>
-<h2 id="实例：Gmail聊天"><a href="#实例：Gmail聊天" class="headerlink" title="实例：Gmail聊天"></a>实例：Gmail聊天</h2><h1 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>Websocket 是基于 HTTP 协议的，在和服务端建立了链接后，服务端有数据有了变化后会主动推送给前端。</p>
-<h2 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h2><p>请求响应快，不浪费资源。（传统的 http 请求，其并发能力都是依赖同时发起多个 TCP 连接访问服务器实现的(因此并发数受限于浏览器允许的并发连接数)，而 websocket 则允许我们在一条 ws 连接上同时并发多个请求，即在A请求发出后A响应还未到达，就可以继续发出B请求。由于 TCP 的慢启动特性（新连接速度上来是需要时间的），以及连接本身的握手损耗，都使得 websocket 协议的这一特性有很大的效率提升；http 协议的头部太大，且每个请求携带的几百上千字节的头部大部分是重复的，websocket 则因为复用长连接而没有这一问题。）</p>
-<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><p>主流浏览器支持的Web Socket 版本不一致；<br>服务端没有标准的 API。</p>
-<h2 id="实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"><a href="#实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询" class="headerlink" title="实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"></a>实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询</h2><h2 id="解决：解决了http协议的两个问题。"><a href="#解决：解决了http协议的两个问题。" class="headerlink" title="解决：解决了http协议的两个问题。"></a>解决：解决了http协议的两个问题。</h2><ol>
-<li>服务端的被动性。http 协议是只有客户端询问之后才回复。解决了同步有延迟的问题</li>
-<li>解决了服务器上消耗资源的问题</li>
-</ol>
-<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需要先npm install ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//服务器端</span></span><br><span class="line"><span class="keyword">var</span> Server = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> Server(&#123;</span><br><span class="line">    port:<span class="number">2000</span></span><br><span class="line">&#125;);</span><br><span class="line">wss.on(<span class="string">&#x27;connection&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ws</span>)</span>&#123;</span><br><span class="line">    ws.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        ws.send(<span class="string">&#x27;你好,客户端,我是服务器!&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//node客户端</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.on(<span class="string">&#x27;open&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&#x27;你好，服务器,我是客户端&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">socket.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//html客户端(注:浏览器客户端与node客户端只需要一种)</span></span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="WebSocket四个事件操作"><a href="#WebSocket四个事件操作" class="headerlink" title="WebSocket四个事件操作"></a>WebSocket四个事件操作</h2><ul>
-<li>onmessage 收到服务器响应时执行</li>
-<li>onerroe 出现异常时执行</li>
-<li>onopen 建立起连接时执行</li>
-<li>onclose 断开连接时执行</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -304,51 +250,48 @@
       </tags>
   </entry>
   <entry>
-    <title>扫码点餐各个页面的制作过程</title>
-    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
-<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
-<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
-<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
-<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
-<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
-<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
-<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
-<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
-<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
-<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
-<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
-<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
-<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
-<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+    <title>web通讯的四种方式：短轮询、长轮询(comet)、长连接(SSE)、WebSocket</title>
+    <url>/2020/10/29/web%E9%80%9A%E8%AE%AF%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%9F%AD%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2(comet)%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5(SSE)%E3%80%81WebSocket/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="短轮询"><a href="#短轮询" class="headerlink" title="短轮询"></a>短轮询</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>http端轮询是服务器收到请求不管是否有数据都直接响应 http 请求;<br>其实就是普通的轮询。指在特定的的时间间隔（如每1秒），由浏览器对服务器发出 HTTP request，然后由服务器返回最新的数据给客户端的浏览器。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>传统的 web 通信模式。后台处理数据，需要一定时间，前端想要知道后端的处理结果，就要不定时的向后端发出请求以获得最新情况。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>前后端程序编写比较容易。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>请求中有大半是无用，难于维护，浪费带宽和服务器资源；<br>响应的结果没有顺序（因为是异步请求，当发送的请求没有返回结果的时候，后面的请求又被发送。而此时如果后面的请求比前面的请 求要先返回结果，那么当前面的请求返回结果数据时已经是过时无效的数据了）。</p>
+<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><pre><code>适于小型应用。</code></pre>
+<h2 id="前端实现："><a href="#前端实现：" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">        xhr.send();</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>客户端向服务器发送 Ajax 请求，服务器接到请求后 hold 住连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求。</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><p>在无消息的情况下不会频繁的请求，耗费资源小。</p>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><p>服务器 hold 连接会消耗资源<br>返回数据顺序无保证，难于管理维护。<br>浏览器端对统一服务器同时 http 连接有最大限制, 最好同一用户只存在一个长轮询;</p>
+<h2 id="实例：-1"><a href="#实例：-1" class="headerlink" title="实例："></a>实例：</h2><p>WebQQ、Hi 网页版、Facebook IM。</p>
+<h2 id="前端实现：-1"><a href="#前端实现：-1" class="headerlink" title="前端实现："></a>前端实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">       xhr.open(<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">       xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             ajax();</span><br><span class="line">       &#125;;</span><br><span class="line">       xhr.send();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>长轮询和短轮询</p>
+<ul>
+<li>相同点：可以看出 http 长轮询和 http 短轮询的都会 hold 一段时间;</li>
+<li>不同点：间隔发生在服务端还是浏览器端: http 长轮询在服务端会 hold 一段时间, http 短轮询在浏览器端 “hold”一段时间;</li>
+</ul>
+<h1 id="http-长连接"><a href="#http-长连接" class="headerlink" title="http 长连接"></a>http 长连接</h1><p>目前 http 协议普遍使用的是 1.1 版本, 之前有个 1.0 版本,两者之间的一个区别是 1.1 支持 http 长连接, 或者叫持久连接。<br>1.0 不支持 http 长连接, 每次一个 http请求响应后都关闭 tcp 连接, 下个 http 请求会重新建立 tcp 连接.</p>
+<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>多个 http 请求共用一个 tcp 连接; 这样可以减少多次临近 http 请求导致 tcp建立关闭所产生的时间消耗.</p>
+<p>http 1.1 中在请求头和相应头中用 connection 字段标识是否是 http长连接, connection: keep-alive, 表明是 http 长连接; connection:closed, 表明服务器关闭 tcp 连接</p>
+<p>与 connection 对应的一个字段是 keep-live, http 响应头中出现, 他的格式是 timeout=30,max=5, timeout 是两次 http 请求保持的时间(s), , max 是这个 tcp 连接最多为几个 http请求重用</p>
+<h2 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h2><p>消息即时到达，不发无用请求；管理起来也相对方便。</p>
+<h2 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h2><p>服务器维护一个长连接会增加开销。</p>
+<h2 id="实例：Gmail聊天"><a href="#实例：Gmail聊天" class="headerlink" title="实例：Gmail聊天"></a>实例：Gmail聊天</h2><h1 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>Websocket 是基于 HTTP 协议的，在和服务端建立了链接后，服务端有数据有了变化后会主动推送给前端。</p>
+<h2 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h2><p>请求响应快，不浪费资源。（传统的 http 请求，其并发能力都是依赖同时发起多个 TCP 连接访问服务器实现的(因此并发数受限于浏览器允许的并发连接数)，而 websocket 则允许我们在一条 ws 连接上同时并发多个请求，即在A请求发出后A响应还未到达，就可以继续发出B请求。由于 TCP 的慢启动特性（新连接速度上来是需要时间的），以及连接本身的握手损耗，都使得 websocket 协议的这一特性有很大的效率提升；http 协议的头部太大，且每个请求携带的几百上千字节的头部大部分是重复的，websocket 则因为复用长连接而没有这一问题。）</p>
+<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><p>主流浏览器支持的Web Socket 版本不一致；<br>服务端没有标准的 API。</p>
+<h2 id="实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"><a href="#实例：实现即时通讯-如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询" class="headerlink" title="实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询"></a>实例：实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询</h2><h2 id="解决：解决了http协议的两个问题。"><a href="#解决：解决了http协议的两个问题。" class="headerlink" title="解决：解决了http协议的两个问题。"></a>解决：解决了http协议的两个问题。</h2><ol>
+<li>服务端的被动性。http 协议是只有客户端询问之后才回复。解决了同步有延迟的问题</li>
+<li>解决了服务器上消耗资源的问题</li>
+</ol>
+<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需要先npm install ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//服务器端</span></span><br><span class="line"><span class="keyword">var</span> Server = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>).Server;</span><br><span class="line"><span class="keyword">var</span> wss = <span class="keyword">new</span> Server(&#123;</span><br><span class="line">    port:<span class="number">2000</span></span><br><span class="line">&#125;);</span><br><span class="line">wss.on(<span class="string">&#x27;connection&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ws</span>)</span>&#123;</span><br><span class="line">    ws.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        ws.send(<span class="string">&#x27;你好,客户端,我是服务器!&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//node客户端</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> WebSocket = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.on(<span class="string">&#x27;open&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&#x27;你好，服务器,我是客户端&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">socket.on(<span class="string">&#x27;message&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//html客户端(注:浏览器客户端与node客户端只需要一种)</span></span><br><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://localhost:2000/&#x27;</span>);</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="WebSocket四个事件操作"><a href="#WebSocket四个事件操作" class="headerlink" title="WebSocket四个事件操作"></a>WebSocket四个事件操作</h2><ul>
+<li>onmessage 收到服务器响应时执行</li>
+<li>onerroe 出现异常时执行</li>
+<li>onopen 建立起连接时执行</li>
+<li>onclose 断开连接时执行</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扫码点餐时遇到的问题</title>
-    <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
-<h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p>
-<h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p>
-<h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.use(cors(&#123;</span><br><span class="line">  origin: <span class="literal">true</span>,<span class="comment">//修改这里</span></span><br><span class="line">  maxAge: <span class="number">86400</span>,</span><br><span class="line">  credentials: <span class="literal">true</span>,</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-<h2 id="proxy-error"><a href="#proxy-error" class="headerlink" title="proxy error"></a>proxy error</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/9F4153617CB84496A435AD090C1DA56F/665" alt="Image text"><br>proxy代理设置 “proxy”: “<a href="http://localhost:5002&quot;">http://localhost:5002&quot;</a> 即可<br>同代表本机的10.1.1就不可以，最好各处写的一致</p>
-<h2 id="React脚手架运行npm-start报错-webpack版本问题"><a href="#React脚手架运行npm-start报错-webpack版本问题" class="headerlink" title="React脚手架运行npm start报错 webpack版本问题"></a>React脚手架运行npm start报错 webpack版本问题</h2><p>There might be a problem with the project dependency tree.<br>It is likely not a bug in Create React App, but something you need to fix locally.<br>The react-scripts package provided by Create React App requires a dependency:<br>“webpack”: “4.42.0”<br>Don’t try to install it manually: your package manager does it automatically.<br>However, a different version of webpack was detected higher up in the tree:<br>C:\Users\lenovo\node_modules\webpack (version: 4.41.6)<br>Manually installing incompatible versions is known to cause hard-to-debug issues.<br>If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That will permanently disable this message but you might encounter other issues.<br>To fix the dependency tree, try following the steps below in the exact order:</p>
-<ol>
-<li>Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.</li>
-<li>Delete node_modules in your project folder.</li>
-<li>Remove “webpack” from dependencies and/or devDependencies in the package.json file in your project folder.</li>
-<li>Run npm install or yarn, depending on the package manager you use.<br>In most cases, this should be enough to fix the problem.<br>If this has not helped, there are a few other things you can try:</li>
-<li>If you used npm, install yarn (<a href="http://yarnpkg.com/">http://yarnpkg.com/</a>) and repeat the above steps with it instead.<br>This may help because npm has known issues with package hoisting which may get resolved in future versions.</li>
-<li>Check if C:\Users\lenovo\node_modules\webpack is outside your project directory.<br>For example, you might have accidentally installed something in your home folder.</li>
-<li>Try running npm ls webpack in your project folder.<br>This will tell you which other package (apart from the expected react-scripts) installed webpack.<br>If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That would permanently disable this preflight check in case you want to proceed anyway.<br>P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</li>
-</ol>
-<p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>React</tag>
+        <tag>前端基础</tag>
       </tags>
   </entry>
   <entry>
@@ -376,35 +319,28 @@
       </tags>
   </entry>
   <entry>
-    <title>用生成器函数和Promise改善异步流程</title>
-    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
-<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后是 <strong>Generator 函数主体</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
-<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>分析一下对 g 调用 next() 的过程。</p>
-<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
-<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
-<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
-<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
-<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
-<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
-<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
-<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
-<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
-<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
-]]></content>
+    <title>扫码点餐时遇到的问题</title>
+    <url>/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p>
+<h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p>
+<h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p>
+<h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.use(cors(&#123;</span><br><span class="line">  origin: <span class="literal">true</span>,<span class="comment">//修改这里</span></span><br><span class="line">  maxAge: <span class="number">86400</span>,</span><br><span class="line">  credentials: <span class="literal">true</span>,</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+<h2 id="proxy-error"><a href="#proxy-error" class="headerlink" title="proxy error"></a>proxy error</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/9F4153617CB84496A435AD090C1DA56F/665" alt="Image text"><br>proxy代理设置 “proxy”: “<a href="http://localhost:5002&quot;">http://localhost:5002&quot;</a> 即可<br>同代表本机的10.1.1就不可以，最好各处写的一致</p>
+<h2 id="React脚手架运行npm-start报错-webpack版本问题"><a href="#React脚手架运行npm-start报错-webpack版本问题" class="headerlink" title="React脚手架运行npm start报错 webpack版本问题"></a>React脚手架运行npm start报错 webpack版本问题</h2><p>There might be a problem with the project dependency tree.<br>It is likely not a bug in Create React App, but something you need to fix locally.<br>The react-scripts package provided by Create React App requires a dependency:<br>“webpack”: “4.42.0”<br>Don’t try to install it manually: your package manager does it automatically.<br>However, a different version of webpack was detected higher up in the tree:<br>C:\Users\lenovo\node_modules\webpack (version: 4.41.6)<br>Manually installing incompatible versions is known to cause hard-to-debug issues.<br>If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That will permanently disable this message but you might encounter other issues.<br>To fix the dependency tree, try following the steps below in the exact order:</p>
+<ol>
+<li>Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.</li>
+<li>Delete node_modules in your project folder.</li>
+<li>Remove “webpack” from dependencies and/or devDependencies in the package.json file in your project folder.</li>
+<li>Run npm install or yarn, depending on the package manager you use.<br>In most cases, this should be enough to fix the problem.<br>If this has not helped, there are a few other things you can try:</li>
+<li>If you used npm, install yarn (<a href="http://yarnpkg.com/">http://yarnpkg.com/</a>) and repeat the above steps with it instead.<br>This may help because npm has known issues with package hoisting which may get resolved in future versions.</li>
+<li>Check if C:\Users\lenovo\node_modules\webpack is outside your project directory.<br>For example, you might have accidentally installed something in your home folder.</li>
+<li>Try running npm ls webpack in your project folder.<br>This will tell you which other package (apart from the expected react-scripts) installed webpack.<br>If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That would permanently disable this preflight check in case you want to proceed anyway.<br>P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</li>
+</ol>
+<p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -443,6 +379,38 @@
       </tags>
   </entry>
   <entry>
+    <title>用生成器函数和Promise改善异步流程</title>
+    <url>/2020/08/11/%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E5%92%8CPromise%E6%94%B9%E5%96%84%E5%BC%82%E6%AD%A5%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在学习JavaScript异步相关的知识，在学到Generator（生成器函数）、Promise 和 async-awiat 等相关对异步优化的内容时遇到了一些一时没有理解的东西。本文仅作为学习过程中的笔记分享，第一次发文章，如果错误请不吝指出。</p>
+<p>话不多说，进入正题，先写一下在 Generator 中要用到的函数，随便写几个就行。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">val, duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(val);</span><br><span class="line">        &#125;, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;<span class="comment">//delay函数不resolve出任何东西，或者说resolve出undefined</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(url).then(<span class="built_in">JSON</span>.parse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是 <strong>Generator 函数主体</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)<span class="comment">//(1)</span></span><br><span class="line">    <span class="keyword">yield</span> delay(<span class="number">1000</span>);<span class="comment">//(2)</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">yield</span> getValue(<span class="number">10</span>, <span class="number">3000</span>);<span class="comment">//(3)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Generator 函数会在遇到 yield 时生成一个值并暂停执行，如果要继续执行，则要调用next()，yield 的运算结果是生成器 next() 里面的参数。</p>
+<p>为了执行 Generator函数 f ，声明一个函数 g 作为函数 f 的调用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> g = f();</span><br><span class="line"></span><br><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">  g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">    g.next(value).value.then(<span class="function"><span class="params">value</span> =&gt;</span></span><br><span class="line">      g.next(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>分析一下对 g 调用 next() 的过程。</p>
+<p>在声明完函数 g 之后。<strong>第一行</strong>的第一个 value 是 getJSON 解析好的的 promise（我们希望在 promise 在 resolve 以后恢复执行），然后通过 data 返回，但是我们也不确定什么时候能resolve，但是可以确定的是：resolve 之后恢复生成器的执行。</p>
+<p><strong>第二行</strong>的第一个 value 是上一个 then 传入的 value（getJSON(‘data.json’) resolve 的结果），第二个 value 是 delay(1000) 的 promise 的 resolve。</p>
+<p>接下来是<strong>第三行</strong>，很明显，next() 调用一次就恢复执行，然后暂停，再调一次就再恢复执行，这里是第三次调用，传入的 value（第二个 value）是第(2)行的返回结果，虽然 delay 并没啥返回（甚至左边没有变量接住）。这次调用将会返回第(3)行生成的 promise 对象，然后等getValue 函数 resolve 以后，再恢复执行。这时这里第三个 value 应该是10并返回给b。</p>
+<p>最后一行，即<strong>第四行</strong> g.next(value); 这里的 value 为10。<br>&emsp;<br>&emsp;</p>
+<h1 id="总结一下-f-函数的执行"><a href="#总结一下-f-函数的执行" class="headerlink" title="总结一下 f() 函数的执行"></a>总结一下 f() 函数的执行</h1><p>运行到<strong>第(1)行的 yield</strong> 时，在 yield 出 getJSON 的 promise 后，它执行停止了，直到 promise 的 resolve 后才恢复执行，并且恢复之后还将返回 promise 的 resolve 的值，也就是 data 将等于 data.json 解析出的内容。</p>
+<p>然后函数运行到<strong>第(2)行</strong>，又 yield 出了 delay 的 promise，并再次等待 promise 的 resolve后才恢复执行（虽然这里的 delay 本身没求值结果所以也不 resolve 出啥），delay 在1秒后完成，所以第(2)行的 yield 也在1秒后恢复。</p>
+<p>运行到<strong>第(3)行</strong>，又 yield 出一个promise，然后就停住了，在等待这个 promise 的 resolve 后才恢复，要恢复得调用 next()，而 next 的调用在 promise 的 resolve之后，即这时已经有resolve 的值了，把值传给 next() 即可，b 就等于这个 resolve 出的值。全程 next() 调用在那行的 promise 的 resolve之后，而且调用的时候把 promise 的 resovle 的值传给 next() 并成为yield 的返回值。</p>
+<p>f() 这样跟同步的写法区别仅在于有没有 yield，虽然是异步的，但是写在了同一行里。(1)行的data 最终将等于 data.json 用 getJSON 请求到的真正的数据，而不是一个 promise 对象。虽然看起来像同步，但实际上代码在运行到这行的时候暂停了一定的时间，时间取决于 promise 的 resolve 的时间，在等待的这段时间，浏览器是完全空闲的。</p>
+<p>在以上的举例分析中，我们只考虑了 promise 能正确 resolve 的情况，那么接下来再写一下出现错误的情况（拿 next() 调用 g 的第一行举例）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">g.next().value.then(<span class="function"><span class="params">value</span> =&gt;</span>&#123;</span><br><span class="line">    g.next(value);<span class="comment">//成功就通过yield返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">reason</span> =&gt;</span>&#123;</span><br><span class="line">    g.throw(reason);<span class="comment">//失败就通过yield抛出</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果成功的就调用这个箭头函数（第一个 value 是 promise）,then 只是挂上了两个并没有立刻得到结果的函数就结束，然后执行下一句（console.log(1);）了，注意即使在then调用时promise 已经得出结果，下一句 console.log(1); 仍然先于then里的函数执行。因为这个函数是异步调用的，里面的内容必定在 then 所在的调用栈全部清空以后执行，</p>
+<p>另外说一下，既然有错误，就应该加上 try-catch 语句。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">yield</span> getJSON(<span class="string">&#x27;data.json&#x27;</span>)</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//多了yield的好处：能看出代码哪里需要等待</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点"><a href="#最后总结和补充一下-Generator-和-async-await-对于异步优化的一些知识点" class="headerlink" title="最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点"></a>最后总结和补充一下 Generator 和 async-await 对于异步优化的一些知识点</h1><p>Generator可以让执行处于暂停状态，Generator 返回的是一个 Iterator 对象。<br>必要构成：1 个星号和 yield 运算符。<br>next 属性返回一个对象，里面 value 是当前 yield 后面的值，done 表示当前生成器有没有运行完。yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。yield可以生成一个值，然后恢复的话（也可以不恢复，就不返回值）又可以返回一个值，两个值可以不一样。<br>yield: yield 的运算结果是生成器 next() 里面的参数。<br>async + 生成器函数 function {await ：promise 函数}。 async 函数就是将 Generator 函数的星号替换成 async，将 yield 替换成 await。<br>async 函数对 Generator 函数的改进，配合 promise 使用(后面接返回promise的函数？)，包装原理如上。并且 function() 返回一个 promise。<strong>async-await 本质是生成器函数和yield。</strong></p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>认识闭包</title>
     <url>/2020/04/04/%E8%AE%A4%E8%AF%86%E9%97%AD%E5%8C%85/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>满足以下特点的叫做闭包<br>    1、函数嵌套函数<br>    2、内部函数使用外部函数的形参和变量<br>    3、被引用的形参和变量不会被垃圾回收机制所回收</p>
@@ -457,6 +425,29 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> moduleA = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">10</span>;<span class="comment">//私有变量</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;<span class="comment">//私有方法</span></span><br><span class="line">        count += <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        count *= <span class="number">10</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">var</span> moduleA = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">100</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        count += <span class="number">5</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        count *= <span class="number">20</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        funcA: aaa,</span><br><span class="line">        funcB: bbb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">moduleA.funcA();</span><br><span class="line">moduleA.funcB();</span><br><span class="line"></span><br><span class="line">moduleB.funcA();</span><br><span class="line">moduleB.funcB();</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扫码点餐各个页面的制作过程</title>
+    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
+<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
+<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
+<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
+<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
+<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
+<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
+<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
+<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
+<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
+<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
+<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
+<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
+<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+]]></content>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
