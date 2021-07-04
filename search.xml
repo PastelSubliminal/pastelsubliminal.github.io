@@ -749,16 +749,6 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>http���Ĺ���</title>
-    <url>/2021/05/08/http%E6%8A%A5%E6%96%87%E6%9E%84%E6%88%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Request-Headers-����ͷ"><a href="#Request-Headers-����ͷ" class="headerlink" title="Request Headers  ����ͷ"></a>Request Headers  ����ͷ</h1><p>GET/POST��         ���󷽷�<br>Host��             ָ��������Դ������<br>Connection��       ����״̬<br>Cache-Control��    ����ָ��<br>Accept��           �������ܷ��͵�ý������<br>If-None-Match��    ����ṩ��ʵ�����뵱ǰ�ĵ���ʵ���ǲ������ͻ�ȡ���ĵ�<br>If-Modified-Since���Ƿ���ָ��ʱ����ǰ�޸Ĺ�����Դ<br>User-Agent��       �û�������ʹ��ʲô���߷�����<br>Referer��          ָ��������ǰ��Դ��ԭʼ��Դ�� URL<br>Accept-Encoding��  ֧��ʹ�õı��뷽ʽ<br>Accept-Language��  ֧��ʹ�õ�����<br>Cookie��           �ͻ��˷����������˵����ݱ�ʶ</p>
-<h1 id="Response-Headers-��Ӧͷ"><a href="#Response-Headers-��Ӧͷ" class="headerlink" title="Response Headers ��Ӧͷ"></a>Response Headers ��Ӧͷ</h1><p>Date��             ��Ӧ��ʱ��<br>Via��              ���ľ������м�ڵ�<br>Last-Modified��    ��һ���޸�ʱ��<br>Age��              ��Ӧ����ʱ��<br>Etag��             ���ʵ����ص�ʵ����<br>X-Cache��          ��ʾ��� http request ���� proxy server �ص�<br>Access-Control-Allow-Origin��<br>Access-Control-Expose-Headers��<br>Connection��       ����״̬<br>Accept-Ranges��    �������ɽ��յķ�Χ����<br>Connect-Type��     ��Դ����<br>Content-Length��   ʵ�峤��<br>X-Timestamp��      ʱ�����ʱ������ڰ汾���£�������������</p>
-]]></content>
-      <tags>
-        <tag>���������</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>this绑定的四种方式</title>
     <url>/2021/06/13/this%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="this是什么"><a href="#this是什么" class="headerlink" title="this是什么"></a>this是什么</h1><p>this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。学习 this 的第一步是明白 this 既不指向函数自身也不指向函数的词法作用域。this 实际上是在函数调用时发生的绑定，它只想什么完全取决于函数在哪里被调用。</p>
