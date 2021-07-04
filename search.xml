@@ -158,7 +158,7 @@
   </entry>
   <entry>
     <title>url编码及api的使用</title>
-    <url>/2021/04/02/url%E7%BC%96%E7%A0%81%E5%8F%8Aapi%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2021/03/14/url%E7%BC%96%E7%A0%81%E5%8F%8Aapi%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在因特网上传送 URL，只能采用 ASCII 字符集，即是常说的 get 请求只能使用 ASCII 字符。</p>
 <p>也就是说 URL 只能使用字母和数字[0-9a-zA-Z]、一些特殊符号$-_.+!*’()[不包括双引号]、以及某些保留字（空格转换为+），才可以不经过编码直接用于 URL。</p>
 <p>Javascript 中提供了3对函数用来对 url 编码以得到合法的 url，他们分别是</p>
@@ -291,7 +291,7 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>前端基础</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -584,6 +584,12 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <h3 id="31-对fetch的理解"><a href="#31-对fetch的理解" class="headerlink" title="31. 对fetch的理解"></a>31. 对fetch的理解</h3><p>fetch() 方法是比 XMLHttpRequest 更简洁的 Ajax 请求。fetch 是全局量 window 的一个方法，第一个参数为 URL。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// url (必须), options (可选)</span></span><br><span class="line">fetch(<span class="string">&#x27;/some/url&#x27;</span>, &#123;</span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 出错了;等价于 then 的第二个参数,但这样更好用更直观 :(</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>见 CSDN 收藏夹</p>
+<h3 id="31-什么是闭包"><a href="#31-什么是闭包" class="headerlink" title="31. 什么是闭包"></a>31. 什么是闭包</h3><ul>
+<li>可以访问其他函数内变量的函数，叫做闭包。</li>
+<li>闭包可以理解为作用域嵌套。作用域里面的函数要访问作用域里面的变量，作用域不能销毁，作用域里面的函数在调用时会产生新的作用域，嵌套在当前作用域里面；</li>
+<li>函数运行时创建作用域，函数结束时作用域不一定销毁；函数不产生闭包会在结束时销毁；如果还有代码使用作用域里面的变量值，产生了闭包，作用域不会销毁，里面的变量值还是可以被调用它的函数使用；</li>
+<li>函数本身处在哪个作用域（A），它运行时创建的作用域（B）就在哪个作用域（A）内部；函数本身也是处于一个作用域的。是创建它的函数运行时所创建的作用域。</li>
+</ul>
 <h2 id="计算机网络问题"><a href="#计算机网络问题" class="headerlink" title="计算机网络问题"></a>计算机网络问题</h2><h3 id="1-http-和-https"><a href="#1-http-和-https" class="headerlink" title="1. http 和 https"></a>1. http 和 https</h3><p>http：超文本传输协议。是一个客服端和服务器端请求和应答的标准（tcp），使浏览器更加高效，使网络传输减少<br>https：是以安全为目标的 HTTP 通道，简单讲是 HTTP 的安全版本，通过 SSL 加密</p>
 <h3 id="2-http1-0-和-http2-0"><a href="#2-http1-0-和-http2-0" class="headerlink" title="2. http1.0 和 http2.0"></a>2. http1.0 和 http2.0</h3><p>HTTP1.x 的解析是基于文本。HTTP2.0 的协议解析采用二进制格式<br>HTTP2.0 比HTTP1.0 有多路复用，一个连接可以并发处理多个请求<br>header压缩，HTTP1.x 的 header 带有大量信息，而且每次都要重复发送，HTTP2.0 使用encoder来减少需要传输的header大小<br>服务器推送：我们对支持 HTTP2.0 的 web server 请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源</p>
 <h3 id="3-Cookie、SessionStronge、LocalStronge的区别"><a href="#3-Cookie、SessionStronge、LocalStronge的区别" class="headerlink" title="3. Cookie、SessionStronge、LocalStronge的区别"></a>3. Cookie、SessionStronge、LocalStronge的区别</h3><h4 id="在同一浏览器下有效期不同"><a href="#在同一浏览器下有效期不同" class="headerlink" title="在同一浏览器下有效期不同"></a>在同一浏览器下有效期不同</h4><p>Cookie:         默认是关闭浏览器后失效， 但是也可以设置过期时间<br>SessionStorage: 仅在当前会话(窗口)下有效，关闭窗口或浏览器后被清除， 不能设置过期时间<br>LocalStorage:   除非被清除，否则永久保存</p>
@@ -737,6 +743,70 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect, useRef &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line">​</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useInterval</span>(<span class="params">callback, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> savedCallback = useRef();</span><br><span class="line">​</span><br><span class="line">  <span class="comment">// Remember the latest callback.</span></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    savedCallback.current = callback;</span><br><span class="line">  &#125;);</span><br><span class="line">​</span><br><span class="line">  <span class="comment">// Set up the interval.</span></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">tick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      savedCallback.current();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (delay !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> id = <span class="built_in">setInterval</span>(tick, delay);</span><br><span class="line">      <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(id);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [delay]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="1-你遇到最难的问题是怎样的？"><a href="#1-你遇到最难的问题是怎样的？" class="headerlink" title="1. 你遇到最难的问题是怎样的？"></a>1. 你遇到最难的问题是怎样的？</h3><h3 id="2-你在团队的突出贡献是什么？"><a href="#2-你在团队的突出贡献是什么？" class="headerlink" title="2. 你在团队的突出贡献是什么？"></a>2. 你在团队的突出贡献是什么？</h3><h3 id="3-最近在关注什么新技术"><a href="#3-最近在关注什么新技术" class="headerlink" title="3. 最近在关注什么新技术"></a>3. 最近在关注什么新技术</h3><h3 id="4-lodash有什么印象深刻的"><a href="#4-lodash有什么印象深刻的" class="headerlink" title="4. lodash有什么印象深刻的"></a>4. lodash有什么印象深刻的</h3><p>chunk，将数组进行切分<br>compact，去除假值（将所有的空值，0，NaN过滤掉）<br>uniq，数组去重。（将数组中的对象去重，只能去重数组不能去重对象）<br>merge，参数合并</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http���Ĺ���</title>
+    <url>/2021/05/08/http%E6%8A%A5%E6%96%87%E6%9E%84%E6%88%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Request-Headers-����ͷ"><a href="#Request-Headers-����ͷ" class="headerlink" title="Request Headers  ����ͷ"></a>Request Headers  ����ͷ</h1><p>GET/POST��         ���󷽷�<br>Host��             ָ��������Դ������<br>Connection��       ����״̬<br>Cache-Control��    ����ָ��<br>Accept��           �������ܷ��͵�ý������<br>If-None-Match��    ����ṩ��ʵ�����뵱ǰ�ĵ���ʵ���ǲ������ͻ�ȡ���ĵ�<br>If-Modified-Since���Ƿ���ָ��ʱ����ǰ�޸Ĺ�����Դ<br>User-Agent��       �û�������ʹ��ʲô���߷�����<br>Referer��          ָ��������ǰ��Դ��ԭʼ��Դ�� URL<br>Accept-Encoding��  ֧��ʹ�õı��뷽ʽ<br>Accept-Language��  ֧��ʹ�õ�����<br>Cookie��           �ͻ��˷����������˵����ݱ�ʶ</p>
+<h1 id="Response-Headers-��Ӧͷ"><a href="#Response-Headers-��Ӧͷ" class="headerlink" title="Response Headers ��Ӧͷ"></a>Response Headers ��Ӧͷ</h1><p>Date��             ��Ӧ��ʱ��<br>Via��              ���ľ������м�ڵ�<br>Last-Modified��    ��һ���޸�ʱ��<br>Age��              ��Ӧ����ʱ��<br>Etag��             ���ʵ����ص�ʵ����<br>X-Cache��          ��ʾ��� http request ���� proxy server �ص�<br>Access-Control-Allow-Origin��<br>Access-Control-Expose-Headers��<br>Connection��       ����״̬<br>Accept-Ranges��    �������ɽ��յķ�Χ����<br>Connect-Type��     ��Դ����<br>Content-Length��   ʵ�峤��<br>X-Timestamp��      ʱ�����ʱ������ڰ汾���£�������������</p>
+]]></content>
+      <tags>
+        <tag>���������</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this绑定的四种方式</title>
+    <url>/2021/06/13/this%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="this是什么"><a href="#this是什么" class="headerlink" title="this是什么"></a>this是什么</h1><p>this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。学习 this 的第一步是明白 this 既不指向函数自身也不指向函数的词法作用域。this 实际上是在函数调用时发生的绑定，它只想什么完全取决于函数在哪里被调用。</p>
+<h1 id="绑定规则"><a href="#绑定规则" class="headerlink" title="绑定规则"></a>绑定规则</h1><p>找到函数的调用位置后，判断需要应用下面四条规则中的那一条。首先会解释这四条规则，然后解释多条规则可用湿他们的优先级如何排列</p>
+<h2 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h2><p>首先是最常用的函数调用类型：独立函数调用。可以把这条规则看做是无法应用其他规则时的默认规则</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">foo();<span class="comment">// 2</span></span><br><span class="line"><span class="string">``</span><span class="string">`                                                   </span></span><br><span class="line"><span class="string">当调用 foo() 时，this.a 被解析成了全局变量 a，因为在本例中，函数调用时应用了 this 的默认绑定，因此 this 指向全局对象。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要知道是否使用了默认绑定。可以通过查看 foo() 是如何调用的。在代码中，foo() 是直接使用不带任何修饰的函数引用进行调用的，因此只能使用默认绑定，无法应用其他规则。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">如果使用严格模式（strict mode），则不能将对象用于区默认绑定，this 会绑定到 undefined。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    &quot;use strict&quot;</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">foo();<span class="comment">// TypeError: this is undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h2><p>隐式绑定需要考虑调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo(); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>调用位置会使用 obj 上下文来引用函数，因此可以说函数被调用时 obj 对象“拥有”或者“包含”函数引用。当 foo() 被调用时，它的前面确实加上了对 obj 的引用。当函数引用有上下文对象时，隐式绑定会把函数调用中的 this 绑定到这个上下文对象。因为调用 foo() 时 this 被绑定到 obj，因此 this.a 和 obj.a 是一样的。</p>
+<p>对象属性引用链中只有上一层或者最后一层在调用位置中起作用，举例来说</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">42</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    obj2: obj2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj1.obj2.foo(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+<h3 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h3><p>一个最常见的 this 绑定问题就是被隐式绑定的函数会丢失绑定对象，也就是他会应用默认绑定，从而把 this 绑定到全局对象或者 undefined 上，取决于是否是严格模式。<br>思考以下代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = obj.foo; <span class="comment">// 函数别名</span></span><br><span class="line"><span class="keyword">var</span>  a = <span class="string">&quot;oops, global&quot;</span>; <span class="comment">// a 是全局对象的属性</span></span><br><span class="line">bar(); <span class="comment">// &quot;oops, global&quot;</span></span><br></pre></td></tr></table></figure>
+<p>虽然 bar 是 obj.foo 的一个引用，但是实际上它引用的是 foo 函数本身，因此此刻的 bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定<br>此外，回调函数有可能会丢失 this 绑定，可以通过固定 this 来解决这个问题</p>
+<h2 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h2><p>使用 call() 和 apply() 方法可以直接指定 this 的绑定对象，因此称为显式绑定</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj  = &#123;</span><br><span class="line">    a: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.call(obj); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>通过 foo.call(…)，可以在调用 foo 时将它的 this 强制绑定到 obj 上。<br>从 this 绑定的角度来说，call() 和 apply() 是一样的，区别在于 call() 的参数是依次传入的，apply() 的参数为在数组中一次性传入</p>
+<h2 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h2><p>使用 new 来调用函数，会自动执行以下操作</p>
+<ol>
+<li>创建一个全新的对象。</li>
+<li>这个新对象会被执行 Prototype 指向。</li>
+<li>这个新对象会绑定到函数调用的 this。</li>
+<li>如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(bar.a);<span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+使用 new 调用 foo 时，会构造一个新对象并把它绑定到 foo() 调用中的 this 上。</li>
+</ol>
+<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><p>可以按照下面顺序来判断<br>从先到后分别为</p>
+<ol>
+<li>var bar = new foo()         new 绑定</li>
+<li>var bar = foo.call(obj2)    call()、apply() 显式绑定</li>
+<li>var bar = obj1.foo          在上下文对象中调用（隐式绑定）</li>
+<li>var bar = foo()             默认绑定</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对象的两种引用方式</title>
+    <url>/2021/03/26/%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>两段代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">        age:<span class="number">22</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;a&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">    age:<span class="number">22</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>结果不同的原因也可以理解为浅拷贝和深拷贝引用，第一段代码里的 obj1 和 obj2 分别是函数 person 返回的完全独立的对象，所以修改一个不会影响另一个。<br>第二段代码里的 obj1 和 obj2 是指向 obj 的指针，修改其中一个会直接修改 obj 的内容</p>
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
