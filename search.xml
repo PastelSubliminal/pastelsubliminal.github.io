@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ES6中的Set和Map数据结构</title>
-    <url>/2021/01/28/ES6%E7%9A%84Set%E5%92%8CMap%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p>集合（Set）是由一组无序且唯一的项组成的，该数据结构使用了和有限集合相同的数学概念，但应用在计算机科学的数据结构中。</p>
-<p>可以把集合想象成一个既没有重复元素，也没有顺序概念的数组</p>
-<p>一些集合可用的方法：<br>add(element)：向集合添加一个新元素。<br>delete(element)：从集合移除一个元素。<br>has(element)：如果元素在集合中，返回 true ，否则返回 false。<br>clear()：移除集合中的所有元素。<br>size()：返回集合所包含元素的数量。它与数组的 length 属性类似。<br>keys()：返回一个包含集合中所有键名的数组。<br>values()：返回一个包含集合中所有值（元素）的数组。</p>
-<p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line">    <span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>].forEach(<span class="function"><span class="params">x</span> =&gt;</span> s.add(x));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> s) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i); <span class="comment">//2,3,5,4</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Set 函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</span></span><br><span class="line">    <span class="keyword">const</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>可以利用set没有重复的值这一特性, 实现数组去重<br>不考虑兼容性，这种去重的方法代码最少。但这种方法无法去掉“{}”空对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;true&#x27;</span>,<span class="string">&#x27;true&#x27;</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">&#x27;NaN&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
-<p>为了解决这个问题，ES6 提供了 散列表（Map） 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="number">1</span>], [<span class="string">&quot;aa&quot;</span>, <span class="number">2</span>]]);</span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br></pre></td></tr></table></figure>
-
-
-<p>一些散列表可用的基本方法，散列表也可以使用 Set 的方法：<br>put(key, value)：向散列表添加一个新的项（也能更新散列表）。<br>remove(key)：根据键值从散列表中移除值。<br>get(key)：返回根据键值检索到的特定的值。<br>entries()：返回散列表中的所有键值对。</p>
-]]></content>
-      <tags>
-        <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6中的import as</title>
     <url>/2020/11/27/ES6%E4%B8%AD%E7%9A%84import%20as/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>import * as xxx from ‘xxx’  会将 “xxx” 中所有 export 导出的内容组合成一个对象返回(或import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里);</p>
@@ -49,19 +26,26 @@
       </tags>
   </entry>
   <entry>
-    <title>Less和CSS的区别</title>
-    <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
-<p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
-<p>CSS预处理器是一种脚本语言，可扩展 CSS 并将其编译为常规 CSS 语法，以便可以通过 Web 浏览器读取。 它提供诸如变量，函数，mixins 和操作等功能，可以构建动态 CSS。</p>
-<p>Less 允许我们定义变量，使用嵌套式声明，定义函数等。严格说 Less 包含两部分：（1）Less 的语法 （2）Less 预处理器。浏览器终究只认识 CSS，所以 Less 文件需要经过 Less 预处理器编译成为 CSS。</p>
-<p>CSS：层叠样式表是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
-<h1 id="二、Less与CSS区别总结"><a href="#二、Less与CSS区别总结" class="headerlink" title="二、Less与CSS区别总结"></a>二、Less与CSS区别总结</h1><p>1、Less 是一门 CSS 预处理语言，CSS 是一种用来表现 HTML 或 XML 等文件样式的计算机语言。</p>
-<p>2、Less 扩展了 CSS 语言，增加了变量、Mixin、函数等特性。</p>
-<p>3、CSS 可以被浏览器直接识别，Less 需要先编译为 CSS。</p>
+    <title>ES6中的Set和Map数据结构</title>
+    <url>/2021/01/28/ES6%E7%9A%84Set%E5%92%8CMap%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><p>集合（Set）是由一组无序且唯一的项组成的，该数据结构使用了和有限集合相同的数学概念，但应用在计算机科学的数据结构中。</p>
+<p>可以把集合想象成一个既没有重复元素，也没有顺序概念的数组</p>
+<p>一些集合可用的方法：<br>add(element)：向集合添加一个新元素。<br>delete(element)：从集合移除一个元素。<br>has(element)：如果元素在集合中，返回 true ，否则返回 false。<br>clear()：移除集合中的所有元素。<br>size()：返回集合所包含元素的数量。它与数组的 length 属性类似。<br>keys()：返回一个包含集合中所有键名的数组。<br>values()：返回一个包含集合中所有值（元素）的数组。</p>
+<p>Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line">    <span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>].forEach(<span class="function"><span class="params">x</span> =&gt;</span> s.add(x));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> s) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i); <span class="comment">//2,3,5,4</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Set 函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</span></span><br><span class="line">    <span class="keyword">const</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>可以利用set没有重复的值这一特性, 实现数组去重<br>不考虑兼容性，这种去重的方法代码最少。但这种方法无法去掉“{}”空对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">&#x27;true&#x27;</span>,<span class="string">&#x27;true&#x27;</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">&#x27;NaN&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, &quot;true&quot;, true, 15, false, undefined, null, NaN, &quot;NaN&quot;, 0, &quot;a&quot;, &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p>JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
+<p>为了解决这个问题，ES6 提供了 散列表（Map） 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="number">1</span>], [<span class="string">&quot;aa&quot;</span>, <span class="number">2</span>]]);</span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br></pre></td></tr></table></figure>
+
+
+<p>一些散列表可用的基本方法，散列表也可以使用 Set 的方法：<br>put(key, value)：向散列表添加一个新的项（也能更新散列表）。<br>remove(key)：根据键值从散列表中移除值。<br>get(key)：返回根据键值检索到的特定的值。<br>entries()：返回散列表中的所有键值对。</p>
 ]]></content>
       <tags>
-        <tag>HTML+CSS</tag>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -92,6 +76,22 @@
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Less和CSS的区别</title>
+    <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
+<p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
+<p>CSS预处理器是一种脚本语言，可扩展 CSS 并将其编译为常规 CSS 语法，以便可以通过 Web 浏览器读取。 它提供诸如变量，函数，mixins 和操作等功能，可以构建动态 CSS。</p>
+<p>Less 允许我们定义变量，使用嵌套式声明，定义函数等。严格说 Less 包含两部分：（1）Less 的语法 （2）Less 预处理器。浏览器终究只认识 CSS，所以 Less 文件需要经过 Less 预处理器编译成为 CSS。</p>
+<p>CSS：层叠样式表是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
+<h1 id="二、Less与CSS区别总结"><a href="#二、Less与CSS区别总结" class="headerlink" title="二、Less与CSS区别总结"></a>二、Less与CSS区别总结</h1><p>1、Less 是一门 CSS 预处理语言，CSS 是一种用来表现 HTML 或 XML 等文件样式的计算机语言。</p>
+<p>2、Less 扩展了 CSS 语言，增加了变量、Mixin、函数等特性。</p>
+<p>3、CSS 可以被浏览器直接识别，Less 需要先编译为 CSS。</p>
+]]></content>
+      <tags>
+        <tag>HTML+CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -135,6 +135,28 @@
       </tags>
   </entry>
   <entry>
+    <title>this和强制改变this指向</title>
+    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);<span class="comment">//[Objes y);//10,20</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.call(<span class="string">&quot;call&quot;</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
+
+<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.apply(<span class="string">&quot;call&quot;</span>, [<span class="number">20</span>, <span class="number">40</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>方法3：bind预设this指向</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);</span><br><span class="line">            alert(x + <span class="string">&quot;,&quot;</span> + y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> res = show.bind(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line">        <span class="comment">//res(40, 50);</span></span><br><span class="line">        show.bind(<span class="string">&quot;bind&quot;</span>)(<span class="number">40</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<p>apply使用方法的小技巧</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>this绑定的四种方式</title>
     <url>/2021/06/13/this%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="this是什么"><a href="#this是什么" class="headerlink" title="this是什么"></a>this是什么</h1><p>this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。学习 this 的第一步是明白 this 既不指向函数自身也不指向函数的词法作用域。this 实际上是在函数调用时发生的绑定，它只想什么完全取决于函数在哪里被调用。</p>
@@ -173,28 +195,6 @@
       </tags>
   </entry>
   <entry>
-    <title>this和强制改变this指向</title>
-    <url>/2020/04/13/this%E5%92%8C%E5%BC%BA%E5%88%B6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个函数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);<span class="comment">//[Objes y);//10,20</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>要改变它的this指向，有几种方法：<br>方法1：call<br>        格式： 函数名.call();<br>        参数：第一个参数：传入该函数this指向的对象，传入什么就强制指向什么<br>              从第二个参数开始，将原函数的参数往后顺延一位<br>        注：call主要目的是为了绑定参数，apply则是出现…运算符之前的老旧写法</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.call(<span class="string">&quot;call&quot;</span>, <span class="number">20</span>, <span class="number">40</span>);</span><br></pre></td></tr></table></figure>
-
-<p>方法2：apply<br>        格式：函数名.apply();<br>        参数：第一个参数；传入该函数this指向的对象，传入什么就强制指向什么<br>              第二个参数：数组，放入原有的所有参数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">show.apply(<span class="string">&quot;call&quot;</span>, [<span class="number">20</span>, <span class="number">40</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>方法3：bind预设this指向</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">this</span>);</span><br><span class="line">            alert(x + <span class="string">&quot;,&quot;</span> + y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> res = show.bind(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line">        <span class="comment">//res(40, 50);</span></span><br><span class="line">        show.bind(<span class="string">&quot;bind&quot;</span>)(<span class="number">40</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-
-<p>apply使用方法的小技巧</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.min();</span><br><span class="line">Math.max();</span><br><span class="line">alert(Math.min(10,20,30,40,50));</span><br><span class="line">alert(Math.max(10,20,30,40,50));</span><br></pre></td></tr></table></figure>
-<p>等同于</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10,20,30,40,50];</span><br><span class="line">alert(Math.min.apply(null, arr));</span><br><span class="line">alert(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>url编码及api的使用</title>
     <url>/2021/03/14/url%E7%BC%96%E7%A0%81%E5%8F%8Aapi%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在因特网上传送 URL，只能采用 ASCII 字符集，即是常说的 get 请求只能使用 ASCII 字符。</p>
@@ -223,22 +223,6 @@
 <h2 id="encodeURIComponent-和-encodeURI-的区别演示："><a href="#encodeURIComponent-和-encodeURI-的区别演示：" class="headerlink" title="encodeURIComponent() 和 encodeURI() 的区别演示："></a>encodeURIComponent() 和 encodeURI() 的区别演示：</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">encodeURI</span>(<span class="string">&quot;?name=zhangsan&amp;age=21&quot;</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">encodeURIComponent</span>(<span class="string">&quot;?name=zhangsan&amp;age=21&quot;</span>)) </span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/2020080916202843.png" alt="Image text"></p>
 <h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>开发中大部分情况下使用 encodeURI / decodeURI 和 encodeURIComponent / decodeURIComponent 完全可以了</p>
-]]></content>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对象的两种引用方式</title>
-    <url>/2021/03/26/%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>两段代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">        age:<span class="number">22</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
-<p>结果</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;a&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">    age:<span class="number">22</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
-<p>结果</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>结果不同的原因也可以理解为浅拷贝和深拷贝引用，第一段代码里的 obj1 和 obj2 分别是函数 person 返回的完全独立的对象，所以修改一个不会影响另一个。<br>第二段代码里的 obj1 和 obj2 是指向 obj 的指针，修改其中一个会直接修改 obj 的内容</p>
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
@@ -346,6 +330,22 @@
 ]]></content>
       <tags>
         <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对象的两种引用方式</title>
+    <url>/2021/03/26/%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>两段代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">        age:<span class="number">22</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;a&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name:<span class="string">&quot;a&quot;</span>,</span><br><span class="line">    age:<span class="number">22</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = person();</span><br><span class="line"><span class="keyword">var</span> obj2 = person();</span><br><span class="line">obj1.name = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1);</span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>结果不同的原因也可以理解为浅拷贝和深拷贝引用，第一段代码里的 obj1 和 obj2 分别是函数 person 返回的完全独立的对象，所以修改一个不会影响另一个。<br>第二段代码里的 obj1 和 obj2 是指向 obj 的指针，修改其中一个会直接修改 obj 的内容</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -462,29 +462,6 @@
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扫码点餐各个页面的制作过程</title>
-    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
-<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
-<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
-<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
-<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
-<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
-<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
-<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
-<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
-<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
-<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
-<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
-<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
-<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
-<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
-]]></content>
-      <tags>
-        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -605,6 +582,29 @@
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扫码点餐各个页面的制作过程</title>
+    <url>/2020/11/15/%E6%89%AB%E7%A0%81%E7%82%B9%E8%8F%9C%E4%B8%80%E4%BA%9B%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="扫码点餐各个页面是如何实现的"><a href="#扫码点餐各个页面是如何实现的" class="headerlink" title="扫码点餐各个页面是如何实现的"></a>扫码点餐各个页面是如何实现的</h1><h2 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h2><p>首先用到的模块是 ‘react-router-dom’ 的 withRouter 和封装好的 axios API。整个登录逻辑写在 withRouter中，在 jsx 里使用 ref 获得输入的用户名、密码、验证码，登录先 preventDefault 然后用户名密码验证码分别是 ref 获取到的当前输入值，使用 try-catch 用 post 请求发送给后端，如果成功就用 history.push 给 url 传值转跳页面，不然就 alert 后端设定好的错误信息。</p>
+<h2 id="点餐界面："><a href="#点餐界面：" class="headerlink" title="点餐界面："></a>点餐界面：</h2><p>首先用到的模块是 ‘prop-types’，’immer’，’history’，’socket.io-client’。</p>
+<p>菜单内容是一个函数组件，参数是 food，onupdate 和 amount，返回的 jsx 是一个菜单列表，列表里的每个菜都有按钮可以增减选择数量，使用 onupdate 来控制点击按钮时的菜品数量增减。<br>随后用到了 React 的属性验证功能 要求菜单内容这个函数组件必须要传参数且必须要传指定类型的参数。calTotaoPrice 是一个用 reduce 来计算下单总价的函数，初始值为 0 元。</p>
+<p>购物车状态是一个函数组件，返回的 jsx 显示了当前下单总价，以及展开收起按钮，使用 useState 来控制是否展开，默认 false。</p>
+<p>点餐主界面是一个类组件，state 里有三个属性：cart 数组里放当前点了的菜，foodMenu 数组里放当前提供可选的菜品列表，deskInfo 对象里是当前的餐桌号，顾客数，总价，点了的菜。</p>
+<p>接下来是各个生命周期里做的事情：在 componentDidMount 中，首先用 props.match.params 拿到路由传递过来的参数 params，然后用 get 请求到当前餐桌 id 和菜单信息用 setState 设置为当前餐桌和当前菜单信息。为了同步同一餐桌不同用户间的点单，设置 socket 的路径和请求，在接入餐桌连接时用 socket.on 在 ‘cart food’ 时向后端发送字符串命令和餐桌 id。后端发回此桌面已点菜单，这里用到了 immer 的 produce：先定义一个变更，有数据时再执行这个变更，然后用 socket.on 在 ‘new food’ 时调用 foodChange 函数变更菜品和数量，下单成功时用 socket.on 在 ‘placeorder success’ 时用路由 push 点餐成功页面的路径并将订单状态设置为 order。componentWillUnmount 中关闭 socket 链接。</p>
+<p>cartChange 函数用 socket.emit 在 ‘new food’ 时向后端发送当前餐桌 id，所点食物和数量。placeOrder 函数用于下单，用 post 请求向后端发送路径和当前订单信息后转跳到成功界面，state 设置为 res.data。</p>
+<p>最后点餐主界面 render 了菜单列表，返回的菜单列表用 map 渲染，返回的是当前能点的菜的列表。</p>
+<h2 id="菜品管理："><a href="#菜品管理：" class="headerlink" title="菜品管理："></a>菜品管理：</h2><p>列表中每个菜是一个函数组件，可以进行菜品的删改增查，使用了三个 hook 来管理状态：setFoodInfo、setIsModify、setFoodProps，默认分别是food、false、和属性是菜品各项信息的对象。save 函数 new 一个 FormDate 后将遍历到的菜品属性键值对插入进去，然后用 put 请求向后端放松当前菜品 id 和属性后将菜品信息设置为当前菜品信息。</p>
+<p>change 和 imgChange 函数用于重新设置菜品信息，使用 setFoodProps 将菜品信息设置为当前传入事件参数的值即可。然后是菜品的删除、设置是否提供，用put请求向后端发送状态后使用 hook 变更菜品属性即可。最后 jsx 返回的是修改界面，根据是修改将对应的 html 样式返回即可。最后整个函数组件返回的是菜品展示图和一些功能按钮（修改、保存、下架、上架、删除）。</p>
+<h2 id="订单管理："><a href="#订单管理：" class="headerlink" title="订单管理："></a>订单管理：</h2><p>首先用到的模块是 ‘socket.io-client’，’immer’ 和封装好的 axios API。订单状态用 hook 的 useState 管理。订单列表使用函数组件。</p>
+<p>然后是实现各个逻辑的函数。使订单状态变为确认：用 put 请求向后端发送当前订单 id 的状态变更为 confirmed，然后用 setOrder 将订单的属性设置为当前属性为 confirmed，setComplete 同理。</p>
+<p>删除订单则是直接向后端发送对应订单 id 的 delete 请求即可。最后订单列表返回显示总价格、人数、订单状态、打印、确认、完成、删除功能的 jsx。</p>
+<p>订单管理使用类组件，state 为由 orders 组成的数组。</p>
+<p>在订单管理的生命周期中，componentDidMount 首先获取参数，定义 socket 的路径和请求，在 on ‘connect’ 是向后端发送当前加入餐厅 id，在 on ‘new order’ 时发送在当前页面新增一个订单。用 get 请求获取当前订单。componentWillUnmount 中关闭 socket 连接，和删除订单的函数。最后 render 的是订单管理页面，根据订单长度 map 一个订单项列表。</p>
+]]></content>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
