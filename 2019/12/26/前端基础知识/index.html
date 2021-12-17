@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEPoVcp5SSdnxpyVEeGbVChAAoJQfhLuu8J4uR5WW7JeGb8U57fU8xI*bR08zdZgGh1t3HTelOs79hV..CNDZZ1o!/r">
 <meta property="article:published_time" content="2019-12-25T16:00:01.000Z">
-<meta property="article:modified_time" content="2021-04-13T02:49:24.028Z">
+<meta property="article:modified_time" content="2021-12-11T11:05:43.580Z">
 <meta property="article:author" content="Zero_warmwine">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isSidebar: false,
-  postUpdate: '2021-04-13 10:49:24'
+  postUpdate: '2021-12-11 19:05:43'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -173,7 +173,7 @@ var saveToLocal = {
 <li>css 加载会阻塞后面 js 语句的执行。</li>
 </ol>
 <h3 id="15-伪类和伪元素的区别"><a href="#15-伪类和伪元素的区别" class="headerlink" title="15. 伪类和伪元素的区别"></a>15. 伪类和伪元素的区别</h3><p>都是不存在于 DOM 文档中的虚拟元素，虽然逻辑上存在，但并不实际存在于 DOM 树中。<br>伪类的效果可以通过添加实际的类来实现。<br>伪元素的效果可以通过添加实际的元素来实现。<br>所以它们的本质区别就是是否抽象创造了新元素。<br>伪类只能使用 “:”，伪元素可以使用 “:” 也可以使用 “::”。</p>
-<h2 id="JavaScript问题"><a href="#JavaScript问题" class="headerlink" title="JavaScript问题"></a>JavaScript问题</h2><h3 id="1-JS-基本数据类型和引用数据类型"><a href="#1-JS-基本数据类型和引用数据类型" class="headerlink" title="1. JS 基本数据类型和引用数据类型"></a>1. JS 基本数据类型和引用数据类型</h3><p>基本：null、undefined、boolean、number、string、symbol<br>引用：Obect、Array、Function、Data<br>基本数据类型指的是简单的数据段，是按值访问的，因为可以直接操作保存在变量中的实际值。引用数据类型指的是有多个值构成的对象，改变引用数据类型是操作对象在栈内存中的引用地址</p>
+<h2 id="JavaScript问题"><a href="#JavaScript问题" class="headerlink" title="JavaScript问题"></a>JavaScript问题</h2><h3 id="1-JS-基本数据类型和引用数据类型，解释一下引用数据类型"><a href="#1-JS-基本数据类型和引用数据类型，解释一下引用数据类型" class="headerlink" title="1. JS 基本数据类型和引用数据类型，解释一下引用数据类型"></a>1. JS 基本数据类型和引用数据类型，解释一下引用数据类型</h3><p>基本：null、undefined、boolean、number、string、symbol<br>引用：Obect、Array、Function、Data<br>基本数据类型指的是简单的数据段，是按值访问的，因为可以直接操作保存在变量中的实际值。引用数据类型指的是有多个值构成的对象，改变引用数据类型是操作对象在栈内存中的引用地址。<br>引用数据类型的值可以改变、可以添加属性和方法、赋值是对象引用</p>
 <h3 id="2-原型和原型链"><a href="#2-原型和原型链" class="headerlink" title="2. 原型和原型链"></a>2. 原型和原型链</h3><p>每个”构造函数”中都有一个默认的属性， 叫做 prototype， prototype 属性保存着一个对象， 这个对象我们称之为”原型对象”， prototype 指向它的原型对象</p>
 <p>每个”原型对象”中都有一个默认的属性， 叫做 constructor， constructor 指向当前原型对象对应的那个”构造函数”<br>通过构造函数创建出来的对象我们称之为”实例对象”， 每个”实例对象”中都有一个默认的属性， 叫做<strong>proto__， __proto</strong> 指向创建它的那个构造函数的”原型对象”</p>
 <h3 id="3-JS-的传参"><a href="#3-JS-的传参" class="headerlink" title="3. JS 的传参"></a>3. JS 的传参</h3><p>按值传递(call by value)是最常用的求值策略：函数的形参是被调用时所传实参的副本。修改形参的值并不会影响实参。（深拷贝？）通过自定义函数实现深拷贝（递归遍历对象）</p>
@@ -194,7 +194,11 @@ var saveToLocal = {
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个symbol类型的值</span></span><br><span class="line"><span class="keyword">const</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> s);<span class="comment">//&quot;symbol&quot;</span></span><br></pre></td></tr></table></figure>
 <p>用作对象属性、模拟类的私有方法</p>
 <h3 id="7-async-和-await，如何捕获异常"><a href="#7-async-和-await，如何捕获异常" class="headerlink" title="7. async 和 await，如何捕获异常"></a>7. async 和 await，如何捕获异常</h3><p>写法跟 generator 很像，就是将星号替换成 async，将 yield 替换成 await。async 函数返回一个 promise 对象，如果 async函数没有返回值，它会返回 Promise.resolve(undefined)。如果 await 等到的不是一个 promise 对象，那跟着的表达式的运算结果就是它等到的东西。<br>使用场景：需要 promise 链式调用的时候，每个步骤都是异步的，且依赖上一步的执行结果<br>try{} catch{} finally<br>try 语句：里面是填写 js 代码，里面可以接 throw 语句，抛出自己填写的报错信息（一般抛出 throw new Error(“”))，并且 try 里面的执行语句终止，catch 的变量 e 会接收这个错误；throw 会在离自己最近的 try 语句中生效.<br>catch: 如果 try 语句里面有错误，catch 会返回错误的具体信息；需要一个变量 e 来接收错误，e 只在自己的 catch 语句中生效。变量 e 有几个属性，e.stack 调用栈信息；e.message 具体的错误原因；e.name: 错误类型函数<br>finally：里面的代码永远可以运行，不管前面有没有错误。</p>
-<h3 id="8-防抖和节流"><a href="#8-防抖和节流" class="headerlink" title="8. 防抖和节流"></a>8. 防抖和节流</h3><p>防抖是事件触发 n 秒后执行会掉，如果在这 n 秒内又被触发，则重新计时。使用场景：提交按钮时防止多次提交，只执行最后一次提交。<br>节流是 n 秒内只能触发一次函数，如果 n 秒内多次触发，只有一次生效。使用场景：拖拽在固定时间内只执行一次，防止超高频率触发位置变动；缩放时监控浏览器 resize</p>
+<h3 id="8-防抖和节流"><a href="#8-防抖和节流" class="headerlink" title="8. 防抖和节流"></a>8. 防抖和节流</h3><p>防抖是事件触发 n 秒后执行会掉，如果在这 n 秒内又被触发，则重新计时。使用场景：提交按钮时防止多次提交，只执行最后一次提交。<br>实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">f,time</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timeId = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...argments</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timeId)</span><br><span class="line">      <span class="keyword">var</span> timeId = <span class="built_in">setTimeout</span>(f(argments),time)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>节流是 n 秒内只能触发一次函数，如果 n 秒内多次触发，只有一次生效。使用场景：拖拽在固定时间内只执行一次，防止超高频率触发位置变动；缩放时监控浏览器 resize<br>实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">f, duration</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timerId</span><br><span class="line">  <span class="keyword">var</span> lastRunTime = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">    <span class="keyword">var</span> now = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">if</span> (now - lastRunTime &gt; duration) &#123;</span><br><span class="line">      f(...args)</span><br><span class="line">      lastRunTime = now</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timerId = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        f(...args)</span><br><span class="line">        lastRunTime = <span class="built_in">Date</span>.now()</span><br><span class="line">      &#125;, duration)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="9-类数组转换为数组的方法"><a href="#9-类数组转换为数组的方法" class="headerlink" title="9. 类数组转换为数组的方法"></a>9. 类数组转换为数组的方法</h4><p>使用 Array.from()<br>使用 Array.prototype.slice.call()<br>使用 Array.prototype.forEach() 进行遍历并生成新的数组<br>转换后数组的长度由 length 属性决定。索引不连续时转换结果是连续的，会自动补位</p>
 <h4 id="10-ES6-新特性"><a href="#10-ES6-新特性" class="headerlink" title="10. ES6 新特性"></a>10. ES6 新特性</h4><p>const和let<br>模板字符串<br>箭头函数<br>对象和数组解构<br>对象超类：ES6 允许在对象中使用 super 方法<br>for…of 和 for…in，for…of 用于遍历一个迭代器，如数组，for…in 用来遍历对象中的属性<br>ES6中的类：ES6 中支持 class 语法，不过，ES6 的 class 不是新的对象继承模型，它只是原型链的语法糖表现形式。<br>函数的参数默认值<br>Spread / Rest 操作符<br>二进制和八进制字面量</p>
 <h4 id="11-语句和表达式的区别"><a href="#11-语句和表达式的区别" class="headerlink" title="11. 语句和表达式的区别"></a>11. 语句和表达式的区别</h4><p>语句和表达式的区别在于，语句是为了进行某种操作，一般情况下不需要返回值，而表达式都是为了得到返回值，一定会返回一个值（这里的值不包括undefined）。<br>例如：var a = 1 + 2 是语句<br>1 + 2 是表达式</p>
@@ -211,16 +215,32 @@ var saveToLocal = {
 </ol>
 <p>阻止事件冒泡，防止事件冒泡而带来不必要的错误和困扰。<br>这个方法就是：stopPropagation()</p>
 <h3 id="17-事件委托"><a href="#17-事件委托" class="headerlink" title="17. 事件委托"></a>17. 事件委托</h3><p>在外部节点添加一个事件处理器，并根据 target 属性判断事件来源，这样可以把内部共用的事件绑定到外部</p>
-<h3 id="18-事件循环"><a href="#18-事件循环" class="headerlink" title="18. 事件循环"></a>18. 事件循环</h3><p>nodejs 是单线程执行的，同时它又是基于事件驱动的非阻塞 IO 编程模型，事件循环机制是实现这一特性的原理<br>异步操作时，将任务给到另外的线程（CPU 的其它核），异步事件触发之后，就会通知主线程，主线程执行相应事件的回调。</p>
+<h3 id="18-事件循环"><a href="#18-事件循环" class="headerlink" title="18. 事件循环"></a>18. 事件循环</h3><p>js 是单线程执行的，同时它又是基于事件驱动的非阻塞 IO 编程模型，事件循环机制是实现这一特性的原理<br>异步操作时，将任务给到另外的线程（CPU 的其它核），异步事件触发之后，就会通知主线程，主线程执行相应事件的回调。</p>
 <p>执行顺序<br>程序运行会从上至下依次执行所有的同步代码<br>在执行的过程中如果遇到异步代码会将异步代码放到事件循环中<br>当所有同步代码都执行完毕后，JS 会不断检测 事件循环中的异步代码是否满足条件<br>一旦满足条件就执行满足条件的异步代码</p>
-<h3 id="19-ES6的Class有什么好处"><a href="#19-ES6的Class有什么好处" class="headerlink" title="19. ES6的Class有什么好处"></a>19. ES6的Class有什么好处</h3><p>lass 是 ES6 提供的更接近于传统语言的的写法，作为对象的模板.通过 class关键字，可以定义类<br>class 写法只是一个语法糖，它只是让对象原型的写法更加清晰，更像面向对象编程的语法</p>
-<h3 id="18-全局作用域和函数作用域"><a href="#18-全局作用域和函数作用域" class="headerlink" title="18. 全局作用域和函数作用域"></a>18. 全局作用域和函数作用域</h3><p>全局作用域在页面打开时被创建，页面关闭时被销毁<br>编写在script标签中的变量和函数，作用域为全局，在页面的任意位置都可以访问到<br>在全局作用域中有全局对象window，代表一个浏览器窗口，由浏览器创建，可以直接调用<br>全局作用域中声明的变量和函数会作为window对象的属性和方法保存</p>
+<h3 id="19-ES6的Class有什么好处"><a href="#19-ES6的Class有什么好处" class="headerlink" title="19. ES6的Class有什么好处"></a>19. ES6的Class有什么好处</h3><p>Class 是 ES6 提供的更接近于传统语言的的写法，作为对象的模板.通过 class 关键字，可以定义类<br>class 写法只是一个语法糖，它只是让对象原型的写法更加清晰，更像面向对象编程的语法</p>
+<h3 id="18-全局作用域和函数作用域"><a href="#18-全局作用域和函数作用域" class="headerlink" title="18. 全局作用域和函数作用域"></a>18. 全局作用域和函数作用域</h3><p>全局作用域在页面打开时被创建，页面关闭时被销毁<br>编写在 script 标签中的变量和函数，作用域为全局，在页面的任意位置都可以访问到<br>在全局作用域中有全局对象 window，代表一个浏览器窗口，由浏览器创建，可以直接调用<br>全局作用域中声明的变量和函数会作为 window 对象的属性和方法保存</p>
 <p>调用函数时，函数作用域被创建，函数执行完毕，函数作用域被销毁<br>每调用一次函数就会创建一个新的函数作用域，他们之间是相互独立的<br>在函数作用域中可以访问到全局作用域的变量，在函数外无法访问到函数作用域内的变量<br>在函数作用域中访问变量、函数时，会先在自身作用域中寻找，若没有找到，则会到函数的上一级作用域中寻找，一直到全局作用域<br>在函数作用域中也有声明提前的特性，对于变量和函数都起作用，此时函数作用域相当于一个小的全局作用域，详细声明提前请看声明提前部分</p>
 <h3 id="19-forEach-和-map"><a href="#19-forEach-和-map" class="headerlink" title="19. forEach 和 map"></a>19. forEach 和 map</h3><p>共同点<br>只能遍历数组<br>都是循环遍历数组中的每一项<br>每一次执行匿名函数都支持三个参数，数组中的当前项 item，当前项的索引 index ，原始数组 input<br>匿名函数中的 this 都是指 window</p>
 <p>不同点<br>forEach 没有返回值，不能 return；map 有返回值，可以 return</p>
-<h3 id="20-this"><a href="#20-this" class="headerlink" title="20. this"></a>20. this</h3><p>this指向什么取决函数的调用形式，而不取决于函数的在哪调用，也不取决于在哪定义。<br>当一个函数以方法的形式被调用时，如 array.length，函数的 this 就是调用它的对象。<br>以纯函数形式调用时，this 就是 window，但用 new 来调用 this 时，this 就是那个新建的对象，如构造函数。<br>this 永远不能被赋值，即 this 不能写在等号左边。</p>
-<h3 id="21-图片懒加载原理"><a href="#21-图片懒加载原理" class="headerlink" title="21. 图片懒加载原理"></a>21. 图片懒加载原理</h3><p>一张图片就是一个 img 标签，浏览器是否发起请求图片是根据 img 的 src 属性，所以实现懒加载的关键就是，在图片没有进入可视区域时，先不给 img 的 src 赋值，这样浏览器就不会发送请求了，等到图片进入可视区域再给 src 赋值。<br>实现懒加载有四个步骤，如下：<br>1.加载loading图片<br>2.判断哪些图片要加载【重点】<br>3.隐形加载图片<br>4.替换真图片</p>
-<h3 id="22-垃圾回收机制"><a href="#22-垃圾回收机制" class="headerlink" title="22. 垃圾回收机制"></a>22. 垃圾回收机制</h3><p>调用函数的时候，系统会分配对应的空间给这个函数使用（空间大小的情况一般由这个函数的变量和形参决定），当函数试用完毕以后，这个内存空间要释放，还给系统，在函数内部声明的变量和形参是属于当前函数的内存空间的</p>
+<h3 id="20-this"><a href="#20-this" class="headerlink" title="20. this"></a>20. this</h3><p>this 指向什么取决函数的调用形式，而不取决于函数的在哪调用，也不取决于在哪定义。<br>当一个函数以方法的形式被调用时，如 array.length，函数的 this 就是调用它的对象。<br>以纯函数形式调用时，this 就是 window，但用 new 来调用 this 时，this 就是那个新建的对象，如构造函数。<br>this 永远不能被赋值，即 this 不能写在等号左边。</p>
+<h3 id="21-图片懒加载原理"><a href="#21-图片懒加载原理" class="headerlink" title="21. 图片懒加载原理"></a>21. 图片懒加载原理</h3><p>一张图片就是一个 img 标签，浏览器是否发起请求图片是根据 img 的 src 属性，所以实现懒加载的关键就是，在图片没有进入可视区域时，先不给 img 的 src 赋值，这样浏览器就不会发送请求了，等到图片进入可视区域再给 src 赋值。<br>实现懒加载有四个步骤，如下：<br>1.加载 loading 图片<br>2.判断哪些图片要加载【重点】<br>3.隐形加载图片<br>4.替换真图片</p>
+<h3 id="22-什么操作会引起内存泄漏"><a href="#22-什么操作会引起内存泄漏" class="headerlink" title="22. 什么操作会引起内存泄漏"></a>22. 什么操作会引起内存泄漏</h3><p>引擎中有垃圾回收机制，调用函数的时候，系统会分配对应的空间给这个函数使用（空间大小的情况一般由这个函数的变量和形参决定），当函数试用完毕以后，这个内存空间要释放，还给系统，在函数内部声明的变量和形参是属于当前函数的内存空间的。</p>
+<p>其实引擎虽然针对垃圾回收做了各种优化从而尽可能的确保垃圾得以回收，但并不是说我们就可以完全不用关心这块了，我们代码中依然要主动避免一些不利于引擎做垃圾回收操作，因为不是所有无用对象内存都可以被回收的，那当不再用到的对象内存，没有及时被回收时，我们叫它 内存泄漏</p>
+<ol>
+<li><p>不合理的使用闭包，两个函数嵌套，内部 return 的函数中存在对外部函数中变量的引用。在函数调用后，把外部的引用关系置空就好了。</p>
+</li>
+<li><p>隐式全局变量，可以在使用完之后将其置空（null）或重新分配。</p>
+</li>
+<li><p>遗忘的定时器，也就是 setTimeout 和 setInterval。调用 clearInterval 和 clearTimeout 清除。</p>
+</li>
+<li><p>遗忘的事件监听器、监听者模式</p>
+</li>
+<li><p>遗忘的Map、Set对象。如果使用 Map ，对于键为对象的情况，可以采用 WeakMap，WeakMap。如果需要使用 Set 引用对象，可以采用 WeakSet，WeakSet 对象允许存储对象弱引用的唯一值。<br>这里可能需要简单介绍下，谈弱引用，我们先来说强引用，之前我们说 JS 的垃圾回收机制是如果我们持有对一个对象的引用，那么这个对象就不会被垃圾回收，这里的引用，指的就是 强引用 ，而弱引用就是一个对象若只被弱引用所引用，则被认为是不可访问（或弱可访问）的，因此可能在任何时刻被回收。</p>
+</li>
+<li><p>未清理的 Console 输出</p>
+</li>
+</ol>
+<p>内存泄漏如何排查和定位：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6984188410659340324">https://juejin.cn/post/6984188410659340324</a></p>
 <h3 id="23-浏览器不同页面之间怎么传递消息"><a href="#23-浏览器不同页面之间怎么传递消息" class="headerlink" title="23. 浏览器不同页面之间怎么传递消息"></a>23. 浏览器不同页面之间怎么传递消息</h3><ol>
 <li>通过 form 表单传递参数：注意表单元素隐藏按钮的使用</li>
 <li>通过带参数的 url 传递：url?参数名1=值1&amp;参数名2=值2</li>
@@ -229,7 +249,7 @@ var saveToLocal = {
 <li>application 对象：将数据绑定到 application 对象上，通过 application 对象 getAttribute 和 setAttribute 方法读写</li>
 <li>cookie 对象：将数据写到到客户端浏览器 cookie 文件中<br>其中方式一、方式二只能实现字符串参数的传递，方式三、四、五、六可以实现对象的传递（方式六需要对象序列化后进行存储）。<br>方式一、方式二、方式三数据传递只能请求页面获取数据，而方式四、五、六可以在多个不同页面获取数据对象。<br>方式四和六保存的数据对象都是和某个用户相关的信息，不同的是方式四将数据保存到服务器内存中，方式六将数据保存到客户端内存中。<br>方式五保存的数据对象都是和所有用户相关的信息，数据也是保存到服务器内存中。</li>
 </ol>
-<h3 id="24-如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理"><a href="#24-如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理" class="headerlink" title="24. 如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理"></a>24. 如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理</h3><p>使用cdn，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率</p>
+<h3 id="24-如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理"><a href="#24-如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理" class="headerlink" title="24. 如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理"></a>24. 如果一个地区的页面加载特别慢，是因为什么原因，该怎么处理</h3><p>使用 cdn，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率</p>
 <h3 id="25-预检请求和简单请求"><a href="#25-预检请求和简单请求" class="headerlink" title="25. 预检请求和简单请求"></a>25. 预检请求和简单请求</h3><p>对那些可能对服务器数据产生副作用的 HTTP 请求方法，浏览器必须首先使用 OPTIONS 方法发起一个预检请求（preflight request），从而获知服务端是否允许该跨域请求。服务器确认允许之后，才发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括 Cookies 和 HTTP 认证相关数据）。</p>
 <p>按照预检请求的理解，简单请求就是对服务器无副作用的请求。</p>
 <h3 id="26-箭头函数没有arguments，怎么获取不知道数量的参数"><a href="#26-箭头函数没有arguments，怎么获取不知道数量的参数" class="headerlink" title="26. 箭头函数没有arguments，怎么获取不知道数量的参数"></a>26. 箭头函数没有arguments，怎么获取不知道数量的参数</h3><p>可以使用 ES6 的解构语法来代替。</p>
@@ -280,6 +300,15 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <li>函数运行时创建作用域，函数结束时作用域不一定销毁；函数不产生闭包会在结束时销毁；如果还有代码使用作用域里面的变量值，产生了闭包，作用域不会销毁，里面的变量值还是可以被调用它的函数使用；</li>
 <li>函数本身处在哪个作用域（A），它运行时创建的作用域（B）就在哪个作用域（A）内部；函数本身也是处于一个作用域的。是创建它的函数运行时所创建的作用域。</li>
 </ul>
+<h3 id="32-的结果和-的结果？"><a href="#32-的结果和-的结果？" class="headerlink" title="32. []==[]的结果和[]==![]的结果？"></a>32. []==[]的结果和[]==![]的结果？</h3><p>[]===[] 的结果是 false，因为每次使用 [] 都是新建一个数组对象，比较的时候比较的是它们的引用，尽管两两边看起来都是空数组但实际上从引用看是不相等的，[]==[] 的结果也是 false。如果想判断数组为空，可以判断 array.length === 0.</p>
+<p>[]==![] 的结果是 true</p>
+<ol>
+<li>! 运算符优先级比 == 高，所以先运算 ![]，得到 false.</li>
+<li>false 在运算中会强制转换为 0.</li>
+<li>[] 强制转换为原始类型为 “”。</li>
+<li>“” 会强制转换为 0。</li>
+<li>两侧都是 number 类型为 0，所以 0==0 为 true。</li>
+</ol>
 <h2 id="计算机网络问题"><a href="#计算机网络问题" class="headerlink" title="计算机网络问题"></a>计算机网络问题</h2><h3 id="1-http-和-https"><a href="#1-http-和-https" class="headerlink" title="1. http 和 https"></a>1. http 和 https</h3><p>http：超文本传输协议。是一个客服端和服务器端请求和应答的标准（tcp），使浏览器更加高效，使网络传输减少<br>https：是以安全为目标的 HTTP 通道，简单讲是 HTTP 的安全版本，通过 SSL 加密</p>
 <h3 id="2-http1-0-和-http2-0"><a href="#2-http1-0-和-http2-0" class="headerlink" title="2. http1.0 和 http2.0"></a>2. http1.0 和 http2.0</h3><p>HTTP1.x 的解析是基于文本。HTTP2.0 的协议解析采用二进制格式<br>HTTP2.0 比HTTP1.0 有多路复用，一个连接可以并发处理多个请求<br>header压缩，HTTP1.x 的 header 带有大量信息，而且每次都要重复发送，HTTP2.0 使用encoder来减少需要传输的header大小<br>服务器推送：我们对支持 HTTP2.0 的 web server 请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源</p>
 <h3 id="3-Cookie、SessionStronge、LocalStronge的区别"><a href="#3-Cookie、SessionStronge、LocalStronge的区别" class="headerlink" title="3. Cookie、SessionStronge、LocalStronge的区别"></a>3. Cookie、SessionStronge、LocalStronge的区别</h3><h4 id="在同一浏览器下有效期不同"><a href="#在同一浏览器下有效期不同" class="headerlink" title="在同一浏览器下有效期不同"></a>在同一浏览器下有效期不同</h4><p>Cookie:         默认是关闭浏览器后失效， 但是也可以设置过期时间<br>SessionStorage: 仅在当前会话(窗口)下有效，关闭窗口或浏览器后被清除， 不能设置过期时间<br>LocalStorage:   除非被清除，否则永久保存</p>
@@ -359,6 +388,8 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <li>vue 全局事件 (eventBus)，在 main.js 里：window.eventBus = new Vue(); // 注册全局事件对象</li>
 <li>兄弟之间的传值Vuex，在 state 里定义数据和属性，在 mutations 里定义函数 fn，在页面通过 this.$store.commit(‘fn’，params) 来触发函数</li>
 </ol>
+<h3 id="6-为什么不建议用index作为key的值"><a href="#6-为什么不建议用index作为key的值" class="headerlink" title="6. 为什么不建议用index作为key的值"></a>6. 为什么不建议用index作为key的值</h3><p>当对数组进行下标有关的操作时，比如删除一个值，后面的值的index都会发生变化，那么key值自然也跟着全部发生改变。<br>在平时的开发过程中, 因为我们的数据绝大部分都是从后台获取来的. 数据库中每一条数据都会一个 id 作为唯一标识，而这个 id 也是我们最常使用作为 key 值的来源。</p>
+<h3 id="7-说说nextTick的用处？"><a href="#7-说说nextTick的用处？" class="headerlink" title="7. 说说nextTick的用处？"></a>7. 说说nextTick的用处？</h3><p>Vue 采用的是异步更新的策略，通俗点说就是，同一事件循环内多次修改变量，会统一进行一次视图更新。所以数据一更新，视图却还没更新，所以拿到的还是上一次的旧视图数据，那么想要拿到最新视图数据怎么办呢？$nextTick 是在下一次 dom 更新循环结束之后执行延迟回调，在修改数据之后使用这个方法，立即更新 dom。</p>
 <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="1-Redux-介绍和如何使用"><a href="#1-Redux-介绍和如何使用" class="headerlink" title="1. Redux 介绍和如何使用"></a>1. Redux 介绍和如何使用</h3><p>redux 是为了解决 react 中组件与组件之间数据传递的问题。是一个全局的数据中心，监听 state 变更并将数据传递给下层组件<br>组建于组件之间的传递有三种情况：</p>
 <ol>
 <li>父组件传递数据给子组件：由于 redux 是一个单向数据流的框架，所以它的 props 就只能由父组件传递给子组件；</li>
@@ -373,9 +404,12 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <h3 id="2-React-如何实现数据绑定"><a href="#2-React-如何实现数据绑定" class="headerlink" title="2. React 如何实现数据绑定"></a>2. React 如何实现数据绑定</h3><p>在 React 应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。可以通过 shouldComponentUpdate 这个生命周期进行控制 pureRender<br>通过 JSX 中标签加属性实现视图和数据的绑定，类组件中 render 里的大括号动态传递 state，this.state 记录数据状态，函数组件中则使用 hooks 管理状态（个人理解，不知道对不对）<br>Vue 实现数据绑定考的是数据劫持（Object.defineProperty()） + 发布-订阅模式。在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件需要被被重新渲染。可以理解为每一个组件都已经自动获得了 shouldComponentUpdate，并且没有上面的子树问题限制</p>
 <h3 id="3-React如何在重新加载页面时保留数据？"><a href="#3-React如何在重新加载页面时保留数据？" class="headerlink" title="3. React如何在重新加载页面时保留数据？"></a>3. React如何在重新加载页面时保留数据？</h3><p>使用浏览器 localstorage 来保存应用程序的状态。我们将整个存储数据保存在 localstorage 中，每当有页面刷新或重新加载时，我们从 localstorage 加载状态。</p>
 <h3 id="4-state-和-props-的区别"><a href="#4-state-和-props-的区别" class="headerlink" title="4. state 和 props 的区别"></a>4. state 和 props 的区别</h3><p>state 是组件自己管理数据，控制自己的状态，可变，必须通过 setState 更改。<br>props 是外部传入的数据参数，不可变，父组件通过传递 props 给子组件来更新视图，子组件不能将 prop 送回父组件。这有助于维护单向数据流，通常用于呈现动态生成的数据。</p>
-<h3 id="5-简述虚拟DOM和diff算法"><a href="#5-简述虚拟DOM和diff算法" class="headerlink" title="5. 简述虚拟DOM和diff算法"></a>5. 简述虚拟DOM和diff算法</h3><p>如果两棵树的根元素类型不同，React 会销毁旧树，创建新树。<br>对于类型相同的 React DOM 元素，只更新不同的属性，如果类型不同，直接替换。<br>当处理完这个 DOM 节点，React 就会递归处理子节点。<br>比较内容，如果有不同直接替换。</p>
-<p>虚拟 DOM 是 JS 和真实 DOM 之间的一个缓存，利用 diff 算法比较虚拟 DOM 和真实 DOM 的不同后根据 diff 算法的替换规则更改真实 DOM，因为操作 DOM 非常耗费性能，所以虚拟 DOM 和 diff 算法是提高性能的一个重要方法</p>
-<h3 id="6-函数组件和类组件"><a href="#6-函数组件和类组件" class="headerlink" title="6. 函数组件和类组件"></a>6. 函数组件和类组件</h3><p>函数组件是一个纯函数，接收参数并返回 React元素，并且没有任何副作用。没有生命周期函数和 state。<br>通过 class xx extends React.Component 这类组件可以通过 setState() 来改变组件的状态，并且可以使用生命周期函数</p>
+<h3 id="5-简述虚拟DOM和diff算法"><a href="#5-简述虚拟DOM和diff算法" class="headerlink" title="5. 简述虚拟DOM和diff算法"></a>5. 简述虚拟DOM和diff算法</h3><p>无 key 时，如果两棵树的根元素类型不同，React 会销毁旧树，创建新树。对于类型相同的 React DOM 元素，只更新不同的属性，如果类型不同，直接替换。当处理完这个 DOM 节点，React 就会递归处理子节点。比较内容，如果有不同直接替换。<br>有 key 时，如果 key 相同，组件有所变化，React 会只更新组件对应变化的属性；如果 key 不同，组件会销毁之前的组件，将整个组件重新渲染。<br>使用 React 要注意的一点是，Key 值必须是稳定的, 可预测并且是唯一的，这里给我们性能优化提供了两个非常重要的依据：</p>
+<ul>
+<li>保持 DOM 结构的稳定性</li>
+<li>加唯一 key 值<br>虚拟 DOM 是 JS 和真实 DOM 之间的一个缓存，利用 diff 算法比较虚拟 DOM 和真实 DOM 的不同后根据 diff 算法的替换规则更改真实 DOM，因为操作 DOM 非常耗费性能，所以虚拟 DOM 和 diff 算法是提高性能的一个重要方法。</li>
+</ul>
+<h3 id="6-函数组件和类组件"><a href="#6-函数组件和类组件" class="headerlink" title="6. 函数组件和类组件"></a>6. 函数组件和类组件</h3><p>函数组件是一个纯函数，接收参数并返回 React 元素，并且没有任何副作用。没有生命周期函数和 state。<br>通过 class xx extends React.Component 这类组件可以通过 setState() 来改变组件的状态，并且可以使用生命周期函数</p>
 <p>定义组件时，复杂场景用类组件，简单场景用函数组件。<br>简单：一个组件仅仅是为了展示数据。<br>复杂：一个组件中有一定业务逻辑，需要操作数据，并且此时需要使用 state。</p>
 <h3 id="7-受控组件和非受控组件"><a href="#7-受控组件和非受控组件" class="headerlink" title="7. 受控组件和非受控组件"></a>7. 受控组件和非受控组件</h3><p>在 HTML 当中，像 input，textarea 和 select 这类表单元素会维持自身状态，并根据用户输入进行更新。 在 React 中，可变的状态通常保存在组件的 state 中，并且只能用 setState() 方法进行更新. React 根据初始状态渲染表单组件，接受用户后续输入，改变表单组件内部的状态。因此，将那些值由 React 控制的表单元素称为受控组件。</p>
 <p>受控组件的特点：</p>
@@ -385,7 +419,7 @@ promise.then 的返回值是一个新的 promise 对象</code></pre>
 <li>由 React 控制值的改变，想要改变元素的值，只能通过 React 提供的方法来修改</li>
 </ol>
 <p>非受控组件的状态是不受 React 控制的，而是组件本身具有的</p>
-<p>非受控-&gt;受控组件的转化<br>首先把状态绑定到非受控组件的 value、checked 上。<br>然后监听该组件的 onChange 事件 用 e.target 获取 input 上面的数据 然后通过 setState 设置数据给 state 内的数据。</p>
+<p>非受控 -&gt; 受控组件的转化<br>首先把状态绑定到非受控组件的 value、checked 上。<br>然后监听该组件的 onChange 事件 用 e.target 获取 input 上面的数据 然后通过 setState 设置数据给 state 内的数据。</p>
 <h3 id="8-Hooks及常用API"><a href="#8-Hooks及常用API" class="headerlink" title="8. Hooks及常用API"></a>8. Hooks及常用API</h3><ol>
 <li>基础API<br> useState：通过在函数组件里调用它来给组件添加一些内部 state。React 会在重复渲染时保留这<br> state。useState 会返回一对值：当前状态和一个让你更新它的函数，你可以在事件处理函数中或其他一些地方调用这个函数。它类似 class 组件的 this.setState，但是它不会把新的 state 和旧的 state 进行合并。<br> useEffect：在函数组件中执行副作用操作（副作用：和函数业务主逻辑关联不大，特定时间或事件中执行的动作，比如Ajax 请求后端数据，添加登录监听或取消登录、手动修改DOM等），useEffect 在每次 state 更新时执行，主要用来代替常用的生命周期函数。<br> useContext：与 Context 一样，是 React Hooks 中提供的更加高级的一种组件中传递值的方式，不再需要一层一层的向下传递 props，而是可以隔层传递。</li>
 <li>其他的API<br> useReducer<br> useCallback<br> useMemo<br> useRef<br> useImperativeMethods<br> useLayoutEffect</li>
