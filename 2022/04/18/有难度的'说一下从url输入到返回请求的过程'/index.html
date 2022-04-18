@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>有难度的'说一下从url输入到返回请求的过程' | 埃斯佩拉某处</title><meta name="keywords" content="JavaScript"><meta name="author" content="Zero_warmwine"><meta name="copyright" content="Zero_warmwine"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="问题: 从浏览器地址栏输入url到请求返回发生了什么浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址 url为啥要解析，dns查询规则是什么？因为网络标准规定了URL只能是字母和数字，还有一些其它特殊符号，而且如果不转义会出现歧义 那url编码的规则是什么呢？utf-8 然后怎么保证utf-8的编码？可以用 encodeURIComponent  encodeURIComp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有难度的&#39;说一下从url输入到返回请求的过程&#39;">
+<meta property="og:url" content="http://example.com/2022/04/18/%E6%9C%89%E9%9A%BE%E5%BA%A6%E7%9A%84'%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%8Eurl%E8%BE%93%E5%85%A5%E5%88%B0%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B'/index.html">
+<meta property="og:site_name" content="埃斯佩拉某处">
+<meta property="og:description" content="问题: 从浏览器地址栏输入url到请求返回发生了什么浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址 url为啥要解析，dns查询规则是什么？因为网络标准规定了URL只能是字母和数字，还有一些其它特殊符号，而且如果不转义会出现歧义 那url编码的规则是什么呢？utf-8 然后怎么保证utf-8的编码？可以用 encodeURIComponent  encodeURIComp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEGVEhynO9rZDPXVjyGZcLW*yuqhURa9xjueRzgYBmdKp8LzPgNDT4ovRRRGxsr*oawaqKvz0v6bw6*LE6L0OqGk!/b&bo=vgXUA74F1AMDd1I!&rf=viewer_4">
+<meta property="article:published_time" content="2022-04-17T16:00:01.000Z">
+<meta property="article:modified_time" content="2022-04-17T20:11:41.650Z">
+<meta property="article:author" content="Zero_warmwine">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEGVEhynO9rZDPXVjyGZcLW*yuqhURa9xjueRzgYBmdKp8LzPgNDT4ovRRRGxsr*oawaqKvz0v6bw6*LE6L0OqGk!/b&bo=vgXUA74F1AMDd1I!&rf=viewer_4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/04/18/%E6%9C%89%E9%9A%BE%E5%BA%A6%E7%9A%84'%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%8Eurl%E8%BE%93%E5%85%A5%E5%88%B0%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B'/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2022-04-18 04:11:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><div class="aplayer" data-id="5303367696" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><link rel="stylesheet" href="/self/background.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="埃斯佩拉某处" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">26</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5url%E5%88%B0%E8%AF%B7%E6%B1%82%E8%BF%94%E5%9B%9E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">问题: 从浏览器地址栏输入url到请求返回发生了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#url%E4%B8%BA%E5%95%A5%E8%A6%81%E8%A7%A3%E6%9E%90%EF%BC%8Cdns%E6%9F%A5%E8%AF%A2%E8%A7%84%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">url为啥要解析，dns查询规则是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3url%E7%BC%96%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">那url编码的规则是什么呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81utf-8%E7%9A%84%E7%BC%96%E7%A0%81%EF%BC%9F"><span class="toc-text">然后怎么保证utf-8的编码？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E8%AF%B4%E8%AF%B4dns%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B%EF%BC%8C%E5%B9%B6%E4%B8%94html%E5%A6%82%E4%BD%95%E5%81%9Adns%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="toc-text">然后说说dns解析流程，并且html如何做dns优化？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%8F%AF%E4%BB%A5%E5%81%9A-dns-%E4%BC%98%E5%8C%96%E5%90%97%EF%BC%9F"><span class="toc-text">前端可以做 dns 优化吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E4%B8%BA%E5%95%A5%E4%B8%A4%E6%AC%A1%E4%B8%8D%E8%A1%8C%EF%BC%8C%E9%A1%BA%E4%BE%BF%E8%AF%B4%E4%B8%80%E4%B8%8B3%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">三次握手，为啥两次不行，顺便说一下3次握手发生了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E7%BC%93%E5%AD%98"><span class="toc-text">解释一下缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFfrom-disk-cache%E5%92%8Cfrom-memory-cache%E5%90%97%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E8%A7%A6%E5%8F%91%EF%BC%9F"><span class="toc-text">什么是from disk cache和from memory cache吗，什么时候会触发？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%AF%E5%8F%91%E5%BC%8F%E7%BC%93%E5%AD%98%E5%90%97%EF%BC%8C%E5%9C%A8%E4%BB%80%E4%B9%88%E6%9D%A1%E4%BB%B6%E4%B8%8B%E8%A7%A6%E5%8F%91%EF%BC%9F"><span class="toc-text">什么是启发式缓存吗，在什么条件下触发？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E5%B1%82%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5%EF%BC%9F"><span class="toc-text">页面渲染层有什么优化手段？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AF%8A%E6%96%AD%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%97%B6%E5%90%84%E4%B8%AA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%EF%BC%9F"><span class="toc-text">如何诊断页面渲染时各个性能指标？</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEGVEhynO9rZDPXVjyGZcLW*yuqhURa9xjueRzgYBmdKp8LzPgNDT4ovRRRGxsr*oawaqKvz0v6bw6*LE6L0OqGk!/b&amp;bo=vgXUA74F1AMDd1I!&amp;rf=viewer_4)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">埃斯佩拉某处</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">有难度的'说一下从url输入到返回请求的过程'</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2022-04-17T16:00:01.000Z" title="undefined 2022-04-18 00:00:01">2022-04-18</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="问题-从浏览器地址栏输入url到请求返回发生了什么"><a href="#问题-从浏览器地址栏输入url到请求返回发生了什么" class="headerlink" title="问题: 从浏览器地址栏输入url到请求返回发生了什么"></a>问题: 从浏览器地址栏输入url到请求返回发生了什么</h1><p>浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址</p>
+<h2 id="url为啥要解析，dns查询规则是什么？"><a href="#url为啥要解析，dns查询规则是什么？" class="headerlink" title="url为啥要解析，dns查询规则是什么？"></a>url为啥要解析，dns查询规则是什么？</h2><p>因为网络标准规定了URL只能是字母和数字，还有一些其它特殊符号，而且如果不转义会出现歧义</p>
+<h3 id="那url编码的规则是什么呢？"><a href="#那url编码的规则是什么呢？" class="headerlink" title="那url编码的规则是什么呢？"></a>那url编码的规则是什么呢？</h3><p>utf-8</p>
+<h4 id="然后怎么保证utf-8的编码？"><a href="#然后怎么保证utf-8的编码？" class="headerlink" title="然后怎么保证utf-8的编码？"></a>然后怎么保证utf-8的编码？</h4><p>可以用 encodeURIComponent</p>
+<blockquote>
+<p>encodeURIComponent 比 encodeURI有什么区别？<br>encodeURIComponent 编码范围更广，适合给参数编码，encodeURI 适合给 URL 本身（locaion.origin）编码，当然项目里一般都是用 qs 库去处理</p>
+</blockquote>
+<h2 id="然后说说dns解析流程，并且html如何做dns优化？"><a href="#然后说说dns解析流程，并且html如何做dns优化？" class="headerlink" title="然后说说dns解析流程，并且html如何做dns优化？"></a>然后说说dns解析流程，并且html如何做dns优化？</h2><ol>
+<li>浏览器中输入网址域名，操作系统会先查 hosts 件是否有记录，有的话就会把相对应映射的 IP 返回。</li>
+<li>hosts 文件没有就去查本地 dns 解析器有没有缓存。</li>
+<li>然后就去找我们计算机上配置的 dns 服务器上有或者有缓存，就返回</li>
+<li>还没有的话就去找根 DNS 服务器(全球 13 台，固定 ip 地址)，然后判断 .com 域名是哪个服务器管理，如果无法解析，就查找网址服务器是否能解析，直到查到网站的 IP 地址<blockquote>
+<p>注意：dns 查询有两种模式，一种是转发模式，一种是非转发模式，我上面说的 4 是非转发模式。</p>
+</blockquote>
+<h3 id="前端可以做-dns-优化吗？"><a href="#前端可以做-dns-优化吗？" class="headerlink" title="前端可以做 dns 优化吗？"></a>前端可以做 dns 优化吗？</h3>前端的dns优化，可以在html页面头部写入dns缓存地址，比如<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">&quot;x-dns-prefetch-control&quot;</span> content=<span class="string">&quot;on&quot;</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">&quot;dns-prefetch&quot;</span> href=<span class="string">&quot;http://bdimg.share.baidu.com&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+查找到 IP 之后，就是 http 协议的三次握手（以及后面会涉及到四次挥手）<h2 id="三次握手，为啥两次不行，顺便说一下3次握手发生了什么"><a href="#三次握手，为啥两次不行，顺便说一下3次握手发生了什么" class="headerlink" title="三次握手，为啥两次不行，顺便说一下3次握手发生了什么"></a>三次握手，为啥两次不行，顺便说一下3次握手发生了什么</h2></li>
+</ol>
+<ul>
+<li>第一次握手：主机 A 发送位码 为SYN＝1 的 TCP 包给服务器，并且随机产生一个作为确认号（这是 tcp 包的一部分），主机 B 收到 SYN 码后直到 A 要求建立连接;</li>
+<li>第二次握手：主机 B 收到请求后，向 A 发送确认号（主机A的seq+1），syn=1，seq = 随机数 的 TCP 包；</li>
+<li>主机 A 收到后检查确认号是否正确，即第一次 A 发送的确认号是否 +1 了，以及位码 ack 是否为 1，若正确，主机 A 会再发送确认号（主机 B 的 seq+1），ack=1，主机 B 收到后确认 seq 值与 ack=1 则连接建立成功。</li>
+</ul>
+<p>三次握手建立链接，就该请求 html 文件了，如果 html 文件在缓存里面浏览器直接返回，如果没有，就去后台取</p>
+<h2 id="解释一下缓存"><a href="#解释一下缓存" class="headerlink" title="解释一下缓存"></a>解释一下缓存</h2><p>浏览器首次加载资源成功时，服务器返回 200，此时浏览器不仅将资源下载下来，而且把 response 的 header（里面的 date 属性非常重要，用来计算第二次相同资源时当前时间和 date 的时间差）一并缓存;<br>下一次加载资源时，首先要经过强缓存的处理，cache-control 的优先级最高，比如 cache-control：no-cache,就直接进入到协商缓存的步骤了，如果 cache-control：max-age=xxx,就会先比较当前时间和上一次返回 200时的时间差，如果没有超过 max-age，命中强缓存，不发请求直接从本地缓存读取该文件（这里需要注意，如果没有 cache-control，会取 expires 的值，来对比是否过期），过期的话会进入下一个阶段，协商缓存<br>协商缓存阶段，则向服务器发送 header 带有 If-None-Match 和 If-Modified-Since 的请求，服务器会比较 Etag，如果相同，命中协商缓存，返回 304；如果不一致则有改动，直接返回新的资源文件带上新的 Etag 值并返回 200;<br>协商缓存第二个重要的字段是，If-Modified-Since，如果客户端发送的 If-Modified-Since 的值跟服务器端获取的文件最近改动的时间，一致则命中协商缓存，返回 304；不一致则返回新的 last-modified 和文件并返回 200;</p>
+<h3 id="什么是from-disk-cache和from-memory-cache吗，什么时候会触发？"><a href="#什么是from-disk-cache和from-memory-cache吗，什么时候会触发？" class="headerlink" title="什么是from disk cache和from memory cache吗，什么时候会触发？"></a>什么是from disk cache和from memory cache吗，什么时候会触发？</h3><p>强缓存会触发，这两种，具体什么行为不知道,大概内容如下：</p>
+<ol>
+<li>先查找内存，如果内存中存在，从内存中加载；</li>
+<li>如果内存中未查找到，选择硬盘获取，如果硬盘中有，从硬盘中加载；</li>
+<li>如果硬盘中未查找到，那就进行网络请求；</li>
+<li>加载到的资源缓存到硬盘和内存；<h4 id="什么是启发式缓存吗，在什么条件下触发？"><a href="#什么是启发式缓存吗，在什么条件下触发？" class="headerlink" title="什么是启发式缓存吗，在什么条件下触发？"></a>什么是启发式缓存吗，在什么条件下触发？</h4>如果响应中未显示 Expires，Cache-Control：max-age或Cache-Control：s-maxage，并且响应中不包含其他有关缓存的限制，缓存可以使用启发式方法计算新鲜度寿命。通常会根据响应头中的2个时间字段 Date 减去 Last-Modified 值的 10% 作为缓存时间。<blockquote>
+<p>Date 减去 Last-Modified 值的 10% 作为缓存时间。<br>Date：创建报文的日期时间, Last-Modified 服务器声明文档最后被修改时间 response_is_fresh =  max(0,（Date -  Last-Modified)) % 10</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>返回 html 之后，会解析 html, cssom + domTree = html，然后布局和绘制</li>
+<li>构建DOM树(DOM tree)：从上到下解析HTML文档生成DOM节点树（DOM tree），也叫内容树（content tree）</li>
+<li>构建CSSOM(CSS Object Model)树：加载解析样式生成CSSOM树</li>
+<li>执行JavaScript：加载并执行JavaScript代码（包括内联代码或外联JavaScript文件）</li>
+<li>构建渲染树(render tree)：根据DOM树和CSSOM树,生成渲染树(render tree)</li>
+<li>渲染树：按顺序展示在屏幕上的一系列矩形，这些矩形带有字体，颜色和尺寸等视觉属性</li>
+<li>布局（layout）：根据渲染树将节点树的每一个节点布局在屏幕上的正确位置</li>
+<li>绘制（painting）：遍历渲染树绘制所有节点，为每一个节点适用对应的样式，这一过程是通过UI后端模块完成</li>
+</ul>
+<h2 id="页面渲染层有什么优化手段？"><a href="#页面渲染层有什么优化手段？" class="headerlink" title="页面渲染层有什么优化手段？"></a>页面渲染层有什么优化手段？</h2><ul>
+<li>HTML 文档结构层次尽量少</li>
+<li>脚本尽量后放，放在前即可</li>
+<li>少量首屏样式内联放在标签内</li>
+<li>样式结构层次尽量简单</li>
+<li>在脚本中尽量减少 DOM 操作，尽量缓存访问 DOM 的样式信息，避免过度触发回流</li>
+<li>减少通过 JavaScript 代码修改元素样式，尽量使用修改 class 名方式操作样式或动画</li>
+<li>动画尽量使用在绝对定位或固定定位的元素上</li>
+<li>隐藏在屏幕外，或在页面滚动时，尽量停止动画</li>
+<li>尽量缓存 DOM 查找，查找器尽量简洁</li>
+<li>涉及多域名的网站，可以开启域名预解析；<h4 id="如何诊断页面渲染时各个性能指标？"><a href="#如何诊断页面渲染时各个性能指标？" class="headerlink" title="如何诊断页面渲染时各个性能指标？"></a>如何诊断页面渲染时各个性能指标？</h4>通过 chrome 浏览器的工具，比如看网络请求情况的 network，还有看页面渲染情况的 perfermance<br>zhuanlan.zhihu.com/p/105561186</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zero_warmwine</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/18/%E6%9C%89%E9%9A%BE%E5%BA%A6%E7%9A%84'%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%8Eurl%E8%BE%93%E5%85%A5%E5%88%B0%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B'/">http://example.com/2022/04/18/有难度的'说一下从url输入到返回请求的过程'/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">埃斯佩拉某处</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="http://m.qpic.cn/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEGVEhynO9rZDPXVjyGZcLW*yuqhURa9xjueRzgYBmdKp8LzPgNDT4ovRRRGxsr*oawaqKvz0v6bw6*LE6L0OqGk!/b&amp;bo=vgXUA74F1AMDd1I!&amp;rf=viewer_4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/12/29/JavaScript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"><img class="next-cover" src="http://r.photo.store.qq.com/psc?/V51JZupb2WYeuQ2XPnHW1mg57E2MnzQp/TmEUgtj9EK6.7V8ajmQrEHHeZyb7mrlurpF3DTvhjIfiq1B.b4dsXV5rMhbUouAPewNORO8aRDvYIWZiHG9MnAlwY6wD*UGC0DQJ8o2lVIA!/r" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript的事件循环</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" style="background-image: url(http://r.photo.store.qq.com/psc?/V13ED3O034Fhyk/TmEUgtj9EK6.7V8ajmQrEE1roXSuq*IUSWHAgiN*7l1zGFmcBiBL.0FgOIcIPOaZzo8I7AxTqCfSOOIvwQkSJFQ10wnHLSk3.PSZR3TEbNU!/r)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Zero_warmwine</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div></body></html>
