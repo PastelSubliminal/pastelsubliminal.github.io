@@ -200,16 +200,36 @@
       </tags>
   </entry>
   <entry>
-    <title>Less和CSS的区别</title>
+    <title>Sass和Less的区别</title>
     <url>/2021/04/02/Less%E5%92%8CCSS%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Less和CSS介绍"><a href="#Less和CSS介绍" class="headerlink" title="Less和CSS介绍"></a>Less和CSS介绍</h1><p>Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
-<p>LESS是一个 CSS 预处理器，可以为网站启用可自定义，可管理和可重用的样式表。LESS 是一种动态样式表语言，扩展了 CSS 的功能。 LESS 也是跨浏览器友好。</p>
-<p>CSS预处理器是一种脚本语言，可扩展 CSS 并将其编译为常规 CSS 语法，以便可以通过 Web 浏览器读取。 它提供诸如变量，函数，mixins 和操作等功能，可以构建动态 CSS。</p>
-<p>Less 允许我们定义变量，使用嵌套式声明，定义函数等。严格说 Less 包含两部分：（1）Less 的语法 （2）Less 预处理器。浏览器终究只认识 CSS，所以 Less 文件需要经过 Less 预处理器编译成为 CSS。</p>
-<p>CSS：层叠样式表是一种用来表现 HTML（标准通用标记语言的一个应用）或 XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
-<h1 id="二、Less与CSS区别总结"><a href="#二、Less与CSS区别总结" class="headerlink" title="二、Less与CSS区别总结"></a>二、Less与CSS区别总结</h1><p>1、Less 是一门 CSS 预处理语言，CSS 是一种用来表现 HTML 或 XML 等文件样式的计算机语言。</p>
-<p>2、Less 扩展了 CSS 语言，增加了变量、Mixin、函数等特性。</p>
-<p>3、CSS 可以被浏览器直接识别，Less 需要先编译为 CSS。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Sass和Less介绍"><a href="#Sass和Less介绍" class="headerlink" title="Sass和Less介绍"></a>Sass和Less介绍</h1><ul>
+<li>Sass</li>
+</ul>
+<ol>
+<li>兼容所有版本的 CSS</li>
+<li>专业 CSS 扩展语言</li>
+<li>使用变量</li>
+<li>嵌套 CSS 规则</li>
+<li>支持导入 SASS 文件</li>
+<li>静默注释</li>
+<li>混合器</li>
+<li>使用选择器继承来精简 CSS</li>
+</ol>
+<ul>
+<li>Less</li>
+</ul>
+<ol>
+<li>增加了变量、Mixin、函数等特性</li>
+<li>可以运行在 Node 或浏览器端</li>
+</ol>
+<h1 id="二、Sass和Less区别总结"><a href="#二、Sass和Less区别总结" class="headerlink" title="二、Sass和Less区别总结"></a>二、Sass和Less区别总结</h1><ul>
+<li><p>Sass 语法类似 HTML，属于缩排语法，目的就是为了更快更好写，更容易阅读。Less 赋予了 CSS 动态语言的特性，如变量、继承、运算、函数，LESS 既可以在客户端上运行，也可以在服务端运行。</p>
+</li>
+<li><p>变量符不一样，less 是 @，而 Sass 是 $</p>
+</li>
+<li><p>Sass 支持条件语句，可以使用 if{}else{}，for{} 循环等等。而 Less 不支持。</p>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>HTML+CSS</tag>
