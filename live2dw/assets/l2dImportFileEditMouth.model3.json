@@ -1,0 +1,124 @@
+{
+  "Version": 3,
+  "Type": 0,
+  "FileReferences": {
+    "Moc": "l2dImportFileEditMouth.moc3",
+    "Textures": [
+      "l2dImportFileEditMouth.2048/texture_00.png"
+    ],
+    "PhysicsV2": {},
+    "Motions": {
+      "earL": [
+        {
+          "Name": "earLAction",
+          "File": "earLAction.motion3.json",
+          "Text": "earLAction",
+          "TextDuration": 3000
+        }
+      ],
+      "earR": [
+        {
+          "Name": "earRAction",
+          "File": "earRAction.motion3.json",
+          "Text": "earRAction",
+          "TextDuration": 2000
+        }
+      ],
+      "faceClickAction1": [
+        {
+          "Name": "faceClickAction1",
+          "File": "faceClickAction1.motion3.json",
+          "Text": "faceClickAction1",
+          "FadeIn": 500,
+          "FadeOut": 500,
+          "TextDuration": 2000
+        }
+      ]
+    }
+  },
+  "Controllers": {
+    "ParamHit": {
+      "Enabled": true
+    },
+    "ParamLoop": {
+      "Enabled": true
+    },
+    "KeyTrigger": {
+      "Enabled": true
+    },
+    "ParamTrigger": {},
+    "AreaTrigger": {},
+    "HandTrigger": {},
+    "EyeBlink": {
+      "MinInterval": 500,
+      "MaxInterval": 6000,
+      "Items": [
+        {
+          "Id": "ParamEyeLSmile",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Inverted": true,
+          "BlendMode": 1,
+          "Input": 0
+        },
+        {
+          "Id": "ParamEyeRSmile",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Inverted": true,
+          "BlendMode": 1,
+          "Input": 0
+        }
+      ],
+      "Enabled": true
+    },
+    "LipSync": {
+      "Gain": 5.0
+    },
+    "MouseTracking": {
+      "SmoothTime": 0.103277586,
+      "Enabled": true
+    },
+    "AutoBreath": {
+      "Enabled": true
+    },
+    "ExtraMotion": {
+      "Enabled": true
+    },
+    "Accelerometer": {
+      "Enabled": true
+    },
+    "Microphone": {},
+    "Transform": {},
+    "FaceTracking": {
+      "Enabled": true
+    },
+    "HandTracking": {},
+    "ParamValue": {},
+    "PartOpacity": {},
+    "ArtmeshOpacity": {},
+    "ArtmeshColor": {},
+    "ArtmeshCulling": {
+      "DefaultMode": 0
+    },
+    "IntimacySystem": {}
+  },
+  "HitAreas": [
+    {
+      "Name": "earL",
+      "Id": "earL",
+      "Motion": "earL:earLAction"
+    },
+    {
+      "Name": "earR",
+      "Id": "earR",
+      "Motion": "earR:earRAction"
+    },
+    {
+      "Name": "faceClickAction1",
+      "Id": "head",
+      "Motion": "faceClickAction1:faceClickAction1"
+    }
+  ],
+  "Options": {}
+}
