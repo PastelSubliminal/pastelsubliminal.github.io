@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-05-13T16:36:45.199Z</updated>
+  <updated>2023-06-03T19:38:21.469Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React的useQuery用法</title>
+    <link href="http://example.com/2023/06/04/React%E7%9A%84useQuery%E7%94%A8%E6%B3%95/"/>
+    <id>http://example.com/2023/06/04/React%E7%9A%84useQuery%E7%94%A8%E6%B3%95/</id>
+    <published>2023-06-03T16:00:00.000Z</published>
+    <updated>2023-06-03T19:38:21.469Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>useQuery 是 React Query 库中的一个自定义钩子函数，用于在 React 组件中进行数据查询。它提供了一种简化和统一数据查询逻辑的方式。下面是使用 useQuery 的基本步骤：</p><ol><li><p>安装 React Query 库：使用 npm 或 yarn 安装 React Query 库。</p></li><li><p>导入必要的依赖：在需要使用 useQuery 的组件中，导入 useQuery 函数以及其他必要的依赖。</p></li></ol><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useQuery &#125; <span class="keyword">from</span> <span class="string">&#x27;react-query&#x27;</span>;</span><br></pre></td></tr></table></figure><ol start="3"><li>定义查询函数：创建一个异步函数，用于执行实际的数据查询操作。这个函数将返回一个 Promise，用于从源（rest、GraphQL 等等）获取查询结果。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">&#x27;https://api.example.com/data&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> response.json();</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li><li>使用 useQuery 钩子：在组件中使用 useQuery 钩子来执行查询操作。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MyComponent = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; isLoading, error, data &#125; = useQuery(<span class="string">&#x27;myData&#x27;</span>, fetchData);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isLoading) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Error: &#123;error.message&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;<span class="comment">/* 使用查询结果进行渲染 */</span>&#125;</span><br><span class="line">      &#123;data &amp;&amp; data.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span>&gt;</span>&#123;item.name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>在上述代码中，useQuery 函数接受两个参数：查询的唯一键（用于标识查询）和查询函数。它将返回一个包含 isLoading（表示查询是否正在进行）、error（表示查询错误）和 data（查询结果数据）等属性的对象。</li></ol><p>在组件中，可以根据 isLoading、error 和 data 的状态进行相应的处理，如显示加载中状态、错误处理和渲染查询结果。</p><p>这是一个简单的示例，可以根据实际需求和查询接口进行自定义。使用 useQuery 可以轻松管理数据查询和状态，提供了方便的数据查询逻辑。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="http://example.com/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>后端学习笔记</title>
@@ -431,28 +453,6 @@
     
     
     <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>扫码点餐时遇到的问题</title>
-    <link href="http://example.com/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://example.com/2020/09/19/%E6%89%AB%E7%A0%81%E7%82%B9%E9%A4%90%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</id>
-    <published>2020-09-18T16:00:00.000Z</published>
-    <updated>2023-05-13T16:39:17.077Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在写个人项目——扫码点餐中碰到的一些问题"><a href="#在写个人项目——扫码点餐中碰到的一些问题" class="headerlink" title="在写个人项目——扫码点餐中碰到的一些问题"></a>在写个人项目——扫码点餐中碰到的一些问题</h1><h2 id="React报错-Objects-are-not-valid-as-a-React-Child"><a href="#React报错-Objects-are-not-valid-as-a-React-Child" class="headerlink" title="React报错: Objects are not valid as a React Child"></a>React报错: Objects are not valid as a React Child</h2><p>解决方法：标签之间的内容不能为对象，不能作为原生元素的子元素，但可以作为自定义组件的子元素</p><h2 id="React报错-props-is-not-defined-at-xxx-render"><a href="#React报错-props-is-not-defined-at-xxx-render" class="headerlink" title="React报错: props is not defined at xxx.render"></a>React报错: props is not defined at xxx.render</h2><p>解决方法：1. render中应写this.state，是否写成了props.state?</p><h2 id="Error-Request-failed-with-status-code-401"><a href="#Error-Request-failed-with-status-code-401" class="headerlink" title="Error: Request failed with status code 401"></a>Error: Request failed with status code 401</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/DB20B89D253641DFBBE44436175CF3A9/642" alt="Image text"><br>一些前端基础功能部分抛出的错误，promise抛出的错误，不是响应体而是错误对象</p><h2 id="向后端请求餐桌信息，跨域问题"><a href="#向后端请求餐桌信息，跨域问题" class="headerlink" title="向后端请求餐桌信息，跨域问题"></a>向后端请求餐桌信息，跨域问题</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/CAC2CD357C7F4F86AC9C8964CBDB9EEA/652" alt="Image text"><br>后端app.js</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(cors(&#123;</span><br><span class="line">  origin: <span class="literal">true</span>,<span class="comment">//修改这里</span></span><br><span class="line">  maxAge: <span class="number">86400</span>,</span><br><span class="line">  credentials: <span class="literal">true</span>,</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure><h2 id="proxy-error"><a href="#proxy-error" class="headerlink" title="proxy error"></a>proxy error</h2><p><img src="http://note.youdao.com/yws/public/resource/57483267a438c01a94484a62517b6eb4/xmlnote/9F4153617CB84496A435AD090C1DA56F/665" alt="Image text"><br>proxy代理设置 “proxy”: “<a href="http://localhost:5002&quot;">http://localhost:5002&quot;</a> 即可<br>同代表本机的10.1.1就不可以，最好各处写的一致</p><h2 id="React脚手架运行npm-start报错-webpack版本问题"><a href="#React脚手架运行npm-start报错-webpack版本问题" class="headerlink" title="React脚手架运行npm start报错 webpack版本问题"></a>React脚手架运行npm start报错 webpack版本问题</h2><p>There might be a problem with the project dependency tree.<br>It is likely not a bug in Create React App, but something you need to fix locally.<br>The react-scripts package provided by Create React App requires a dependency:<br>“webpack”: “4.42.0”<br>Don’t try to install it manually: your package manager does it automatically.<br>However, a different version of webpack was detected higher up in the tree:<br>C:\Users\lenovo\node_modules\webpack (version: 4.41.6)<br>Manually installing incompatible versions is known to cause hard-to-debug issues.<br>If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That will permanently disable this message but you might encounter other issues.<br>To fix the dependency tree, try following the steps below in the exact order:</p><ol><li>Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.</li><li>Delete node_modules in your project folder.</li><li>Remove “webpack” from dependencies and/or devDependencies in the package.json file in your project folder.</li><li>Run npm install or yarn, depending on the package manager you use.<br>In most cases, this should be enough to fix the problem.<br>If this has not helped, there are a few other things you can try:</li><li>If you used npm, install yarn (<a href="http://yarnpkg.com/">http://yarnpkg.com/</a>) and repeat the above steps with it instead.<br>This may help because npm has known issues with package hoisting which may get resolved in future versions.</li><li>Check if C:\Users\lenovo\node_modules\webpack is outside your project directory.<br>For example, you might have accidentally installed something in your home folder.</li><li>Try running npm ls webpack in your project folder.<br>This will tell you which other package (apart from the expected react-scripts) installed webpack.<br>If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.<br>That would permanently disable this preflight check in case you want to proceed anyway.<br>P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</li></ol><p>解决办法：在项目文件夹下，新建一个.env文件，在其中写上如下代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SKIP_PREFLIGHT_CHECK&#x3D;true</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    
-    <category term="React" scheme="http://example.com/tags/React/"/>
     
   </entry>
   

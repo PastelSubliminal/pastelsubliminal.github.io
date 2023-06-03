@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>React的useQuery用法</title>
+    <url>/2023/06/04/React%E7%9A%84useQuery%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>useQuery 是 React Query 库中的一个自定义钩子函数，用于在 React 组件中进行数据查询。它提供了一种简化和统一数据查询逻辑的方式。下面是使用 useQuery 的基本步骤：</p>
+<ol>
+<li><p>安装 React Query 库：使用 npm 或 yarn 安装 React Query 库。</p>
+</li>
+<li><p>导入必要的依赖：在需要使用 useQuery 的组件中，导入 useQuery 函数以及其他必要的依赖。</p>
+</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useQuery &#125; <span class="keyword">from</span> <span class="string">&#x27;react-query&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>定义查询函数：创建一个异步函数，用于执行实际的数据查询操作。这个函数将返回一个 Promise，用于从源（rest、GraphQL 等等）获取查询结果。<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">&#x27;https://api.example.com/data&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> response.json();</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>使用 useQuery 钩子：在组件中使用 useQuery 钩子来执行查询操作。<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> MyComponent = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; isLoading, error, data &#125; = useQuery(<span class="string">&#x27;myData&#x27;</span>, fetchData);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isLoading) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Error: &#123;error.message&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;<span class="comment">/* 使用查询结果进行渲染 */</span>&#125;</span><br><span class="line">      &#123;data &amp;&amp; data.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span>&gt;</span>&#123;item.name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+在上述代码中，useQuery 函数接受两个参数：查询的唯一键（用于标识查询）和查询函数。它将返回一个包含 isLoading（表示查询是否正在进行）、error（表示查询错误）和 data（查询结果数据）等属性的对象。</li>
+</ol>
+<p>在组件中，可以根据 isLoading、error 和 data 的状态进行相应的处理，如显示加载中状态、错误处理和渲染查询结果。</p>
+<p>这是一个简单的示例，可以根据实际需求和查询接口进行自定义。使用 useQuery 可以轻松管理数据查询和状态，提供了方便的数据查询逻辑。</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>后端学习笔记</title>
     <url>/2023/03/30/%E7%AC%94%E8%AE%B0-%E5%90%8E%E7%AB%AF/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="关系型与非关系型数据库"><a href="#关系型与非关系型数据库" class="headerlink" title="关系型与非关系型数据库"></a>关系型与非关系型数据库</h3><p>关系型数据库与非关系型数据库的区别</p>
