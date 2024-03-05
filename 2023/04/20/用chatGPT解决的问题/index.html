@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>用chatGPT解决地问题 | 埃斯佩拉某处</title><meta name="keywords" content="JavaScript"><meta name="author" content="Zero_warmwine"><meta name="copyright" content="Zero_warmwine"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="本文收录我遇到的各种用 chatGPT 解决的问题，给我带来的不用理解和思考代码的体验。 一、后端接口404问题在写的一个自己个人全栈项目，写项目时碰到一个向后端提交带图片的表单时，控制台接口报错 404，一般情况下是后端没有正确监听到对应路径的请求导致的。但是检查之后路径监听完全正确，且登录接口没有这个问题。于是便开始怀疑中间件。因为与正常使用的登录接口相比，此提交接口多了一个中间件对 toke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用chatGPT解决地问题">
+<meta property="og:url" content="http://example.com/2023/04/20/%E7%94%A8chatGPT%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="埃斯佩拉某处">
+<meta property="og:description" content="本文收录我遇到的各种用 chatGPT 解决的问题，给我带来的不用理解和思考代码的体验。 一、后端接口404问题在写的一个自己个人全栈项目，写项目时碰到一个向后端提交带图片的表单时，控制台接口报错 404，一般情况下是后端没有正确监听到对应路径的请求导致的。但是检查之后路径监听完全正确，且登录接口没有这个问题。于是便开始怀疑中间件。因为与正常使用的登录接口相比，此提交接口多了一个中间件对 toke">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/13/photo-1648795639584-218305891ed6.png">
+<meta property="article:published_time" content="2023-04-19T16:00:01.000Z">
+<meta property="article:modified_time" content="2023-07-04T19:46:31.277Z">
+<meta property="article:author" content="Zero_warmwine">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdnjson.com/images/2023/05/13/photo-1648795639584-218305891ed6.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/04/20/%E7%94%A8chatGPT%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2023-07-05 03:46:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><div class="aplayer" data-id="5303367696" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.9.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><link rel="stylesheet" href="/self/background.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="埃斯佩拉某处" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">26</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3404%E9%97%AE%E9%A2%98"><span class="toc-text">一、后端接口404问题</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://cdnjson.com/images/2023/05/13/photo-1648795639584-218305891ed6.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">埃斯佩拉某处</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">用chatGPT解决地问题</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-04-19T16:00:01.000Z" title="undefined 2023-04-20 00:00:01">2023-04-20</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>本文收录我遇到的各种用 chatGPT 解决的问题，给我带来的不用理解和思考代码的体验。</p>
+<h2 id="一、后端接口404问题"><a href="#一、后端接口404问题" class="headerlink" title="一、后端接口404问题"></a>一、后端接口404问题</h2><p>在写的一个自己个人全栈项目，写项目时碰到一个向后端提交带图片的表单时，控制台接口报错 404，一般情况下是后端没有正确监听到对应路径的请求导致的。但是检查之后路径监听完全正确，且登录接口没有这个问题。于是便开始怀疑中间件。因为与正常使用的登录接口相比，此提交接口多了一个中间件对 token 的处理，果然注释掉 app.js 中的中间件内容后，错误消失了，接下来就要找出中间件中有问题的代码并修改。以下是对话记录：</p>
+<p>User<br>使用 multer 文件上传出现错误 Cannot set headers after they are sent to the client 可能是什么原因？<br>ChatGPT<br>“Cannot set headers after they are sent to the client” 错误通常发生在尝试在响应已经发送给客户端之后再次设置响应头时。这通常是由于在处理请求时出现了一些逻辑错误导致的。以下是可能导致这个错误的一些常见原因：</p>
+<p>响应已经发送：在某个地方，你的代码已经发送了响应给客户端，然后试图在之后的代码中再次设置响应头。请确保在发送响应后，不要尝试修改或设置任何响应头。</p>
+<p>多次调用 res.send() 或 res.json()：在处理请求时，可能多次调用了发送响应的方法，如 res.send() 或 res.json()。这会导致在响应已经发送后再次尝试修改响应头，从而引发错误。确保只调用一次发送响应的方法。</p>
+<p>中间件的顺序问题：如果你在 Express.js 或类似的框架中使用了多个中间件，可能存在中间件的顺序问题。某个中间件可能在发送响应后尝试修改响应头，而之后的中间件又试图发送另一个响应。请检查中间件的顺序，并确保在发送响应后不会再次修改响应头。</p>
+<p>异步操作错误：如果在处理请求时涉及到异步操作，确保正确处理异步操作的回调或 Promise，并避免在回调中尝试修改响应头。</p>
+<p>检查你的代码，尤其是涉及到发送响应和设置响应头的部分，查找是否存在上述问题。定位错误的位置并修复它，确保在发送响应后不再尝试修改响应头。</p>
+<p>User<br>我注释掉如下中间件的代码后，这个错误就解决了，你能帮我看出是哪出现了问题，应该怎么改吗</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">// 如果 token 有效，next()；如果 token 过期了，返回 401 错误</span></span><br><span class="line">  <span class="comment">// login 页面不需要</span></span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">req.url === <span class="string">&#x27;/adminapi/user/login&#x27;</span></span>)</span>&#123;</span><br><span class="line">    next()</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> token = req.headers[<span class="string">&#x27;authorization&#x27;</span>].split(<span class="string">&quot; &quot;</span>)[<span class="number">1</span>]</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">token</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> payload = JWT.verify(token)</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">payload</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">const</span> newToken = JWT.generate(&#123;</span><br><span class="line">        _id: payload._id,</span><br><span class="line">        username: payload.username</span><br><span class="line">      &#125;, <span class="string">&#x27;10s&#x27;</span>)</span><br><span class="line">      res.header(<span class="string">&#x27;Authorization&#x27;</span>, newToken)</span><br><span class="line">      next()</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.status(<span class="number">401</span>).send(&#123;<span class="attr">errorCode</span>:<span class="string">&#x27;-1&#x27;</span>, <span class="attr">errorInfo</span>:<span class="string">&#x27;token过期&#x27;</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>ChatGPT<br>根据你提供的代码，可以看到问题出现在以下这行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> token = req.headers[<span class="string">&#x27;authorization&#x27;</span>].split(<span class="string">&quot; &quot;</span>)[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>这行代码尝试从请求头中获取 Authorization，并使用空格分隔字符串以提取 token。但是如果请求头中没有 Authorization 头部或者其值不符合预期的格式，例如没有空格分隔，那么在尝试访问 split(“ “)[1] 时会导致错误。</p>
+<p>为了解决这个问题，你可以在访问 split(“ “) 之前进行一些验证，以确保请求头中存在 Authorization 并且具有正确的格式。这样可以避免在没有有效的 token 时导致错误。</p>
+<p>以下是一个修改后的代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (req.url === <span class="string">&#x27;/adminapi/user/login&#x27;</span>) &#123;</span><br><span class="line">    next();</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> authorizationHeader = req.headers[<span class="string">&#x27;authorization&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (authorizationHeader &amp;&amp; authorizationHeader.startsWith(<span class="string">&#x27;Bearer &#x27;</span>)) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = authorizationHeader.split(<span class="string">&#x27; &#x27;</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">let</span> payload = JWT.verify(token);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (payload) &#123;</span><br><span class="line">      <span class="keyword">const</span> newToken = JWT.generate(&#123;</span><br><span class="line">        _id: payload._id,</span><br><span class="line">        username: payload.username</span><br><span class="line">      &#125;, <span class="string">&#x27;10s&#x27;</span>);</span><br><span class="line"></span><br><span class="line">      res.header(<span class="string">&#x27;Authorization&#x27;</span>, newToken);</span><br><span class="line">      next();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res.status(<span class="number">401</span>).send(&#123; <span class="attr">errorCode</span>: <span class="string">&#x27;-1&#x27;</span>, <span class="attr">errorInfo</span>: <span class="string">&#x27;token过期&#x27;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.status(<span class="number">401</span>).send(&#123; <span class="attr">errorCode</span>: <span class="string">&#x27;-1&#x27;</span>, <span class="attr">errorInfo</span>: <span class="string">&#x27;无效的token&#x27;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在修改后的代码中，我首先验证了 authorizationHeader 的存在和格式。只有当 authorizationHeader 存在且以 “Bearer “ 开头时，才会继续提取 token。如果 authorizationHeader 不存在或者格式不正确，我直接发送了一个带有适当错误消息的 401 响应。</p>
+<p>这样做可以避免在没有有效的 token 或无效的请求头时引发错误。同时，还可以更好地处理错误情况并提供相应的错误信息。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zero_warmwine</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/04/20/%E7%94%A8chatGPT%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">http://example.com/2023/04/20/用chatGPT解决的问题/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">埃斯佩拉某处</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="https://cdnjson.com/images/2023/05/13/photo-1648795639584-218305891ed6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/04/React%E7%9A%84useQuery%E7%94%A8%E6%B3%95/"><img class="prev-cover" src="https://cdnjson.com/images/2023/05/13/photo-1650001154918-7c21f9009b11.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">React的useQuery用法</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/18/%E6%9C%89%E9%9A%BE%E5%BA%A6%E7%9A%84'%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%8Eurl%E8%BE%93%E5%85%A5%E5%88%B0%E8%BF%94%E5%9B%9E%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B'/"><img class="next-cover" src="https://images.unsplash.com/photo-1635256149015-fe6e1aaa9ca3?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1081&amp;q=80" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">有难度的'说一下从url输入到返回请求的过程'</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://cdnjson.com/images/2023/05/13/footer.png)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zero_warmwine</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":true,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/null"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body></html>
