@@ -1,0 +1,365 @@
+---
+title: 快速入门Vue3
+date: 2021-11-20
+cover: https://cdnjson.com/images/2023/05/13/psc5.jpg
+tags: JavaScript
+---
+# Vue3简介
+面临的问题：随着功能的增长，复杂组件的代码变得难以维护，Vue3 就随之而来，TypeScript 使用的越来越多，Vue3就是 TS 写的所以能够更好的支持 TypeScript
+在这里介绍就这么简单
+vue2 的绝大多数的特性 在 Vue3 都能使用，毕竟 Vue 是渐进式的
+响应式原理进行使用 Proxy 实现，v-model 可以传参了等等新特性
+
+# 基础工作
+使用Vue3的话，那么必须通过使用构建工具创建一个 Vue3 项目
+## 安装 vue-cli
+```
+# npm
+npm install -g @vue/cli
+# yarn
+yarn global add @vue/cli
+```
+## 创建一个项目
+使用 create 命令行创建 或者 用 ui 可视化创建
+大家用 Vue 都用了这么久，我就不一一说怎么去创建了
+```
+# create
+vue create 项目名
+# 可视化
+vue ui
+```
+当然也可以选择 vite ，vite 创建的速度比 上面的方法快了一些
+```
+npm init vite-app 项目名
+cd 项目名
+npm install
+npm run dev
+```
+# Vue3入门
+## Composition API
+> Vue3 提出了 Composition API
+在 Vue2.X 我们使用的是 OptionAPI 里面有我们熟悉的 data、computed、methods、watch...
+在 Vue3 中，我们依旧可以使用 OptionAPI当然不建议 和 Vue3 混用
+在 Vue2 中，我们实现一个功能得分到不同的地方，把数据放在 data ,computed 方法放在 methods 里面，分开的太散乱了，几个功能还好，几十个上百个，那就有点...
+所以 Vue3 提出了 Composition API ，它可以把 一个逻辑的代码都收集在一起 单独写个hook,然后再引入，这样就不到处分布，显得很乱了
+
+## Fragment
+> 在 template 中不再需要一个根元素包裹
+```html
+<template>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+</template>
+```
+实际上内部会将多个标签包含在一个Fragment虚拟元素中
+好处: 减少标签层级, 减小内存占用
+
+## script 差异
+> 来看看 script 和 Vue2 的区别
+```vue
+<script lang="ts">
+import { defineComponent} from 'vue'
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    return {
+        // 这里的属性 和 方法 会合并到 data 函数 和 methods 对象里
+    }
+  },
+})
+</script>
+```
+可以再 script 使用 ts 只需 设置 lang 即可
+defineComponent 方法创建一个组件
+export default 直接导出一个组件
+
+## setup
+> setup 是 Composition API的入口
+
+* setup 执行顺序
+    它在beforeCreate之前执行一次，beforeCreate这个钩子 的任务就是初始化，在它之前执行，那么 this 就没有被初始化 this = undefined 这样就不能通过 this 来调用方法 和 获取属性
+    ![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b06890efbd304516b23df723ad9352dd~tplv-k3u1fbpfcp-watermark.awebp)
+* setup 返回值
+    setup 返回的是一个对象，这个对象的属性会与组件中 data 函数返回的对象进行合并，返回的方法和 methods 合并，合并之后直接可以在模板中使用，如果有重名的情况，会使用 setup 返回的属性和方法，methods 和 data 能够拿到 setup 中的方法应该进行了合并，反之 setup 不能拿到它们的属性和方法，因为这个时候 this = undefined
+    ![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8635a4c729ac41d281020edc5c9569e9~tplv-k3u1fbpfcp-watermark.awebp)
+* Suspense 组件
+    > setup 使用 async/await
+    我们需要 setup 返回数据那么它肯定就不能使用 async 修饰，这样返回 promise 是我们不想看见情况，如果我们硬要用 async 修饰，我们就得用的在它的父组件外层需要嵌套一个suspense(不确定)内置组件，里面放置一些不确定的操作，比如我们就可以把异步组件放入进去
+    1. 子组件
+    ```html
+    <template>
+    {{ res }}
+    </template>
+
+    <script lang="ts">
+    import { defineComponent } from 'vue'
+    export default defineComponent({
+    name: 'Son',
+    async setup() {
+        const res = await axios.get('地址')
+        return {
+        res,
+        }
+    },
+    })
+    </script>
+    ```
+    2. 父组件
+    ```vue
+    <template>
+        <Suspense>
+            <!-- 子组件-->
+            <Son></Son>
+        </Suspense>
+    </template>
+    ```
+* setup 参数
+> setup(props, context)
+setup 函数中的第一个参数是 props。它接收父组件传递的值，是的就是父子组件信息传递的 props
+第二个参数是 context 里面包含3个属性 { attrs, slots, emit }，这三个属性大家看名字就应该知道是什么吧 分别对应 this.$attrs，this.$slots，this.$emit
+
+attrs: 除了 props 中的其他属性
+slots: 父组件传入插槽内容的对象
+emit: 和用于父子组件通信
+
+## ref
+> 定义/转为 响应式
+在上面 setup 写的数据都不是响应式的，修改了数据，视图并不会更新
+在 Vue3 中提供了两种方式定义响应式数据，先来介绍下 ref
+导入 ref 方法
+```js
+import { defineComponent, ref } from 'vue'
+```
+你可以先声明一个基本类型变量后再当做 ref 的形参穿进去
+或者直接在 ref 中传入
+```js
+  setup() {
+    // 方式一
+    let number1 = ref(10)
+    let num = 0
+    // 方式二
+    let number2 = ref(num)
+    return {}
+  },
+```
+来查看一下 number1 是什么吧
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6225b7f5b79d4f4cb1431c64518be657~tplv-k3u1fbpfcp-watermark.awebp)
+可以看见的是 number1 是一个 Ref 对象，我们设置的 10 这个值在这个对象的 value 属性上
+也就是说我们修改的时候必须要修改的是 number1.value
+通过给value属性添加 getter/setter 来实现对数据的劫持
+但是在模板上使用的时候 不用写 number1.value 直接写 number1 即可
+在模板编译的时候回自动加上 value
+```html
+<template>
+  {{ number1 }}
+  <button @click="updateNum">+</button>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+export default defineComponent({
+  name: 'Son',
+  setup() {
+    let number1 = ref(10)
+
+    // 修改 number1
+    function updateNum() {
+      number1.value++
+    }
+    return {
+      number1,
+      updateNum,
+    }
+  },
+})
+</script>
+```
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a5b9e88c52c84261aa28e6cc5cd74bf5~tplv-k3u1fbpfcp-watermark.awebp)
+使用起来完全没有问题
+刚才强调了说 ref 接收 基本类型的数据，那么它可以接收 复杂类型吗，object 类型等，当然可以
+给 ref 传入复杂类型，其实它是调用 reactive 来实现的
+reactive 下面会提到
+
+## ref 获取元素
+同样的 ref 还可以用了获取元素
+大家在 Vue2.X 中是怎么获取的呢，先在 标签上定义 :ref='XXX' 然后 this.$refs.XXX 来获取
+在 Vue3 上获取元素就有些许不同了
+> 1.首先在 模板元素上 ref='XXX' 这里不用 v-bind
+```html
+<template>
+  <div id="haha" ref="haha"></div>
+</template>
+```
+> 2.在 setup 中
+得给 ref 指定类型 HTMLElement
+```js
+setup() {
+  let haha = ref<HTMLElement|null>(null)
+  console.log(haha)
+
+  return {
+    haha,
+  }
+},
+```
+如果在组件中需要使用到 haha ，就必须把 haha return 出去合并 data
+我们来看看打印的是什么
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c17d2e13f4941d7a37281eef673cfcf~tplv-k3u1fbpfcp-watermark.awebp)
+可以看见的是 haha 是个 Ref 对象，value 值就是我们想要获取到的元素
+然后我们可以对 haha 这个 DOM 元素进行操作，比如这个
+```js
+haha.style.fontSize = '20px'
+```
+## reactive
+reactive 接收一个普通对象然后返回该普通对象的响应式代理对象
+没错 它的底层就是使用 Proxy 进行代理
+> 简单写个Vue3响应式例子来说下 Proxy
+new Proxy(target, handler)
+
+target ：要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）
+handler：一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p
+```js
+// 模拟 Vue data
+let data = {
+    msg: '',
+    age: '',
+}
+// 模拟 Vue 的一个实例
+// Proxy 第一个
+let vm = new Proxy(data, {
+    // get() 获取值
+    // target 表示需要代理的对象这里指的就是 data
+    // key 就是对象的 键
+    get(target, key) {
+        return target[key]
+    },
+    // 设置值
+    // newValue 是设置的值
+    set(target, key, newValue) {
+        // 也先判断下是否和之前的值一样 节省性能
+        if (target[key] === newValue) return
+        // 进行设置值
+        target[key] = newValue
+        document.querySelector('#app').textContent = target[key]
+    },
+})
+```
+> reactive 基础用法
+导入，当然写的时候，vscode 会自动帮你引入
+```js
+import { defineComponent, reactive } from 'vue'
+```
+简单使用
+```js
+setup() {
+    let obj = reactive({
+        name: '小浪',
+        age: 21,
+    })
+    return {
+        obj,
+    }
+}
+```
+来看看返回的 Proxy 对象吧
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/596efb4256c74cc19feb6f6b365bdb90~tplv-k3u1fbpfcp-watermark.awebp)
+数据都在 target 中，
+在模板使用直接 {{obj.name}} 即可
+修改直接修改 obj[name] = ‘xxx’
+操作代理对象,obj中的数据也会随之变化，同时如果想要在操作数据的时候,界面也要跟着重新更新渲染,那么也是操作代理对象
+> 响应式的数据是深层次的（递归深度响应式）
+对于多层嵌套的数据也是响应式的
+```js
+setup() {
+    let obj = reactive({
+        name: '小浪',
+        age: 21,
+        phone: {
+            p_name: '小米',
+            p_apps: {
+                app_name: '小米运动',
+            },
+        },
+    })
+    function upadateName() {
+        obj.phone.p_apps.app_name = '掘金'
+    }
+    console.log(obj)
+
+    return {
+        obj,
+        upadateName,
+    }
+},
+```
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa30d692e14e40cf962235006245e4c5~tplv-k3u1fbpfcp-watermark.awebp)
+> shallowReactive
+它是一个简单的 reactive ，只把第一层的对象改为响应式，这里就不多说了
+> 使用 ref 传入对象
+```js
+setup() {
+    let obj = ref({
+        name: '小浪',
+        age: 21,
+    })
+    console.log(obj)
+
+    return {
+        obj,
+    }
+}
+```
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/782b587ab1384163a505b3694b4eaab8~tplv-k3u1fbpfcp-watermark.awebp)
+实际上是 ref 使用 reactive 来进行操作的
+
+## toRefs
+这个方法可以把 reactive 响应式对象，转化为 普通对象，普通对象的每个属性都是 Ref 对象，这样的话保证了 reactive 的每个属性还是响应式的，我们还可以把每个属性进行分解使用，这样在组件就不用 obj[属性]，代码量减轻了
+```js
+setup() {
+  const user = reactive({
+    name: '小浪',
+    age: 21,
+  })
+
+  let userObj = toRefs(user)
+  console.log(userObj)
+
+  return {}
+}
+```
+![Image text](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d44ff7b5950843c781ead5e0d1d64f2b~tplv-k3u1fbpfcp-watermark.awebp)
+可以看见 name 和 age 已经变成了 Ref 对象
+我们可以解构 出 name 和 age 单独使用
+```js
+setup() {
+  const user = reactive({
+    name: '小浪',
+    age: 21,
+  })
+
+  let userObj = toRefs(user)
+
+  return {
+    ...userObj,
+  }
+}
+```
+
+## toRef
+还有一个 toRef 方法，它的作用和 toRefs 差不多，但是它只能把响应式对象/普通对象的某一个属性变为 Ref 对象
+> 可以用来为源响应式对象上的 property 性创建一个 ref。然后可以将 ref 传递出去，从而保持对其源 property 的响应式连接。
+```js
+export default {
+  setup(props) {
+    useSomeFeature(toRef(props, 'foo'))
+  }
+}
+
+function useSomeFeature(foo: Ref) {
+  // ...
+}
+```
+拷贝了一份新的数据值单独操作, 更新时相互不影响
+当您要将 prop 的 ref 传递给复合函数时，toRef 很有用
+可以从官方文档看出，用于在于组件之前的传递数据 从 props 拿出 'foo' 属性给复合函数，复合函数 useSomeFeature，接收的参数 foo 为 Ref 类型，刚好可以使用toRef 来进行转化

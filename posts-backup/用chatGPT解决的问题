@@ -1,0 +1,97 @@
+---
+title: 用chatGPT解决地问题
+date: 2023-04-20 00:00:01
+cover: https://cdnjson.com/images/2023/05/13/photo-1648795639584-218305891ed6.png
+tags: [JavaScript]
+---
+本文收录我遇到的各种用 chatGPT 解决的问题，给我带来的不用理解和思考代码的体验。
+
+## 一、后端接口404问题
+在写的一个自己个人全栈项目，写项目时碰到一个向后端提交带图片的表单时，控制台接口报错 404，一般情况下是后端没有正确监听到对应路径的请求导致的。但是检查之后路径监听完全正确，且登录接口没有这个问题。于是便开始怀疑中间件。因为与正常使用的登录接口相比，此提交接口多了一个中间件对 token 的处理，果然注释掉 app.js 中的中间件内容后，错误消失了，接下来就要找出中间件中有问题的代码并修改。以下是对话记录：
+
+User
+使用 multer 文件上传出现错误 Cannot set headers after they are sent to the client 可能是什么原因？
+ChatGPT
+"Cannot set headers after they are sent to the client" 错误通常发生在尝试在响应已经发送给客户端之后再次设置响应头时。这通常是由于在处理请求时出现了一些逻辑错误导致的。以下是可能导致这个错误的一些常见原因：
+
+响应已经发送：在某个地方，你的代码已经发送了响应给客户端，然后试图在之后的代码中再次设置响应头。请确保在发送响应后，不要尝试修改或设置任何响应头。
+
+多次调用 res.send() 或 res.json()：在处理请求时，可能多次调用了发送响应的方法，如 res.send() 或 res.json()。这会导致在响应已经发送后再次尝试修改响应头，从而引发错误。确保只调用一次发送响应的方法。
+
+中间件的顺序问题：如果你在 Express.js 或类似的框架中使用了多个中间件，可能存在中间件的顺序问题。某个中间件可能在发送响应后尝试修改响应头，而之后的中间件又试图发送另一个响应。请检查中间件的顺序，并确保在发送响应后不会再次修改响应头。
+
+异步操作错误：如果在处理请求时涉及到异步操作，确保正确处理异步操作的回调或 Promise，并避免在回调中尝试修改响应头。
+
+检查你的代码，尤其是涉及到发送响应和设置响应头的部分，查找是否存在上述问题。定位错误的位置并修复它，确保在发送响应后不再尝试修改响应头。
+
+User
+我注释掉如下中间件的代码后，这个错误就解决了，你能帮我看出是哪出现了问题，应该怎么改吗
+```js
+app.use((req, res, next)=>{
+  // 如果 token 有效，next()；如果 token 过期了，返回 401 错误
+  // login 页面不需要
+  if(req.url === '/adminapi/user/login'){
+    next()
+    return
+  }
+  const token = req.headers['authorization'].split(" ")[1]
+  if(token){
+    let payload = JWT.verify(token)
+    if(payload){
+      const newToken = JWT.generate({
+        _id: payload._id,
+        username: payload.username
+      }, '10s')
+      res.header('Authorization', newToken)
+      next()
+    }else{
+      res.status(401).send({errorCode:'-1', errorInfo:'token过期'})
+    }
+  }
+  next()
+})
+```
+ChatGPT
+根据你提供的代码，可以看到问题出现在以下这行代码：
+
+```javascript
+const token = req.headers['authorization'].split(" ")[1]
+```
+这行代码尝试从请求头中获取 Authorization，并使用空格分隔字符串以提取 token。但是如果请求头中没有 Authorization 头部或者其值不符合预期的格式，例如没有空格分隔，那么在尝试访问 split(" ")[1] 时会导致错误。
+
+为了解决这个问题，你可以在访问 split(" ") 之前进行一些验证，以确保请求头中存在 Authorization 并且具有正确的格式。这样可以避免在没有有效的 token 时导致错误。
+
+以下是一个修改后的代码示例：
+
+```javascript
+app.use((req, res, next) => {
+  if (req.url === '/adminapi/user/login') {
+    next();
+    return;
+  }
+
+  const authorizationHeader = req.headers['authorization'];
+
+  if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
+    const token = authorizationHeader.split(' ')[1];
+    let payload = JWT.verify(token);
+    
+    if (payload) {
+      const newToken = JWT.generate({
+        _id: payload._id,
+        username: payload.username
+      }, '10s');
+
+      res.header('Authorization', newToken);
+      next();
+    } else {
+      res.status(401).send({ errorCode: '-1', errorInfo: 'token过期' });
+    }
+  } else {
+    res.status(401).send({ errorCode: '-1', errorInfo: '无效的token' });
+  }
+});
+```
+在修改后的代码中，我首先验证了 authorizationHeader 的存在和格式。只有当 authorizationHeader 存在且以 "Bearer " 开头时，才会继续提取 token。如果 authorizationHeader 不存在或者格式不正确，我直接发送了一个带有适当错误消息的 401 响应。
+
+这样做可以避免在没有有效的 token 或无效的请求头时引发错误。同时，还可以更好地处理错误情况并提供相应的错误信息。
