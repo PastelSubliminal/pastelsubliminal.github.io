@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-11-12T15:00:17.002Z</updated>
+  <updated>2025-11-12T15:08:26.622Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2023/06/26/FursuitFriday1/"/>
     <id>http://example.com/2023/06/26/FursuitFriday1/</id>
     <published>2023-06-25T16:00:00.000Z</published>
-    <updated>2025-11-12T15:00:17.002Z</updated>
+    <updated>2025-11-12T15:08:26.622Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>还好我有钱到能花1888，吃肯德基不用看星期几</p>]]></content>
     
@@ -41,7 +41,7 @@
     <link href="http://example.com/2023/06/25/FursuitFriday2/"/>
     <id>http://example.com/2023/06/25/FursuitFriday2/</id>
     <published>2023-06-24T16:00:00.000Z</published>
-    <updated>2025-11-12T15:01:08.110Z</updated>
+    <updated>2025-11-12T15:10:24.429Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>诶～？<br>今天好像有多喜欢你一点耶</p>]]></content>
     
